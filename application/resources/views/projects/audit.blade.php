@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ $audit->id }} · Audit event</title>@vite(['resources/css/app.css', 'resources/js/app.js'])</head>
+<body class="min-h-screen bg-slate-100 text-slate-900 antialiased"><main class="mx-auto max-w-3xl space-y-6 px-4 py-8">
+<section class="rounded-xl bg-white p-6 shadow" data-audit-id="{{ $audit->id }}"><p class="text-sm font-bold uppercase text-cyan-700">Related audit record</p><h1 class="mt-1 text-2xl font-black">Audit event {{ $audit->id }}</h1><dl class="mt-5 grid gap-3 text-sm sm:grid-cols-2"><div><dt class="font-bold">Project</dt><dd>{{ $project->id }} · {{ $project->code }}</dd></div><div><dt class="font-bold">Actor</dt><dd>{{ $audit->actor?->name ?? $audit->actor_id }}</dd></div><div><dt class="font-bold">Action</dt><dd>{{ $audit->action }}</dd></div><div><dt class="font-bold">Source</dt><dd>{{ $audit->auditable_type }} · {{ $audit->auditable_id }}</dd></div><div><dt class="font-bold">Occurred at</dt><dd>{{ $audit->occurred_at->utc()->format('Y-m-d\TH:i:s\Z') }}</dd></div></dl></section>
+</main></body></html>

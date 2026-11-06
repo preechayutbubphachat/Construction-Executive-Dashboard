@@ -1,0 +1,64 @@
+{
+  "AUTHORITY_ARTIFACT": [
+    {
+      "PATH": "C:\\2025\\AI-Governor\\AI-Brains\\10_AGENTS\\RIN-V2\\evidence\\CED-2026\\mira-authority\\OWNER-RM12-MIRA-AUTHORITY.json",
+      "SHA256": "6d63823eb0174f2049ddc5f33eea52305518d60396b4fbf3b171b1b843a315f0"
+    },
+    {
+      "PATH": "C:\\2025\\AI-Governor\\AI-Brains\\10_AGENTS\\RIN-V2\\evidence\\CED-2026\\mira-authority\\RIN-RM12-MIRA-AUTHORITY.json",
+      "SHA256": "f825a1bf09f6739fd6454d17e9ed543e6723b13bffaaafb368dbbbe560a3da92"
+    }
+  ],
+  "COMMIT_MARKER_SHA256": "9213836fe11cfa88fe52724ba066f29daf8bac94cf6799d41c142ccda4623def",
+  "CONTRACT_SHA256": "cb95f58b8679274cb0c7747e28e12a697c67d420e36dafd845d6429f3d698c80",
+  "FINAL_STATUS": "COMMITTED",
+  "LAUNCHER_SHA256": "4a378638c46a65e5d5e2ec9d8a57435c5af0733e3533c52b4769ba994eb8174d",
+  "PREDECESSOR_HASHES": [
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\00_HOME\\CURRENT_STATE.md",
+      "SHA256": "b085e2042343549105e0eba350734632fcc3a931e102873ebfe30c17143109bd"
+    },
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\02_GOVERNANCE\\CED-2026-MASTER-ROADMAP.md",
+      "SHA256": "dd03382e71a6f37edc06a8eb308a23bed6ce6879597419c0b3475214c24e6398"
+    },
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\00_HOME\\RESUME_POINTER.md",
+      "SHA256": "bc33523b2f92f99d1e3ec8e82eae491872bb0c2f505e07d11b0a3b492a30b0c3"
+    },
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\chronology\\TASK-CED-2026-RM12-MIRA-DURABLE-CHECKPOINT-20260918.json",
+      "SHA256": null
+    }
+  ],
+  "PROJECT_ID": "CED-2026",
+  "RESULT_HASHES": [
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\00_HOME\\CURRENT_STATE.md",
+      "SHA256": "585d5ef7293c49908b7b406d0c71309fb9b186211cdb1ec396e06995ea85c3fb",
+      "SIZE": 33210
+    },
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\02_GOVERNANCE\\CED-2026-MASTER-ROADMAP.md",
+      "SHA256": "c76161208f56ab56cec523bca6dd50e037e277ae315b69c6af5ca2dc03ea3f0b",
+      "SIZE": 30589
+    },
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\00_HOME\\RESUME_POINTER.md",
+      "SHA256": "83e6aeebfc5cf4856cc8ebfafcc189461021b16dc1c77c8c4684750e55d143f5",
+      "SIZE": 25626
+    },
+    {
+      "PATH": "C:\\2025\\web-69\\05-Construction-Executive-Dashboard\\AI-Brains\\chronology\\TASK-CED-2026-RM12-MIRA-DURABLE-CHECKPOINT-20260918.json",
+      "SHA256": "b883891b576e0c372ae25e878b025b3a0c5e0ba96159c71e330bafdec8aebad0",
+      "SIZE": 505
+    }
+  ],
+  "SCHEMA": "MIRA_RECONCILIATION_RECEIPT_v4",
+  "TASK_ID": "TASK-CED-2026-RM12-MIRA-DURABLE-CHECKPOINT-20260918",
+  "TRANSACTION_ID": "67f15e3f-c880-4ed5-a924-4bc9c33e049c",
+  "TRUSTED_REGISTRY_SHA256": "1b81de8199a51d60651ad2aafc308bfbafca5fef1c6771815c8d47391c27533b",
+  "decision_authority": "NONE",
+  "project_source_mutation": false,
+  "terminal": "BRAIN_RECORD_MATERIALIZED"
+}

@@ -1,0 +1,39 @@
+# Dependencies
+application/vendor/
+application/node_modules/
+
+# Environment and local configs
+application/.env
+application/.env.backup
+application/.env.production
+application/auth.json
+Homestead.json
+Homestead.yaml
+
+# Build and assets
+application/public/build
+application/public/fonts-manifest.dev.json
+application/public/hot
+application/public/storage
+
+# Storage and logs
+application/storage/*.key
+application/storage/pail
+application/storage/framework/cache/*
+application/storage/framework/sessions/*
+application/storage/framework/views/*
+application/storage/logs/*
+!application/storage/framework/cache/.gitignore
+!application/storage/framework/sessions/.gitignore
+!application/storage/framework/views/.gitignore
+!application/storage/logs/.gitignore
+*.log
+
+# Caches and editor files
+application/.phpunit.result.cache
+application/.phpunit.cache
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+AI-Brains/.obsidian/
