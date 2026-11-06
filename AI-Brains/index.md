@@ -21,8 +21,8 @@
 - ต้นฉบับ: `C:\2025\web-69\05-Construction-Executive-Dashboard\AI-Brains\Raw`
 - ความรู้ที่สร้าง: โฟลเดอร์อื่นภายใต้ `AI-Brains`
 - ต้นฉบับไม่ได้ถูกแก้ไข
-- รีโมต GitHub ที่ผู้ใช้ระบุ: `git@github.com:preechayutbubphachat/Construction-Executive-Dashboard.git`
-- สถานะรีโมต ณ การตรวจ: public repository แต่ยัง empty; ยังไม่มี local `.git`
+- รีโมต GitHub: `https://github.com/preechayutbubphachat/Construction-Executive-Dashboard.git`
+- สถานะ Git: Local repository initialized on `main` (commit `c592203`); Phase 1 Local Trusted Core Complete.
 
 ## กติกาอ่าน
 
