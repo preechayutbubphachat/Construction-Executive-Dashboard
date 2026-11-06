@@ -146,6 +146,11 @@ class Project extends Model
         return $this->hasMany(ProjectRisk::class);
     }
 
+    public function constraints(): HasMany
+    {
+        return $this->hasMany(ProjectConstraint::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);

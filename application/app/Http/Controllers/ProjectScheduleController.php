@@ -22,7 +22,7 @@ class ProjectScheduleController extends Controller
             return response()->json($scheduleData);
         }
 
-        $tasks = $project->wbsTasks()->orderBy('wbs_code')->get();
+        $tasks = $project->wbsTasks()->with('constraints')->orderBy('wbs_code')->get();
 
         $latestProgressByTask = $project->progressEntries()
             ->whereIn('task_id', $tasks->pluck('id'))

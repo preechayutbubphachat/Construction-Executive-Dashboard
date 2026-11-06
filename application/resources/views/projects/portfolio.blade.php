@@ -375,6 +375,7 @@
                 <p class="mt-3 text-sm text-slate-600">{{ $card['finance']['explanation'] }}</p>
                 <div class="mt-5 flex flex-wrap gap-4 text-sm font-bold">
                     <a class="text-cyan-700" href="{{ route('projects.executive', $card['project']) }}">Open project executive detail and explanations</a>
+                    <a class="text-cyan-700" href="{{ route('projects.constraints', $card['project']) }}">Constraints</a>
                     <span class="text-slate-500">Dimension-specific source provenance is shown above.</span>
                 </div>
             </article>

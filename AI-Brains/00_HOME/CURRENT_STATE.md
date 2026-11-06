@@ -908,3 +908,24 @@ OPERATIONAL_STATUS:
 - STAGING_STATUS: DEFERRED_PENDING_STAGING_INFRASTRUCTURE
 - PRODUCTION_STATUS: FORBIDDEN
 - NEXT_PHASE: Phase 2 (Operations Workflow: Weekly Lookahead, Constraint Management & Automated Alerts) or Staging Infrastructure Provisioning.
+
+## Phase 2 — Constraint & Issue Management Module Checkpoint — 2026-11-06
+
+PROJECT_ID: CED-2026
+PHASE: Phase 2 — Operations Workflow & Advanced Governance
+FEATURE: Constraint & Site Issue Management (แนวทาง A)
+STATUS: VERIFIED_AND_ACCEPTED
+
+DELIVERABLES_COMPLETED:
+- Database Schema: `project_constraints` table with ULID PK, project FK, optional WBS task FK, constraint types, severities, resolution tracking, and user audit links.
+- Eloquent Domain Model: `ProjectConstraint` with scopes `open()`, `critical()`, full type and severity constants, and HasMany relations on `Project` and `WbsTask`.
+- Domain Service: `ConstraintManagement` enforcing project boundary security, recording audit events (`CONSTRAINT_CREATED`, `CONSTRAINT_RESOLVED`, `CONSTRAINT_STATUS_CHANGED`), and preventing cross-project task linkage.
+- Interactive Livewire Manager: `ProjectConstraintManager` at `/projects/{project}/constraints` providing KPI summary cards, quick log form, dynamic status filter, and verification resolution modal.
+- Executive Visibility Integration:
+  - Executive Briefing Report (`/projects/{project}/report`): Active Constraints & Impediments table and direct management link.
+  - Schedule & Timeline View (`/projects/{project}/schedule`): Warning impediment badges on impacted WBS tasks and header navigation.
+  - Executive Portfolio View (`/projects/portfolio`): Direct constraint navigation link for each active project card.
+- Quality & Verification:
+  - PHPUnit: 124 tests / 1,721 assertions PASS (100% test suite pass rate).
+  - Pint Style: 100% compliant across all Phase 2 files.
+- Git Head: To be committed on `main`.

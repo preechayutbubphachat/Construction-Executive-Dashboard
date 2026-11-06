@@ -16,12 +16,15 @@
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.executive', $project) }}">Executive Health</a>
                 <span class="text-xs text-slate-400">·</span>
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.report', $project) }}">Executive Report</a>
+                <span class="text-xs text-slate-400">·</span>
+                <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.constraints', $project) }}">Constraints</a>
             </div>
             <h1 class="mt-2 text-2xl font-black text-slate-900">{{ $project->name }} ({{ $project->code }})</h1>
             <p class="text-sm text-slate-600">Schedule & Timeline · Baseline: {{ $project->baseline_start_date?->toDateString() ?? 'N/A' }} to {{ $project->baseline_finish_date?->toDateString() ?? 'N/A' }}</p>
         </div>
         <div class="flex gap-2">
-            <a class="rounded-lg bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800" href="{{ route('projects.executive', $project) }}">Health Analysis</a>
+            <a class="rounded-lg bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800" href="{{ route('projects.constraints', $project) }}">Constraints Register</a>
+            <a class="rounded-lg bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50" href="{{ route('projects.executive', $project) }}">Health Analysis</a>
             <a class="rounded-lg bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50" href="{{ route('projects.wbs.show', $project) }}">WBS Tree (JSON)</a>
         </div>
     </header>
@@ -75,6 +78,14 @@
                                 <h3 class="text-base font-bold text-slate-900">{{ $task->name }}</h3>
                                 @if ($isDelayed)
                                     <span class="rounded bg-red-100 px-2 py-0.5 text-xs font-bold text-red-800">Delayed</span>
+                                @endif
+                                @php
+                                    $openConstraints = $task->constraints ? $task->constraints->where('status', \App\Models\ProjectConstraint::STATUS_OPEN)->count() : 0;
+                                @endphp
+                                @if ($openConstraints > 0)
+                                    <span class="rounded bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-800" title="{{ $openConstraints }} open impediment(s)">
+                                        ⚠️ {{ $openConstraints }} Impediment{{ $openConstraints > 1 ? 's' : '' }}
+                                    </span>
                                 @endif
                                 <span class="rounded px-2 py-0.5 text-xs font-bold {{ $task->status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-800' : ($task->status === 'IN_PROGRESS' ? 'bg-cyan-100 text-cyan-800' : 'bg-slate-100 text-slate-600') }}">
                                     {{ $task->status }}

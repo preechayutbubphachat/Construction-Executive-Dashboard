@@ -30,6 +30,7 @@ class ExecutiveReportController extends Controller
         $tasks = $project->wbsTasks()->where('is_baseline', true)->whereDoesntHave('children')->orderBy('wbs_code')->get();
         $evidenceDocuments = $project->evidenceDocuments()->orderBy('id')->get(['id', 'project_id', 'original_name', 'mime_type', 'byte_size', 'sha256', 'access_class', 'review_state']);
         $auditEvents = $project->auditEvents()->with('actor')->latest('occurred_at')->limit(10)->get();
+        $constraints = $project->constraints()->with(['task', 'assignee'])->open()->orderBy('severity')->get();
 
         return view('projects.report', compact(
             'project',
@@ -41,6 +42,7 @@ class ExecutiveReportController extends Controller
             'tasks',
             'evidenceDocuments',
             'auditEvents',
+            'constraints',
         ));
     }
 }

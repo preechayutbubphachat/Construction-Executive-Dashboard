@@ -184,4 +184,9 @@ class WbsTask extends Model
             $parent = $parent->parent_id === null ? null : self::query()->find($parent->parent_id);
         }
     }
+
+    public function constraints(): HasMany
+    {
+        return $this->hasMany(ProjectConstraint::class, 'task_id');
+    }
 }

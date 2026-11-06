@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\EvidenceDownloadController;
-use App\Http\Controllers\ExecutiveReportController;
-use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\EvidenceUploadController;
 use App\Http\Controllers\ExecutivePortfolioController;
+use App\Http\Controllers\ExecutiveReportController;
 use App\Http\Controllers\FinanceTransactionReadController;
+use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\ProgressEntryController;
 use App\Http\Controllers\ProjectAuditReadController;
 use App\Http\Controllers\ProjectController;
@@ -30,7 +30,6 @@ Route::get('/projects/{project}/import-preview', [ImportPreviewController::class
     ->middleware('auth')->name('projects.import-preview.create');
 Route::post('/projects/{project}/import-preview', [ImportPreviewController::class, 'store'])
     ->middleware('auth')->name('projects.import-preview.store');
-
 
 Route::get('/projects/{project}/finance/transactions/{transaction}', [FinanceTransactionReadController::class, 'show'])
     ->name('projects.finance.transactions.show');
@@ -72,3 +71,10 @@ Route::get('/projects/{project}/evidence/{evidence}', EvidenceDownloadController
 
 Route::get('/projects/{project}/report', ExecutiveReportController::class)
     ->name('projects.report');
+
+Route::get('/projects/{project}/constraints', function (Project $project) {
+    abort_unless(request()->user() !== null, 403);
+    Gate::authorize('view', $project);
+
+    return view('projects.constraints', ['project' => $project]);
+})->name('projects.constraints');

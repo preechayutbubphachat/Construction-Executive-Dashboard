@@ -41,6 +41,8 @@
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.schedule.show', $project) }}">Schedule & Timeline</a>
             <span class="text-slate-400">·</span>
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.finance', $project) }}">Finance</a>
+            <span class="text-slate-400">·</span>
+            <a class="text-cyan-700 hover:underline" href="{{ route('projects.constraints', $project) }}">Constraints</a>
         </div>
         <button
             type="button"
@@ -152,6 +154,49 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+    </section>
+
+    <!-- Active Constraints & Site Impediments -->
+    <section class="print-card rounded-xl bg-white p-6 shadow-sm border border-slate-200" aria-label="Active Constraints">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h2 class="text-base font-bold uppercase tracking-wide text-slate-900">Active Constraints & Site Impediments ({{ $constraints->count() }})</h2>
+            <a href="{{ route('projects.constraints', $project) }}" class="no-print text-xs font-bold text-cyan-700 hover:underline">Manage Constraints →</a>
+        </div>
+        <div class="mt-4">
+            @if ($constraints->isEmpty())
+                <p class="text-xs text-slate-500">No active site constraints or impediments recorded.</p>
+            @else
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-50 uppercase text-slate-600 font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="p-2">Type</th>
+                                <th class="p-2">Title & Impact</th>
+                                <th class="p-2">Severity</th>
+                                <th class="p-2">Target Date</th>
+                                <th class="p-2">Assignee</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            @foreach ($constraints as $c)
+                                <tr>
+                                    <td class="p-2 font-bold text-slate-700">{{ ucwords(str_replace('_', ' ', strtolower($c->type))) }}</td>
+                                    <td class="p-2">
+                                        <p class="font-bold text-slate-900">{{ $c->title }}</p>
+                                        @if ($c->task)
+                                            <p class="text-slate-500 text-[11px]">Task: [{{ $c->task->wbs_code }}] {{ $c->task->name }}</p>
+                                        @endif
+                                    </td>
+                                    <td class="p-2 font-bold {{ $c->severity === 'CRITICAL' ? 'text-red-700' : ($c->severity === 'HIGH' ? 'text-orange-700' : 'text-slate-700') }}">{{ $c->severity }}</td>
+                                    <td class="p-2 text-slate-600">{{ $c->target_resolution_date?->format('Y-m-d') ?? '—' }}</td>
+                                    <td class="p-2 text-slate-600">{{ $c->assignee?->name ?? 'Unassigned' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </section>
 

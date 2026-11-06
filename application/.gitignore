@@ -21,6 +21,8 @@
 /storage/*.key
 /storage/pail
 /vendor
+/tests/.runtime
+/tests/.tmp
 _ide_helper.php
 Homestead.json
 Homestead.yaml
