@@ -20,6 +20,7 @@ use App\Http\Controllers\ProjectHealthController;
 use App\Http\Controllers\ProjectScheduleController;
 use App\Http\Controllers\ProjectWbsController;
 use App\Http\Controllers\SiteReportController;
+use App\Http\Controllers\SiteResourceOperationsController;
 use App\Http\Controllers\SiteSpatial3DController;
 use App\Http\Controllers\WbsTaskController;
 use App\Http\Controllers\WbsTaskReadController;
@@ -182,6 +183,11 @@ Route::post('/projects/{project}/procurement', [MaterialProcurementController::c
 Route::get('/projects/{project}/procurement/{mr}', [MaterialProcurementController::class, 'show'])->name('projects.procurement.show');
 Route::post('/projects/{project}/procurement/{mr}/po', [MaterialProcurementController::class, 'issuePo'])->name('projects.procurement.issue-po');
 Route::post('/projects/{project}/procurement/{mr}/deliver', [MaterialProcurementController::class, 'recordDelivery'])->name('projects.procurement.deliver');
+
+// Site Workforce (6A Manpower) & Heavy Machinery Utilization (6B Equipment)
+Route::get('/projects/{project}/resources', [SiteResourceOperationsController::class, 'index'])->name('projects.resources.index');
+Route::post('/projects/{project}/resources/manpower', [SiteResourceOperationsController::class, 'storeManpower'])->name('projects.resources.manpower.store');
+Route::post('/projects/{project}/resources/machinery', [SiteResourceOperationsController::class, 'storeMachinery'])->name('projects.resources.machinery.store');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');

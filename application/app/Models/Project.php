@@ -171,6 +171,16 @@ class Project extends Model
         return $this->hasMany(MaterialRequisition::class);
     }
 
+    public function manpowerLogs(): HasMany
+    {
+        return $this->hasMany(SiteManpowerLog::class);
+    }
+
+    public function machineryLogs(): HasMany
+    {
+        return $this->hasMany(SiteMachineryLog::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);
