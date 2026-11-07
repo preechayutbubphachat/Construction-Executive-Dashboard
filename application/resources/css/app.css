@@ -10,6 +10,10 @@
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
     /* 2. MindInventory Construction Brand & High-Vis Safety Colors */
+    --color-safety-orange: #FF6B00;
+    --color-safety-orange-hover: #E05E00;
+    --color-safety-orange-subtle: #FFF7ED;
+
     --color-safety-50: #FFF7ED;
     --color-safety-100: #FFEDD5;
     --color-safety-200: #FED7AA;
@@ -71,6 +75,11 @@
     --shadow-safety-glow: 0 4px 14px 0 rgba(255, 107, 0, 0.28);
     --shadow-blueprint-glow: 0 4px 14px 0 rgba(2, 132, 199, 0.25);
     --shadow-qc-glow: 0 4px 14px 0 rgba(16, 185, 129, 0.25);
+}
+
+/* Alpine.js cloak directive to prevent unrendered element flash / hanging overlays */
+[x-cloak] {
+    display: none !important;
 }
 
 /* Tabular numbers for financial & EVM calculations */

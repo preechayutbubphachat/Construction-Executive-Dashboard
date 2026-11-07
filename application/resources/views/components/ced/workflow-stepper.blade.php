@@ -98,7 +98,7 @@
 
         <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
             <span>Current Stage:</span>
-            <span class="px-2.5 py-1 rounded-xl bg-orange-50 border border-orange-200/80 text-safety-orange font-bold font-mono">
+            <span class="px-2.5 py-1 rounded-xl bg-orange-50 border border-orange-300 text-[#EA580C] font-extrabold font-mono">
                 Stage {{ $stages[$currentIndex]['step'] }} &middot; {{ $stages[$currentIndex]['name'] }}
             </span>
         </div>
@@ -119,12 +119,12 @@
                 <div class="flex-1 flex flex-col items-center group relative">
                     <!-- Connector line between steps -->
                     @if (!$loop->last)
-                        <div class="absolute top-4 left-1/2 w-full h-0.5 -z-0 {{ $isPast ? 'bg-safety-orange' : 'bg-slate-200' }}"></div>
+                        <div class="absolute top-4 left-1/2 w-full h-0.5 -z-0 {{ $isPast ? 'bg-[#FF6B00]' : 'bg-slate-200' }}"></div>
                     @endif
 
                     <!-- Step Circle / Button -->
                     <a href="{{ $url }}"
-                       class="relative z-10 w-9 h-9 rounded-xl flex items-center justify-center font-mono text-xs font-black transition-all duration-200 {{ $isCurrent ? 'bg-safety-orange text-white shadow-md shadow-orange-500/30 ring-4 ring-orange-100 scale-105' : ($isPast ? 'bg-slate-900 text-white hover:bg-slate-800' : 'bg-slate-100 text-slate-400 border border-slate-200 hover:bg-slate-200 hover:text-slate-700') }}">
+                       class="relative z-10 w-9 h-9 rounded-xl flex items-center justify-center font-mono text-xs font-black transition-all duration-200 {{ $isCurrent ? 'bg-[#FF6B00] text-white shadow-md shadow-orange-500/40 ring-4 ring-orange-200 scale-105' : ($isPast ? 'bg-slate-900 text-white hover:bg-slate-800' : 'bg-slate-100 text-slate-500 border border-slate-300 hover:bg-slate-200 hover:text-slate-900') }}">
                         @if ($isPast)
                             <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                         @else
@@ -134,7 +134,7 @@
 
                     <!-- Step Labels -->
                     <div class="mt-2 text-center">
-                        <a href="{{ $url }}" class="block text-xs font-bold leading-tight transition {{ $isCurrent ? 'text-safety-orange font-extrabold' : ($isPast ? 'text-slate-800 hover:text-safety-orange' : 'text-slate-400 hover:text-slate-600') }}">
+                        <a href="{{ $url }}" class="block text-xs leading-tight transition {{ $isCurrent ? 'text-[#FF6B00] font-black' : ($isPast ? 'text-slate-900 font-bold hover:text-[#FF6B00]' : 'text-slate-500 font-semibold hover:text-slate-800') }}">
                             {{ $stg['name'] }}
                         </a>
                         <span class="block text-[10px] text-slate-400 font-medium">

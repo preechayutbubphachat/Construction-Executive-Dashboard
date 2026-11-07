@@ -54,10 +54,10 @@
         </div>
 
         <!-- Priority 2: Quality & Payment Hold (NCR) -->
-        <div class="rounded-xl border border-amber-200 bg-amber-50/30 p-4 flex flex-col justify-between hover:bg-amber-50/60 transition space-y-3">
+        <div class="rounded-xl border border-amber-300 bg-amber-50/50 p-4 flex flex-col justify-between hover:bg-amber-50/80 transition space-y-3">
             <div>
                 <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-600 text-white">
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#EA580C] text-white">
                         Priority 2 &middot; คุณภาพ & อุปสรรค
                     </span>
                 </div>
@@ -67,27 +67,27 @@
                 </p>
             </div>
             <a href="{{ isset($project) ? route('projects.ncr.index', $project) : route('projects.portfolio') }}"
-               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-xs transition">
+               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-xs shadow-xs transition">
                 <span>จัดการรายการ NCR</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
         </div>
 
         <!-- Priority 3: Procurement & Material Delivery -->
-        <div class="rounded-xl border border-safety-orange/30 bg-orange-50/30 p-4 flex flex-col justify-between hover:bg-orange-50/60 transition space-y-3">
+        <div class="rounded-xl border border-orange-300 bg-orange-50/50 p-4 flex flex-col justify-between hover:bg-orange-50/80 transition space-y-3">
             <div>
                 <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-safety-orange text-white">
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#FF6B00] text-white">
                         Priority 3 &middot; พัสดุเข้าไซต์
                     </span>
                 </div>
                 <h4 class="text-sm font-extrabold text-slate-900 mt-2.5">ตรวจรับวัสดุหน้างาน (Delivery)</h4>
                 <p class="text-[11px] text-slate-600 mt-1">
-                    มีคำสั่งซื้อ <strong class="text-safety-orange font-bold">{{ $ordersTodayCount }} รายการ</strong> คาดว่าจะมาส่งวันนี้ พร้อมรายการคงคลังต่ำ
+                    มีคำสั่งซื้อ <strong class="text-[#EA580C] font-bold">{{ $ordersTodayCount }} รายการ</strong> คาดว่าจะมาส่งวันนี้ พร้อมรายการคงคลังต่ำ
                 </p>
             </div>
             <a href="{{ isset($project) ? route('projects.procurement.index', $project) : route('projects.portfolio') }}"
-               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-safety-orange hover:bg-orange-600 text-white font-bold text-xs shadow-xs transition">
+               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-[#FF6B00] hover:bg-[#E05E00] text-white font-bold text-xs shadow-xs transition">
                 <span>ตรวจรับของเข้าคลัง</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>

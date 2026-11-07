@@ -90,21 +90,72 @@
                         
                         <!-- Project Selector (MindInventory 'Project: Delta Phase ▾') -->
                         @if(isset($project))
+                            @php
+                                $navProjects = auth()->check()
+                                    ? \App\Models\Project::query()
+                                        ->whereHas('members', fn ($query) => $query->whereKey(auth()->id()))
+                                        ->select(['projects.id', 'projects.code', 'projects.name', 'projects.status'])
+                                        ->orderBy('code')
+                                        ->get()
+                                    : collect();
+                            @endphp
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open" type="button"
-                                        class="inline-flex items-center gap-1.5 sm:gap-2 rounded-xl border border-slate-200 bg-white px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold text-slate-800 hover:border-slate-300 transition shadow-2xs">
+                                        class="inline-flex items-center gap-1.5 sm:gap-2 rounded-xl border border-slate-300 bg-white px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition shadow-2xs">
                                     <span class="text-slate-400 font-medium hidden sm:inline">Project:</span>
-                                    <span class="text-slate-900 font-extrabold truncate max-w-[120px] sm:max-w-[160px]">{{ $project->name }}</span>
-                                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    <span class="text-slate-900 font-extrabold truncate max-w-[120px] sm:max-w-[170px]">{{ $project->name }}</span>
+                                    <svg class="w-3.5 h-3.5 text-slate-500 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                                 </button>
-                                <div x-show="open" @click.away="open = false" x-cloak
-                                     class="absolute right-0 mt-2 w-56 rounded-2xl bg-white p-2 shadow-card border border-slate-200 text-xs z-50">
-                                    <div class="px-3 py-1.5 text-[10px] font-black uppercase text-slate-400">Current Scope</div>
-                                    <div class="px-3 py-1 font-bold text-safety-orange">{{ $project->code }} · {{ $project->name }}</div>
-                                    <div class="my-1 border-t border-slate-100"></div>
-                                    <a href="{{ route('projects.portfolio') }}" class="block px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-safety-orange font-semibold">
-                                        ← All Projects Portfolio
-                                    </a>
+
+                                <!-- Backdrop to catch outside clicks and prevent unwanted overlay hanging -->
+                                <div x-show="open" @click="open = false" x-cloak class="fixed inset-0 z-40 bg-slate-900/10 backdrop-blur-2xs"></div>
+
+                                <!-- Project Switcher Popover -->
+                                <div x-show="open" 
+                                     @click.away="open = false" 
+                                     @keydown.escape.window="open = false" 
+                                     x-cloak
+                                     x-transition:enter="transition ease-out duration-150"
+                                     x-transition:enter-start="opacity-0 scale-95"
+                                     x-transition:enter-end="opacity-100 scale-100"
+                                     x-transition:leave="transition ease-in duration-100"
+                                     x-transition:leave-start="opacity-100 scale-100"
+                                     x-transition:leave-end="opacity-0 scale-95"
+                                     class="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl bg-white p-3 shadow-2xl border border-slate-200 text-xs z-50">
+                                    
+                                    <div class="flex items-center justify-between px-2 pb-2 border-b border-slate-100">
+                                        <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Switch Project (เปลี่ยนโครงการ)</span>
+                                        <button @click="open = false" type="button" class="text-slate-400 hover:text-slate-700 font-bold p-1 text-base leading-none">&times;</button>
+                                    </div>
+
+                                    <!-- Current Active Scope Card -->
+                                    <div class="my-2 p-2.5 rounded-xl bg-orange-50 border border-orange-200">
+                                        <div class="text-[10px] uppercase font-bold text-safety-orange">Current Active Scope</div>
+                                        <div class="font-extrabold text-slate-900 truncate mt-0.5">{{ $project->code }} &middot; {{ $project->name }}</div>
+                                    </div>
+
+                                    <!-- Other Projects List -->
+                                    <div class="max-h-48 overflow-y-auto space-y-1 pr-1">
+                                        @foreach ($navProjects as $navP)
+                                            @if ($navP->id !== $project->id)
+                                                <a href="{{ route('projects.executive', $navP) }}" 
+                                                   class="flex items-center justify-between p-2 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-safety-orange font-semibold transition group">
+                                                    <div class="truncate mr-2">
+                                                        <span class="font-mono text-[10px] font-bold text-slate-400 group-hover:text-safety-orange">{{ $navP->code }}</span>
+                                                        <div class="text-xs text-slate-800 group-hover:text-slate-900 truncate font-bold">{{ $navP->name }}</div>
+                                                    </div>
+                                                    <span class="text-[10px] px-2 py-0.5 rounded-full border bg-slate-100 text-slate-600 font-mono shrink-0">{{ $navP->status }}</span>
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    </div>
+
+                                    <div class="mt-2 pt-2 border-t border-slate-100">
+                                        <a href="{{ route('projects.portfolio') }}" 
+                                           class="flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition">
+                                            <span>← All Projects Portfolio (ดูทุกโครงการ)</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         @else

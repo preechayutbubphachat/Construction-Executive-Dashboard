@@ -33,12 +33,12 @@
     <div class="flex items-center gap-1.5 overflow-x-auto py-1 scrollbar-none text-xs">
         <!-- Back to Portfolio Link -->
         <a href="{{ route('projects.portfolio') }}"
-           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold transition text-safety-600 hover:text-safety-700 hover:bg-orange-50 shrink-0">
+           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-extrabold transition text-[#EA580C] bg-orange-50 border border-orange-200 hover:bg-orange-100 shrink-0">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             <span>Portfolio</span>
         </a>
 
-        <div class="h-4 w-px bg-slate-200 shrink-0 mx-1"></div>
+        <div class="h-4 w-px bg-slate-300 shrink-0 mx-1"></div>
 
         @foreach ($items as $item)
             @php
@@ -49,7 +49,7 @@
             @endphp
 
             <a href="{{ $url }}"
-               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition shrink-0 {{ $isCurrent ? 'bg-safety-orange text-white shadow-xs' : 'bg-white border border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300' }}">
+               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl whitespace-nowrap transition shrink-0 {{ $isCurrent ? 'bg-[#FF6B00] text-white font-extrabold shadow-sm ring-1 ring-orange-500' : 'bg-white border border-slate-300 text-slate-800 font-bold hover:bg-slate-100 hover:text-slate-950 hover:border-slate-400' }}">
                 <span>{{ $item['name'] }}</span>
             </a>
         @endforeach
