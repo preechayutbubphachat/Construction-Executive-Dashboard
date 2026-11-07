@@ -18,6 +18,9 @@
             </div>
 
             <div class="flex items-center gap-2">
+                <a href="{{ route('projects.3d-twin', $project) }}" class="px-2.5 py-1.5 rounded-lg bg-indigo-900/60 hover:bg-indigo-800 text-xs font-bold text-indigo-300 border border-indigo-700 transition">
+                    3D Twin 🌐
+                </a>
                 <a href="{{ route('projects.executive', $project) }}" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 border border-slate-700 transition">
                     Desktop View &rarr;
                 </a>

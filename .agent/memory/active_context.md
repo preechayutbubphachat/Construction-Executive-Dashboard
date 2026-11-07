@@ -25,7 +25,9 @@ Next Stage: Phase 3 (Staging Infrastructure Provisioning & Deployment Readiness)
 
 ## Next Steps
 - [x] Push commits and git tags to remote GitHub repository (`git push origin main --tags` completed: `v1.0.0-phase1-core`, `v2.0.0-phase2-complete`)
+- [x] Phase 4 — เสาหลัก 1: 3D Spatial Digital Twin & BIM Visualizer (`/projects/{project}/3d-twin`, `SiteSpatial3DProjectionService` `CED_SITE_SPATIAL_3D_V1`, Three.js WebGL 60 FPS, OrbitControls, Exploded Level view, Camera presets, raycasting inspector drawer)
 
 ## Next Steps
-- [ ] Phase 4 Planning & Execution (AI Predictive Analytics, BIM 3D Visualizer, IoT Weather/Site Integration)
-- [ ] Staging Live Deployment verification on physical/VPS host
+- [ ] Phase 4 — เสาหลัก 2: Earned Value Management (EVM: PV, EV, AC, CPI, SPI) & S-Curve Forecasting
+- [ ] Phase 4 — เสาหลัก 3: Field Photo Evidence & Mobile Inspection Attachment (Daily Log)
+- [ ] Phase 4 — เสาหลัก 4: Executive Real-time Notification Bot (Telegram / Line Notify)

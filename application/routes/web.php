@@ -13,6 +13,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectHealthController;
 use App\Http\Controllers\ProjectScheduleController;
 use App\Http\Controllers\ProjectWbsController;
+use App\Http\Controllers\SiteSpatial3DController;
 use App\Http\Controllers\WbsTaskController;
 use App\Http\Controllers\WbsTaskReadController;
 use App\Models\Project;
@@ -109,3 +110,8 @@ Route::get('/projects/{project}/site', function (Project $project) {
 
     return view('projects.site', ['project' => $project]);
 })->name('projects.site');
+
+Route::get('/projects/{project}/3d-twin', [SiteSpatial3DController::class, 'show'])
+    ->name('projects.3d-twin');
+Route::get('/projects/{project}/3d-twin/data', [SiteSpatial3DController::class, 'data'])
+    ->name('projects.3d-twin.data');

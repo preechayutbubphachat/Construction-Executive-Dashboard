@@ -29,6 +29,7 @@
             <p class="text-sm text-slate-600">Schedule & Timeline · Baseline: {{ $project->baseline_start_date?->toDateString() ?? 'N/A' }} to {{ $project->baseline_finish_date?->toDateString() ?? 'N/A' }}</p>
         </div>
         <div class="flex gap-2">
+            <a class="rounded-lg bg-indigo-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-indigo-800" href="{{ route('projects.3d-twin', $project) }}">3D Twin 🌐</a>
             <a class="rounded-lg bg-amber-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-amber-700" href="{{ route('projects.site', $project) }}">Site Capture 📱</a>
             <a class="rounded-lg bg-cyan-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-cyan-800" href="{{ route('projects.lookahead', $project) }}">Lookahead Schedule</a>
             <a class="rounded-lg bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800" href="{{ route('projects.constraints', $project) }}">Constraints Register</a>

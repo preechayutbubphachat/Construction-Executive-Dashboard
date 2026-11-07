@@ -13,12 +13,15 @@
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.alerts', $project) }}">Alerts</a>
                 <span class="text-xs text-slate-400">·</span>
                 <a class="text-xs font-bold text-amber-700 hover:underline" href="{{ route('projects.site', $project) }}">Field Capture 📱</a>
+                <span class="text-xs text-slate-400">·</span>
+                <a class="text-xs font-bold text-indigo-700 hover:underline" href="{{ route('projects.3d-twin', $project) }}">3D Twin 🌐</a>
             </div>
             <p class="mt-1 text-sm font-semibold uppercase tracking-wide text-slate-500">{{ $project->code }}</p>
             <h1 id="lookahead-title" class="text-2xl font-black">Weekly Lookahead Schedule (WLS)</h1>
             <p class="text-sm text-slate-600">{{ $project->name }} · Lean Last Planner {{ $weeks }}-week lookahead & make-ready analysis</p>
         </div>
         <div class="flex items-center gap-2">
+            <a href="{{ route('projects.3d-twin', $project) }}" class="rounded-lg bg-indigo-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-indigo-800">3D Twin 🌐</a>
             <a href="{{ route('projects.site', $project) }}" class="rounded-lg bg-amber-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-amber-700">Site Capture 📱</a>
             <a href="{{ route('projects.alerts', $project) }}" class="rounded-lg bg-red-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-red-800">Alerts Center</a>
             @if (\Illuminate\Support\Facades\Route::has('projects.report'))
