@@ -17,21 +17,28 @@ final class DuplicateResolver
                 default => []
             };
             $identity = [];
-            foreach ($fields as $field) $identity[$field] = $this->normalize($field, $row[$field] ?? null);
+            foreach ($fields as $field) {
+                $identity[$field] = $this->normalize($field, $row[$field] ?? null);
+            }
             $key = json_encode([$sheet, $identity], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
             $seen[$key][] = [$sheet, $row['_row_number']];
         }
-        return array_values(array_filter($seen, static fn($numbers) => count($numbers) > 1));
+
+        return array_values(array_filter($seen, static fn ($numbers) => count($numbers) > 1));
     }
 
     private function normalize(string $field, mixed $value): string
     {
         $value = trim((string) $value);
-        if (in_array($field, ['project_code', 'wbs_code', 'direction'], true)) return strtoupper($value);
+        if (in_array($field, ['project_code', 'wbs_code', 'direction'], true)) {
+            return strtoupper($value);
+        }
         if ($field === 'amount' && preg_match('/^-?(?:\d+)(?:\.\d+)?$/', $value)) {
             $value = rtrim(rtrim($value, '0'), '.');
+
             return $value === '-0' ? '0' : $value;
         }
+
         return $value;
     }
 }

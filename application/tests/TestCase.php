@@ -67,14 +67,14 @@ abstract class TestCase extends BaseTestCase
         $candidate = $candidate === false ? $normalized : $this->normalizeWindowsPath($candidate);
         $relativeToTemp = $candidate === null ? null : $this->relativePath($candidate, $tempRoot);
 
-        if ($candidate === null || !$this->isWithinPath($candidate, $tempRoot)
-            || $relativeToTemp === null || $relativeToTemp === '' || !str_contains($relativeToTemp, '/')
-            || !preg_match('~^CED(?:[-_.]|$)~i', explode('/', $relativeToTemp)[0])
+        if ($candidate === null || ! $this->isWithinPath($candidate, $tempRoot)
+            || $relativeToTemp === null || $relativeToTemp === '' || ! str_contains($relativeToTemp, '/')
+            || ! preg_match('~^CED(?:[-_.]|$)~i', explode('/', $relativeToTemp)[0])
             || $this->isWithinAnyPath($candidate, [
                 $productRoot,
                 realpath(__DIR__),
-                realpath($applicationRoot . DIRECTORY_SEPARATOR . 'storage'),
-                realpath($applicationRoot . DIRECTORY_SEPARATOR . 'vendor'),
+                realpath($applicationRoot.DIRECTORY_SEPARATOR.'storage'),
+                realpath($applicationRoot.DIRECTORY_SEPARATOR.'vendor'),
                 $this->normalizeWindowsPath(getcwd() ?: ''),
             ])) {
             throw new \InvalidArgumentException('CED_TEST_RUNTIME_PATH must remain a strict descendant of a CED temp namespace.');
@@ -82,7 +82,7 @@ abstract class TestCase extends BaseTestCase
 
         if (realpath($override) === false) {
             $parent = realpath(dirname($override));
-            if ($parent === false || !$this->isWithinPath($this->normalizeWindowsPath($parent), $tempRoot)) {
+            if ($parent === false || ! $this->isWithinPath($this->normalizeWindowsPath($parent), $tempRoot)) {
                 throw new \InvalidArgumentException('CED_TEST_RUNTIME_PATH must be safely creatable under a CED temp child.');
             }
         }
@@ -94,7 +94,7 @@ abstract class TestCase extends BaseTestCase
     {
         $path = str_replace('\\', '/', trim($path));
 
-        if (!preg_match('~^[A-Za-z]:/~', $path) || preg_match('~^[A-Za-z]:$|^//|^/+$~', $path)) {
+        if (! preg_match('~^[A-Za-z]:/~', $path) || preg_match('~^[A-Za-z]:$|^//|^/+$~', $path)) {
             return null;
         }
 
@@ -109,12 +109,13 @@ abstract class TestCase extends BaseTestCase
                     return null;
                 }
                 array_pop($parts);
+
                 continue;
             }
             $parts[] = $part;
         }
 
-        return $parts === [] ? null : $prefix . implode('/', $parts);
+        return $parts === [] ? null : $prefix.implode('/', $parts);
     }
 
     protected function isWithinAnyPath(string $path, array $roots): bool
@@ -134,7 +135,7 @@ abstract class TestCase extends BaseTestCase
         $root = rtrim(str_replace('\\', '/', $root), '/');
 
         return strcasecmp($path, $root) === 0
-            || strncasecmp($path, $root . '/', strlen($root) + 1) === 0;
+            || strncasecmp($path, $root.'/', strlen($root) + 1) === 0;
     }
 
     protected function relativePath(string $path, string $root): ?string
@@ -146,7 +147,7 @@ abstract class TestCase extends BaseTestCase
             return '';
         }
 
-        if (strncasecmp($path, $root . '/', strlen($root) + 1) !== 0) {
+        if (strncasecmp($path, $root.'/', strlen($root) + 1) !== 0) {
             return null;
         }
 

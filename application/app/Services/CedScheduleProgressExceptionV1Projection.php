@@ -13,14 +13,14 @@ class CedScheduleProgressExceptionV1Projection
     {
         if (! is_array($health)
             || ! isset(
-            $health['project_id'],
-            $health['rule_version'],
-            $health['calculated_at'],
-            $health['status'],
-            $health['dimensions'],
-            $health['reasons'],
-            $health['source_scope'],
-        )
+                $health['project_id'],
+                $health['rule_version'],
+                $health['calculated_at'],
+                $health['status'],
+                $health['dimensions'],
+                $health['reasons'],
+                $health['source_scope'],
+            )
             || ! is_string($health['project_id'])
             || $health['project_id'] !== (string) $project->id
             || ! is_string($health['rule_version'])

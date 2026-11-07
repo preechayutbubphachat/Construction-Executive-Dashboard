@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Http\Controllers\ImportPreviewController;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Gate;
@@ -15,7 +16,7 @@ final class ImportPreviewZeroWriteTest extends TestCase
     {
         Gate::shouldReceive('authorize')->once()->andReturnTrue();
         $request = Request::create('/projects/CED-001/import-preview', 'POST');
-        $request->setUserResolver(fn() => new \App\Models\User(['id' => 99]));
+        $request->setUserResolver(fn () => new User(['id' => 99]));
         $request->files->set('workbook', new UploadedFile(base_path('tests/Fixtures/import-preview/valid.xlsx'), 'valid.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', null, true));
         $project = new Project(['id' => 'CED-001', 'code' => 'CED-001']);
         $response = (new ImportPreviewController)->store($request, $project);

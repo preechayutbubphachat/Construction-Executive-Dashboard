@@ -4,7 +4,6 @@ namespace App\Services\ImportPreview;
 
 use App\Models\Project;
 
-
 final class CanonicalReferenceResolver
 {
     public function __construct(private readonly Project $project) {}
@@ -18,7 +17,10 @@ final class CanonicalReferenceResolver
     {
         // Unsaved model doubles are used by the pure pipeline tests. Production
         // projects are persisted and therefore use the canonical read-only seam.
-        if (!$this->project->exists) return trim($code) !== '';
+        if (! $this->project->exists) {
+            return trim($code) !== '';
+        }
+
         return $this->project->wbsTasks()->where('wbs_code', trim($code))->exists();
     }
 

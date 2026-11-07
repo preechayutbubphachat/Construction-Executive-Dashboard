@@ -18,9 +18,11 @@ final class ImportPreviewAuthorizationTest extends TestCase
 
     public function test_preview_routes_require_authentication(): void
     {
-        $routes = collect(app('router')->getRoutes()->getRoutes())->filter(fn($r) => str_contains($r->getName() ?? '', 'projects.import-preview'));
+        $routes = collect(app('router')->getRoutes()->getRoutes())->filter(fn ($r) => str_contains($r->getName() ?? '', 'projects.import-preview'));
         self::assertCount(2, $routes);
-        foreach ($routes as $route) self::assertContains('auth', $route->middleware());
+        foreach ($routes as $route) {
+            self::assertContains('auth', $route->middleware());
+        }
     }
 
     public function test_concrete_project_member_can_request_preview(): void
