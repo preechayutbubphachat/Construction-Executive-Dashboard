@@ -19,6 +19,7 @@ Next Stage: Phase 3 (Staging Infrastructure Provisioning & Deployment Readiness)
 - [x] Phase 2 — แนวทาง D: Multi-Project Comparative Dashboard & 2D Risk Heatmap Matrix (`/portfolio/heatmap`, Commit `0bf8e70`)
 - [x] Phase 2 Documentation Sign-off & Checkpoint Tag (`v2.0.0-phase2-complete`, Commit `0ad07e8`)
 - [x] Installation of Senior Engineer AI Capability Stack in `.agent/skills/` (Find, Plan, Remember, Design, Lean)
+- [x] Expanded Creative Visual & 3D WebGL Stack in `.agent/skills/` (React Three Fiber 3D Court Visualizer, Liquid Glass JS VisionOS Optics, Shader Gradient 3D Mesh GPU Shaders)
 
 ## Next Steps
 - [ ] Phase 3: Staging Infrastructure Provisioning (Docker/Compose, Nginx, MariaDB, Health check probes `/up`, `/health/readiness`)
