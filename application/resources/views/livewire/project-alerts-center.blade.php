@@ -1,19 +1,9 @@
 <section class="space-y-6" aria-labelledby="alerts-title">
+    <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+    <x-ced.project-subnav :project="$project" active="projects.alerts" />
+
     <header class="flex flex-wrap items-center justify-between gap-4">
         <div>
-            <div class="flex items-center gap-2 text-xs font-bold mb-2">
-                <a class="text-safety-orange hover:underline transition" href="{{ route('projects.portfolio') }}">&larr; Back to Portfolio</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.executive', $project) }}">Executive Health</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.schedule.show', $project) }}">Schedule</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.constraints', $project) }}">Constraints</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.heatmap') }}">Risk Heatmap</a>
-            </div>
             <div class="flex items-center gap-2">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-safety-orange/10 text-safety-orange border border-safety-orange/20">
                     System Intelligence · Real-time Anomalies

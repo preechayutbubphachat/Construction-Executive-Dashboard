@@ -1,6 +1,9 @@
 <x-layouts.app :project="$project" title="{{ $project->code }} · Materials & Supply Chain">
     <div class="space-y-6">
 
+        <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+        <x-ced.project-subnav :project="$project" active="projects.procurement.index" />
+
         <!-- Top Header & Action Bar (MindInventory Breadcrumb & Actions) -->
         <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -25,6 +28,9 @@
                 </a>
             </div>
         </header>
+
+        <!-- Construction Lifecycle Process Flow (Stage 3 Active) -->
+        <x-ced.workflow-stepper :project="$project" active="procurement" />
 
         @if(session('status'))
             <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-xs font-semibold text-emerald-900 shadow-sm">{{ session('status') }}</div>

@@ -1,23 +1,12 @@
 <div class="space-y-6">
+
+    <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+    <x-ced.project-subnav :project="$project" active="projects.evm" />
+
     {{-- Header & Breadcrumbs --}}
     <header class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 pb-5">
         <div>
-            <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
-                <a class="text-safety-600 hover:text-safety-700 hover:underline transition" href="{{ route('projects.portfolio') }}">&larr; Portfolio</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.executive', $project) }}">Health</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.schedule.show', $project) }}">Schedule</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.constraints', $project) }}">Constraints</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-indigo-600 hover:text-indigo-800 hover:underline transition" href="{{ route('projects.3d-twin', $project) }}">3D Twin 🌐</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-safety-600 hover:text-safety-700 hover:underline transition" href="{{ route('projects.site', $project) }}">Site 📱</a>
-            </div>
-            <div class="flex items-center gap-2.5 mt-2">
+            <div class="flex items-center gap-2.5">
                 <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                     {{ $project->code }}
                 </span>

@@ -317,7 +317,7 @@ class FinanceTransactionSurfaceTest extends TestCase
     {
         $project = Project::query()->create([
             'id' => (string) str()->uuid(),
-            'code' => 'CED-'.random_int(100, 999),
+            'code' => 'CED-'.strtoupper(bin2hex(random_bytes(4))),
             'name' => 'Finance Surface',
             'baseline_start_date' => '2026-04-01',
             'baseline_finish_date' => '2026-04-30',

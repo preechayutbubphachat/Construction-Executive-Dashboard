@@ -115,6 +115,9 @@
             </div>
         </section>
 
+        <!-- Executive Priority Action Queue: สิ่งที่ต้องทำก่อนวันนี้ -->
+        <x-ced.action-priority-center :project="null" />
+
         <!-- Main Interactive Workspace (Search, Table, and Drill-down Cards) -->
         <div x-data="{ search: '', filter: 'ALL' }" class="space-y-6">
             

@@ -60,6 +60,9 @@
 
     <div class="space-y-6">
         
+        <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+        <x-ced.project-subnav :project="$project" active="projects.executive" />
+
         <!-- Header (MindInventory Executive Dashboard Top Command Bar) -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
@@ -86,6 +89,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- Construction Lifecycle Process Flow (7 Stages) -->
+        <x-ced.workflow-stepper :project="$project" active="executive" />
+
+        <!-- Executive Priority Action Queue: สิ่งที่ต้องทำก่อนวันนี้ -->
+        <x-ced.action-priority-center :project="$project" />
 
         <!-- 1. MindInventory Executive 4-Card Hero Strip (Image 1 Exact Layout) -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" aria-label="Executive Overview Cards">

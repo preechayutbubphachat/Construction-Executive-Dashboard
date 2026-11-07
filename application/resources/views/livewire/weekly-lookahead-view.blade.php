@@ -1,20 +1,10 @@
 <section class="space-y-6" aria-labelledby="lookahead-title">
+    <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+    <x-ced.project-subnav :project="$project" active="projects.lookahead" />
+
     <header class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 pb-5">
         <div>
-            <div class="flex items-center gap-2 text-xs font-bold">
-                <a class="text-safety-600 hover:text-safety-700 hover:underline transition" href="{{ route('projects.portfolio') }}">&larr; Back to Portfolio</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.executive', $project) }}">Executive Health</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.schedule.show', $project) }}">Schedule & Timeline</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.constraints', $project) }}">Constraints</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.alerts', $project) }}">Alerts</a>
-                <span class="text-slate-300">&bull;</span>
-                <a class="text-emerald-700 hover:underline transition" href="{{ route('projects.evm', $project) }}">EVM S-Curve 📈</a>
-            </div>
-            <div class="flex items-center gap-2.5 mt-2">
+            <div class="flex items-center gap-2.5">
                 <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                     {{ $project->code }}
                 </span>
@@ -30,6 +20,9 @@
             @endif
         </div>
     </header>
+
+    <!-- Construction Lifecycle Process Flow (Stage 1 Active) -->
+    <x-ced.workflow-stepper :project="$project" active="schedule" />
 
     @php
         $summary = $lookahead['summary'];

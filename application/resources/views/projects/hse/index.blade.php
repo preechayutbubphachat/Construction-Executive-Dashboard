@@ -1,5 +1,8 @@
 <x-layouts.app :project="$project" title="{{ $project->code }} · HSE Safety Command & Permit-to-Work">
     <div class="space-y-6">
+        <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+        <x-ced.project-subnav :project="$project" active="projects.hse.index" />
+
         <!-- Sub-Header & Navigation (MindInventory Style) -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-4 border-b border-slate-200">
             <div>
@@ -32,6 +35,9 @@
                 </a>
             </div>
         </div>
+
+        <!-- Construction Lifecycle Process Flow (Stage 4 Active) -->
+        <x-ced.workflow-stepper :project="$project" active="site" />
 
         <!-- 1. MindInventory High-Vis Industrial Safety LED Scoreboard Hero -->
         <div class="rounded-3xl bg-slate-900 border border-slate-800 p-6 sm:p-8 shadow-card relative overflow-hidden text-white">

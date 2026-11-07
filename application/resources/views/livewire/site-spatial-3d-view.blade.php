@@ -64,7 +64,7 @@
     ></div>
 
     {{-- Floating Left Control Panel (Camera Presets & Exploded View) --}}
-    <div class="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 shadow-card space-y-4 max-w-xs text-xs text-slate-800">
+    <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-20 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 shadow-card space-y-4 max-w-xs text-xs text-slate-800">
         <div>
             <label class="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">Camera Presets</label>
             <div class="grid grid-cols-3 gap-1.5">
@@ -113,9 +113,9 @@
         </p>
     </div>
 
-    {{-- Right Inspector Drawer (Slides in when element is clicked) --}}
+    {{-- Right Inspector Drawer (Slides in when element is clicked - Safe Clearance from HUD) --}}
     @if ($selectedElement)
-        <aside class="absolute top-14 right-6 bottom-6 z-20 w-80 sm:w-96 bg-white/95 backdrop-blur-lg border border-slate-200/80 rounded-2xl p-5 shadow-card flex flex-col justify-between overflow-y-auto animate-fade-in text-slate-800">
+        <aside class="absolute top-20 sm:top-16 right-4 sm:right-6 bottom-4 sm:bottom-6 z-20 w-80 sm:w-96 bg-white/95 backdrop-blur-lg border border-slate-200/80 rounded-2xl p-5 shadow-card flex flex-col justify-between overflow-y-auto animate-fade-in text-slate-800">
             <div class="space-y-4">
                 <div class="flex items-start justify-between border-b border-slate-100 pb-3">
                     <div>

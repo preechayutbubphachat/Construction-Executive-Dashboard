@@ -1,6 +1,9 @@
 <x-layouts.app :project="$project" title="{{ $project->code }} · Labor & Workforce Management">
     <div class="space-y-6">
 
+        <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+        <x-ced.project-subnav :project="$project" active="projects.resources.index" />
+
         <!-- Top Header & Action Bar (MindInventory Breadcrumb & Actions) -->
         <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -25,6 +28,9 @@
                 </a>
             </div>
         </header>
+
+        <!-- Construction Lifecycle Process Flow (Stage 4 Active) -->
+        <x-ced.workflow-stepper :project="$project" active="site" />
 
         @if(session('status'))
             <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-xs font-semibold text-emerald-900 shadow-sm">{{ session('status') }}</div>
@@ -216,10 +222,10 @@
                         ['stage' => 'Inspect Foundation Excavation', 'tasks' => 32, 'pct' => 50],
                         ['stage' => 'Review Emergency Response Plan', 'tasks' => 21, 'pct' => 60],
                     ] as $insp)
-                        <div class="flex items-center justify-between gap-4 text-xs font-medium">
-                            <span class="w-48 text-slate-800 font-bold truncate">{{ $insp['stage'] }}</span>
-                            <span class="font-mono text-slate-500 text-[11px]">{{ $insp['tasks'] }} tasks</span>
-                            <div class="flex-1 max-w-[140px] h-3 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="flex items-center justify-between gap-3 text-xs font-medium">
+                            <span class="w-36 sm:w-48 text-slate-800 font-bold truncate shrink-0">{{ $insp['stage'] }}</span>
+                            <span class="font-mono text-slate-500 text-[11px] shrink-0">{{ $insp['tasks'] }} tasks</span>
+                            <div class="flex-1 min-w-[70px] max-w-[140px] h-3 bg-slate-100 rounded-full overflow-hidden shrink-0">
                                 <div class="h-full bg-gradient-to-r from-orange-400 to-safety-orange rounded-full text-[9px] text-white text-center font-bold font-mono leading-none flex items-center justify-center" style="width: {{ $insp['pct'] }}%;">
                                     {{ $insp['pct'] }}%
                                 </div>

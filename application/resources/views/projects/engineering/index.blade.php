@@ -1,21 +1,13 @@
 <x-layouts.app :project="$project" title="{{ $project->code }} · Engineering Document Control (RFI & Submittals)">
     <div class="space-y-6">
 
+        <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
+        <x-ced.project-subnav :project="$project" active="projects.engineering.index" />
+
         <!-- Top Header Bar -->
         <header class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 pb-5">
             <div>
-                <div class="flex items-center gap-2 text-xs font-bold">
-                    <a class="text-safety-600 hover:text-safety-700 hover:underline transition" href="{{ route('projects.portfolio') }}">&larr; Back to Portfolio</a>
-                    <span class="text-slate-300">&bull;</span>
-                    <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.executive', $project) }}">Executive Health</a>
-                    <span class="text-slate-300">&bull;</span>
-                    <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.constraints', $project) }}">Constraints</a>
-                    <span class="text-slate-300">&bull;</span>
-                    <a class="text-slate-600 hover:text-slate-900 hover:underline transition" href="{{ route('projects.procurement.index', $project) }}">Procurement</a>
-                    <span class="text-slate-300">&bull;</span>
-                    <a class="text-teal-700 hover:underline transition" href="{{ route('projects.hse.index', $project) }}">HSE & Safety</a>
-                </div>
-                <div class="flex items-center gap-2.5 mt-2">
+                <div class="flex items-center gap-2.5">
                     <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                         {{ $project->code }}
                     </span>
@@ -24,6 +16,9 @@
                 <p class="text-xs text-slate-500 mt-1">บริหารคำถามด้านวิศวกรรม (RFI) พร้อมแจ้งเตือน SLA เกินกำหนด, ปลดล็อก DESIGN_RFI Constraint อัตโนมัติ และควบคุม Revision ของ Shop Drawing / Material Submittals</p>
             </div>
         </header>
+
+        <!-- Construction Lifecycle Process Flow (Stage 2 Active) -->
+        <x-ced.workflow-stepper :project="$project" active="engineering" />
 
         @if(session('status'))
             <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-xs font-semibold text-emerald-900 shadow-sm">{{ session('status') }}</div>
