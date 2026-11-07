@@ -28,7 +28,8 @@ Next Stage: Phase 3 (Staging Infrastructure Provisioning & Deployment Readiness)
 - [x] Phase 4 — เสาหลัก 1: 3D Spatial Digital Twin & BIM Visualizer (`/projects/{project}/3d-twin`, `SiteSpatial3DProjectionService` `CED_SITE_SPATIAL_3D_V1`, Three.js WebGL 60 FPS, OrbitControls, Exploded Level view, Camera presets, raycasting inspector drawer)
 - [x] Phase 4 — เสาหลัก 2: Earned Value Management (EVM) & S-Curve Forecasting (`/projects/{project}/evm`, `EarnedValueManagementService` `CED_EVM_SCURVE_V1`, PV, EV, AC, CV, SV, CPI, SPI, EAC, VAC, TCPI, Interactive SVG S-Curve Chart)
 - [x] Phase 4 — เสาหลัก 3: Field Photo Evidence & Mobile Inspection Attachment (Daily Log) (`/projects/{project}/site`, `SitePhotoWatermarkService`, GD physical banner watermark, GPS lat/lng telemetry, immutable SHA-256 evidence disk storage, inline preview streaming, mobile inspection gallery grid, and cryptographic telemetry modal)
+- [x] Phase 4 — เสาหลัก 4: Automated Daily Site Log & Weekly Executive Status Reports (`/projects/{project}/reports/daily`, `/projects/{project}/reports/weekly`, `DailySiteReportService`, `WeeklyExecutiveReportService`, `SiteReportController`, weather & manpower tally, equipment log, daily photo evidence integration, EVM performance snapshot, lookahead schedule reliability, cashflow transactions, and print/PDF-optimized styling)
 
 ## Next Steps
-- [ ] Phase 4 — เสาหลัก 4: Executive Real-time Notification Bot (Telegram / Line Notify webhook integration)
 - [ ] Phase 4 — เสาหลัก 5: Multi-Factor Authentication (MFA / TOTP) & Enterprise SSO Ready
+- [ ] Phase 4 — เสาหลัก 6: Executive Real-time Notification Webhook (Telegram / Line Notify) (ไว้ทำภายหลังตามที่ระบุ)
