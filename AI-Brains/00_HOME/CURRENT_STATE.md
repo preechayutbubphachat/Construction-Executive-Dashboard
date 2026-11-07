@@ -989,3 +989,31 @@ DELIVERABLES_COMPLETED:
 - Quality & Verification:
   - PHPUnit: 159 tests / 1,838 assertions PASS (100% test suite pass rate).
   - Pint Style: 100% compliant across all modified files.
+- Git Head: Commit `0bf8e70` on `main`.
+
+## Phase 2 Operations Workflow & Governance Closure Checkpoint — Owner Authorized — 2026-11-07
+
+PROJECT_ID: CED-2026
+PHASE: Phase 2 — Operations Workflow & Advanced Governance
+STATUS: CLOSED_AND_ACCEPTED (OPERATIONS_WORKFLOW_COMPLETE)
+OWNER_AUTHORITY: OWNER_DECISION_PHASE2_OPERATIONS_WORKFLOW_SIGN_OFF_20261107
+
+DELIVERABLES_VERIFIED:
+- แนวทาง A (Constraint & Site Issue Management): `project_constraints` table, `ProjectConstraint` Eloquent model with scopes `open()`, `critical()`, `ConstraintManagement` service with ULID PK and audit event logging (`CONSTRAINT_CREATED`, `CONSTRAINT_RESOLVED`), and `ProjectConstraintManager` Livewire surface at `/projects/{project}/constraints` fully integrated into Executive Report, Schedule, and Portfolio.
+- แนวทาง B (Weekly Lookahead Schedule): `WeeklyLookaheadService` (`CED_WEEKLY_LOOKAHEAD_V1`) projecting 3-6 week rolling lookaheads with leaf WBS task overlap, make-ready / soundness assessment, Make-Ready Rate KPI, and `WeeklyLookaheadView` Livewire board at `/projects/{project}/lookahead` with window toggles, filterable cards, and executive cross-navigation.
+- แนวทาง C (Automated Early-Warning Alerts Engine): `EarlyWarningAlertEngine` (`CED_EARLY_WARNING_ALERTS_V1`) running 4 proactive operational risk rules (`SCHEDULE_OVERDUE`, `LOOKAHEAD_BLOCKED`, `CRITICAL_CONSTRAINT_STALE`, `BUDGET_BURNOUT`), and `ProjectAlertsCenter` Livewire surface at `/projects/{project}/alerts` with categorized cards and direct action links.
+- แนวทาง D (Multi-Project Comparative Dashboard & 2D Risk Heatmap Matrix): `PortfolioRiskHeatmapService` (`CED_PORTFOLIO_RISK_HEATMAP_V1`) computing Composite Risk Index (0-100) and 2D operational quadrant assignment (Schedule Slippage vs Constraint/Cost Risk), and `PortfolioRiskHeatmapView` Livewire surface at `/portfolio/heatmap` with interactive 2D matrix cards, sortable comparative ranking table, and executive integration.
+- Quality & Invariants:
+  - 159 tests / 1,838 assertions PASS (100% suite pass rate, 0 failures, 0 errors).
+  - Laravel Pint compliant (0 style issues on all Phase 2 files).
+  - Strict default-deny authorization enforced across all routes and components.
+  - Pure deterministic read-model projections with zero mutations during calculation.
+- Git Repository: Branch `main`, commits `eea223a` (A), `956f0e3` (B), `185497f` (C), and `0bf8e70` (D).
+
+OPERATIONAL_STATUS:
+- LOCAL_MVP_OPERATIONAL: true
+- PHASE_2_OPERATIONAL: true
+- STAGING_STATUS: DEFERRED_PENDING_STAGING_INFRASTRUCTURE
+- PRODUCTION_STATUS: FORBIDDEN
+- NEXT_PHASE: Phase 3 (Staging Infrastructure Provisioning: Docker/Compose, Nginx, MariaDB/MySQL Production Parity, CI/CD Pipeline & Health Probes) or Mobile Site Supervisor Surface.
+

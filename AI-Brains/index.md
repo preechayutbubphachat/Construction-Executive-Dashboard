@@ -22,7 +22,8 @@
 - ความรู้ที่สร้าง: โฟลเดอร์อื่นภายใต้ `AI-Brains`
 - ต้นฉบับไม่ได้ถูกแก้ไข
 - รีโมต GitHub: `https://github.com/preechayutbubphachat/Construction-Executive-Dashboard.git`
-- สถานะ Git: Local repository initialized on `main` (commit `c592203`); Phase 1 Local Trusted Core Complete.
+- สถานะ Git: Local repository initialized on `main` (commit `c592203`); Phase 1 Local Trusted Core & Phase 2 Operations Workflow & Governance Complete (commit `0bf8e70`, tag `v2.0.0-phase2-complete`).
+
 
 ## กติกาอ่าน
 

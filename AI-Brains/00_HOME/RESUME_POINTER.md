@@ -726,20 +726,25 @@ OPERATIONAL_STATUS:
 - PRODUCTION_STATUS: FORBIDDEN
 - NEXT_ACTION: Phase 2 Kickoff (Operations Workflow) or Staging Infrastructure Setup.
 
-## Phase 2 Resume Pointer — Multi-Project Comparative Heatmap Complete — 2026-11-07
+## Phase 2 Operations Workflow & Governance Closure Checkpoint — Owner Authorized — 2026-11-07
 
 PROJECT_ID: CED-2026
-CURRENT_STAGE: PHASE_2_OPERATIONS_WORKFLOW
-ACTIVE_FEATURE: Multi-Project Comparative Dashboard & Risk Heatmap (แนวทาง D)
-STATUS: IMPLEMENTED_AND_VERIFIED
+PHASE: Phase 2 — Operations Workflow & Advanced Governance
+STATUS: CLOSED_AND_ACCEPTED (OPERATIONS_WORKFLOW_COMPLETE)
+OWNER_AUTHORITY: OWNER_DECISION_PHASE2_OPERATIONS_WORKFLOW_SIGN_OFF_20261107
 
-COMPLETED_IN_PHASE_2:
+DELIVERABLES_VERIFIED:
 - แนวทาง A: Constraint & Site Issue Management (`project_constraints`, `ConstraintManagement`, `ProjectConstraintManager` UI, Executive Linkage).
 - แนวทาง B: Weekly Lookahead Schedule 3-6 Weeks (`WeeklyLookaheadService`, `WeeklyLookaheadView` UI, Make-Ready Rate KPI, Executive Report & Portfolio Linkage).
 - แนวทาง C: Automated Early-Warning Alerts Engine (`EarlyWarningAlertEngine`, `ProjectAlertsCenter` UI, 4 Risk Categories, Executive Report & Portfolio Linkage).
 - แนวทาง D: Multi-Project Comparative Dashboard & Risk Heatmap Matrix (`PortfolioRiskHeatmapService`, `PortfolioRiskHeatmapView` UI, 2D Matrix, Comparative Table, Sorting & Filtering).
 - Verification: 159 tests / 1,838 assertions PASS (100%), Pint 100% clean.
+- Git Head: Commit `0bf8e70` on `main`.
 
-NEXT_RECOMMENDED_ACTIONS:
-- แนวทาง E: Staging Infrastructure Provisioning (เตรียมพร้อมสภาพแวดล้อม Staging, Docker/Compose, CI/CD Pipeline & Health Check Endpoints)
-- แนวทาง F: Role-based Mobile/Tablet Responsive Site Supervisor Inspection View
+OPERATIONAL_STATUS:
+- LOCAL_MVP_OPERATIONAL: true
+- PHASE_2_OPERATIONAL: true
+- STAGING_STATUS: DEFERRED_PENDING_STAGING_INFRASTRUCTURE
+- PRODUCTION_STATUS: FORBIDDEN
+- NEXT_PHASE: Phase 3 (Staging Infrastructure Provisioning: Docker/Compose, Nginx, MariaDB/MySQL Production Parity, CI/CD Pipeline & Health Probes) or Mobile Site Supervisor Surface.
+
