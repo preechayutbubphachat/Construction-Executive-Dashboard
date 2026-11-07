@@ -726,21 +726,19 @@ OPERATIONAL_STATUS:
 - PRODUCTION_STATUS: FORBIDDEN
 - NEXT_ACTION: Phase 2 Kickoff (Operations Workflow) or Staging Infrastructure Setup.
 
-## Phase 2 Resume Pointer — Constraint & Issue Management Complete — 2026-11-06
+## Phase 2 Resume Pointer — Weekly Lookahead Schedule Complete — 2026-11-07
 
 PROJECT_ID: CED-2026
 CURRENT_STAGE: PHASE_2_OPERATIONS_WORKFLOW
-ACTIVE_FEATURE: Constraint & Site Issue Management (แนวทาง A)
+ACTIVE_FEATURE: Weekly Lookahead Schedule (แนวทาง B)
 STATUS: IMPLEMENTED_AND_VERIFIED
 
 COMPLETED_IN_PHASE_2:
-- Task 1: Migration `project_constraints` + `ProjectConstraint` Eloquent Model with constants, relations, and query scopes.
-- Task 2: `ConstraintManagement` domain service with project scoping, ULID generation, and audit logging.
-- Task 3: Interactive Livewire interface (`ProjectConstraintManager`) with KPI summary, logging form, filtering, and resolution modal.
-- Task 4: Executive integration across Executive Briefing Report (`/report`), Schedule & Timeline (`/schedule`), and Executive Portfolio (`/portfolio`).
-- Verification: 124 tests / 1,721 assertions PASS (100%), Pint 100% clean.
+- แนวทาง A: Constraint & Site Issue Management (`project_constraints`, `ConstraintManagement`, `ProjectConstraintManager` UI, Executive Linkage).
+- แนวทาง B: Weekly Lookahead Schedule 3-6 Weeks (`WeeklyLookaheadService`, `WeeklyLookaheadView` UI, Make-Ready Rate KPI, Executive Report & Portfolio Linkage).
+- Verification: 135 tests / 1,766 assertions PASS (100%), Pint 100% clean.
 
 NEXT_RECOMMENDED_ACTIONS:
-- แนวทาง B: Weekly Lookahead Schedule (WLS 3-6 Weeks)
-- แนวทาง C: Automated Early-Warning Alerts & Notification Engine
-- แนวทาง D: Multi-project Comparative Dashboard & Risk Heatmap
+- แนวทาง C: Automated Early-Warning Alerts & Notification Engine (แจ้งเตือนงานวิกฤต, อุปสรรคค้างเกินกำหนด)
+- แนวทาง D: Multi-project Comparative Dashboard & Risk Heatmap (เปรียบเทียบสุขภาพและสถานะทุกโครงการในมุมมองเดียว)
+- แนวทาง E: Staging Infrastructure Provisioning (เตรียมพร้อมระบบสำหรับ Deployment & Hosting)

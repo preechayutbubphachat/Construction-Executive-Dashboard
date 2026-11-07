@@ -43,6 +43,8 @@
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.finance', $project) }}">Finance</a>
             <span class="text-slate-400">·</span>
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.constraints', $project) }}">Constraints</a>
+            <span class="text-slate-400">·</span>
+            <a class="text-cyan-700 hover:underline" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
         </div>
         <button
             type="button"
@@ -156,6 +158,41 @@
             </table>
         </div>
     </section>
+
+    <!-- Weekly Lookahead Schedule Summary -->
+    @if (isset($lookahead))
+        @php
+            $wSummary = $lookahead['summary'];
+            $wRate = (float) $wSummary['make_ready_rate'];
+        @endphp
+        <section class="print-card rounded-xl bg-white p-6 shadow-sm border border-slate-200" aria-label="Weekly Lookahead Summary">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div>
+                    <h2 class="text-base font-bold uppercase tracking-wide text-slate-900">Weekly Lookahead (3-Week Window)</h2>
+                    <p class="text-xs text-slate-500">Period: {{ $lookahead['window']['start_date'] }} → {{ $lookahead['window']['end_date'] }}</p>
+                </div>
+                <a href="{{ route('projects.lookahead', $project) }}" class="no-print text-xs font-bold text-cyan-700 hover:underline">Full Lookahead Board →</a>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4 text-center">
+                <div class="rounded-lg bg-slate-50 p-3">
+                    <p class="text-xs font-bold uppercase text-slate-500">Make-Ready Readiness</p>
+                    <p class="mt-1 text-2xl font-black {{ $wRate >= 80 ? 'text-emerald-700' : ($wRate >= 60 ? 'text-amber-700' : 'text-red-700') }}">{{ number_format($wRate, 1) }}%</p>
+                </div>
+                <div class="rounded-lg bg-slate-50 p-3">
+                    <p class="text-xs font-bold uppercase text-slate-500">Scheduled Tasks</p>
+                    <p class="mt-1 text-2xl font-black text-slate-900">{{ $wSummary['total_tasks'] }}</p>
+                </div>
+                <div class="rounded-lg bg-slate-50 p-3">
+                    <p class="text-xs font-bold uppercase text-emerald-600">Make-Ready (Sound)</p>
+                    <p class="mt-1 text-2xl font-black text-emerald-600">{{ $wSummary['make_ready_count'] }}</p>
+                </div>
+                <div class="rounded-lg bg-slate-50 p-3">
+                    <p class="text-xs font-bold uppercase text-amber-600">Constrained (Blocked)</p>
+                    <p class="mt-1 text-2xl font-black text-amber-600">{{ $wSummary['constrained_count'] }}</p>
+                </div>
+            </div>
+        </section>
+    @endif
 
     <!-- Active Constraints & Site Impediments -->
     <section class="print-card rounded-xl bg-white p-6 shadow-sm border border-slate-200" aria-label="Active Constraints">

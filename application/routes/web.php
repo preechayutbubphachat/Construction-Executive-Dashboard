@@ -78,3 +78,10 @@ Route::get('/projects/{project}/constraints', function (Project $project) {
 
     return view('projects.constraints', ['project' => $project]);
 })->name('projects.constraints');
+
+Route::get('/projects/{project}/lookahead', function (Project $project) {
+    abort_unless(request()->user() !== null, 403);
+    Gate::authorize('view', $project);
+
+    return view('projects.lookahead', ['project' => $project]);
+})->name('projects.lookahead');

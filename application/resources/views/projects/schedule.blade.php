@@ -18,11 +18,14 @@
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.report', $project) }}">Executive Report</a>
                 <span class="text-xs text-slate-400">·</span>
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.constraints', $project) }}">Constraints</a>
+                <span class="text-xs text-slate-400">·</span>
+                <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
             </div>
             <h1 class="mt-2 text-2xl font-black text-slate-900">{{ $project->name }} ({{ $project->code }})</h1>
             <p class="text-sm text-slate-600">Schedule & Timeline · Baseline: {{ $project->baseline_start_date?->toDateString() ?? 'N/A' }} to {{ $project->baseline_finish_date?->toDateString() ?? 'N/A' }}</p>
         </div>
         <div class="flex gap-2">
+            <a class="rounded-lg bg-cyan-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-cyan-800" href="{{ route('projects.lookahead', $project) }}">Lookahead Schedule</a>
             <a class="rounded-lg bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800" href="{{ route('projects.constraints', $project) }}">Constraints Register</a>
             <a class="rounded-lg bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50" href="{{ route('projects.executive', $project) }}">Health Analysis</a>
             <a class="rounded-lg bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50" href="{{ route('projects.wbs.show', $project) }}">WBS Tree (JSON)</a>

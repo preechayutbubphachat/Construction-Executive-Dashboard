@@ -928,4 +928,23 @@ DELIVERABLES_COMPLETED:
 - Quality & Verification:
   - PHPUnit: 124 tests / 1,721 assertions PASS (100% test suite pass rate).
   - Pint Style: 100% compliant across all Phase 2 files.
-- Git Head: To be committed on `main`.
+- Git Head: Commit `eea223a` on `main`.
+
+## Phase 2 — Weekly Lookahead Schedule (WLS 3-6 Weeks) Checkpoint — 2026-11-07
+
+PROJECT_ID: CED-2026
+PHASE: Phase 2 — Operations Workflow & Advanced Governance
+FEATURE: Weekly Lookahead Schedule (แนวทาง B)
+STATUS: VERIFIED_AND_ACCEPTED
+
+DELIVERABLES_COMPLETED:
+- Domain Service: `WeeklyLookaheadService` (`CED_WEEKLY_LOOKAHEAD_V1`) projecting 3 to 6-week rolling windows, segmenting weekly buckets, querying overlapping leaf WBS tasks, evaluating make-ready status against `ProjectConstraint`, and computing make-ready rate KPIs.
+- Interactive Livewire Lookahead Board: `WeeklyLookaheadView` at `/projects/{project}/lookahead` supporting 3/4/6 weeks toggle, make-ready vs constrained filtering, timeline pagination (Prev/Current/Next week), and task impediment cards.
+- Executive Visibility Integration:
+  - Executive Briefing Report (`/report`): Added "Weekly Lookahead (3-Week Window)" summary block showing Make-Ready Readiness %, total scheduled tasks, and sound vs blocked metrics.
+  - Schedule & Timeline View (`/schedule`): Lookahead Schedule quick action button and breadcrumb.
+  - Constraints Register View (`/constraints`): Lookahead Schedule navigation button and breadcrumb.
+  - Executive Portfolio View (`/portfolio`): Direct "Lookahead" navigation link for all active projects.
+- Quality & Verification:
+  - PHPUnit: 135 tests / 1,766 assertions PASS (100% test suite pass rate).
+  - Pint Style: 100% compliant across all modified files.
