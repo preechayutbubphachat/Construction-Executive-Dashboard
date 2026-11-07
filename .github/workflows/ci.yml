@@ -1,0 +1,63 @@
+name: CED Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run Tests & Pint Linter
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: application
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, pdo_sqlite, pdo_mysql, bcmath, gd, zip, pcntl, intl
+          coverage: none
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v4
+        with:
+          path: application/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('application/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Setup Application Key & Environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Run PHPUnit Test Suite
+        run: php vendor/phpunit/phpunit/phpunit
+
+      - name: Verify Laravel Pint Code Style
+        run: php vendor/bin/pint --test app/Http/Controllers/HealthCheckController.php tests/Feature/HealthCheckEndpointsTest.php
+
+  docker-validation:
+    name: Validate Docker Compose Configuration
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Staging Docker Compose
+        run: |
+          cp application/.env.staging.example application/.env.staging
+          docker compose -f application/docker-compose.staging.yml config

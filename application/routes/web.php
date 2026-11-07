@@ -5,6 +5,7 @@ use App\Http\Controllers\EvidenceUploadController;
 use App\Http\Controllers\ExecutivePortfolioController;
 use App\Http\Controllers\ExecutiveReportController;
 use App\Http\Controllers\FinanceTransactionReadController;
+use App\Http\Controllers\HealthCheckController;
 use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\ProgressEntryController;
 use App\Http\Controllers\ProjectAuditReadController;
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', ExecutivePortfolioController::class);
+
+Route::get('/health/liveness', [HealthCheckController::class, 'liveness'])->name('health.liveness');
+Route::get('/health/readiness', [HealthCheckController::class, 'readiness'])->name('health.readiness');
 
 Route::get('/projects/portfolio', ExecutivePortfolioController::class)
     ->name('projects.portfolio');
