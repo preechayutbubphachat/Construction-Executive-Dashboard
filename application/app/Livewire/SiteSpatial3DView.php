@@ -31,8 +31,14 @@ class SiteSpatial3DView extends Component
         $this->projectId = (string) $project->getKey();
     }
 
-    public function selectElement(string $elementId, SiteSpatial3DProjectionService $service): void
+    public function selectElement(?string $elementId, SiteSpatial3DProjectionService $service): void
     {
+        if ($elementId === null || trim($elementId) === '') {
+            $this->closeInspector();
+
+            return;
+        }
+
         $project = Project::query()->findOrFail($this->projectId);
         Gate::authorize('view', $project);
 
@@ -42,6 +48,8 @@ class SiteSpatial3DView extends Component
         if ($element !== null) {
             $this->selectedElementId = $elementId;
             $this->selectedElement = $element;
+        } else {
+            $this->closeInspector();
         }
     }
 

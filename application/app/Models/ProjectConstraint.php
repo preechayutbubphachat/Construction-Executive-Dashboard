@@ -116,6 +116,11 @@ class ProjectConstraint extends Model
         return $this->belongsTo(User::class, 'assigned_to');
     }
 
+    public function resolver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
+
     public function scopeOpen(Builder $query): Builder
     {
         return $query->whereIn('status', ['OPEN', 'IN_PROGRESS']);
