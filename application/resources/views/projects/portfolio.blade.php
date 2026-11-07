@@ -391,6 +391,7 @@
                     <a class="text-emerald-800 font-bold" href="{{ route('projects.ipc.index', $card['project']) }}">💰 IPC & Payment</a>
                     <a class="text-violet-700 font-bold" href="{{ route('projects.vo.index', $card['project']) }}">📑 Variation Orders</a>
                     <a class="text-rose-700 font-bold" href="{{ route('projects.ncr.index', $card['project']) }}">🛡️ QC & NCR</a>
+                    <a class="text-amber-800 font-bold" href="{{ route('projects.procurement.index', $card['project']) }}">🧱 Procurement</a>
                     <span class="text-slate-500">Dimension-specific source provenance is shown above.</span>
                 </div>
             </article>

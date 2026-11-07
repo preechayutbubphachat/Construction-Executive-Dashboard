@@ -9,6 +9,7 @@ use App\Http\Controllers\FinanceTransactionReadController;
 use App\Http\Controllers\HealthCheckController;
 use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\InterimPaymentController;
+use App\Http\Controllers\MaterialProcurementController;
 use App\Http\Controllers\NonConformanceReportController;
 use App\Http\Controllers\VariationOrderController;
 use App\Http\Controllers\MfaSecurityController;
@@ -173,6 +174,14 @@ Route::get('/projects/{project}/ncr/{ncr}', [NonConformanceReportController::cla
 Route::post('/projects/{project}/ncr/{ncr}/rectify', [NonConformanceReportController::class, 'submitRectification'])->name('projects.ncr.rectify');
 Route::post('/projects/{project}/ncr/{ncr}/close', [NonConformanceReportController::class, 'verifyClose'])->name('projects.ncr.close');
 Route::post('/projects/{project}/ncr/{ncr}/reject-rectification', [NonConformanceReportController::class, 'rejectRectification'])->name('projects.ncr.reject-rectification');
+
+// Procurement, Material Requisition & Site Delivery Tracking
+Route::get('/projects/{project}/procurement', [MaterialProcurementController::class, 'index'])->name('projects.procurement.index');
+Route::get('/projects/{project}/procurement/create', [MaterialProcurementController::class, 'create'])->name('projects.procurement.create');
+Route::post('/projects/{project}/procurement', [MaterialProcurementController::class, 'store'])->name('projects.procurement.store');
+Route::get('/projects/{project}/procurement/{mr}', [MaterialProcurementController::class, 'show'])->name('projects.procurement.show');
+Route::post('/projects/{project}/procurement/{mr}/po', [MaterialProcurementController::class, 'issuePo'])->name('projects.procurement.issue-po');
+Route::post('/projects/{project}/procurement/{mr}/deliver', [MaterialProcurementController::class, 'recordDelivery'])->name('projects.procurement.deliver');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');

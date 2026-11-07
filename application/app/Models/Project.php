@@ -166,6 +166,11 @@ class Project extends Model
         return $this->hasMany(NonConformanceReport::class);
     }
 
+    public function materialRequisitions(): HasMany
+    {
+        return $this->hasMany(MaterialRequisition::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);
