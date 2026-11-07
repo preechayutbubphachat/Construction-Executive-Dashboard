@@ -385,6 +385,7 @@
                     <a class="text-cyan-700" href="{{ route('projects.alerts', $card['project']) }}">Alerts</a>
                     <a class="text-cyan-700" href="{{ route('projects.lookahead', $card['project']) }}">Lookahead</a>
                     <a class="text-cyan-700" href="{{ route('projects.constraints', $card['project']) }}">Constraints</a>
+                    <a class="text-amber-700 font-bold" href="{{ route('projects.site', $card['project']) }}">Field Capture 📱</a>
                     <span class="text-slate-500">Dimension-specific source provenance is shown above.</span>
                 </div>
             </article>

@@ -49,6 +49,8 @@
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.alerts', $project) }}">Alerts</a>
             <span class="text-slate-400">·</span>
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.heatmap') }}">Risk Heatmap</a>
+            <span class="text-slate-400">·</span>
+            <a class="text-amber-700 hover:underline" href="{{ route('projects.site', $project) }}">Field Capture 📱</a>
         </div>
         <button
             type="button"

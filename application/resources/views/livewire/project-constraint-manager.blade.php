@@ -11,12 +11,15 @@
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.lookahead', $project) }}">Lookahead Schedule</a>
                 <span class="text-xs text-slate-400">·</span>
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.alerts', $project) }}">Alerts</a>
+                <span class="text-xs text-slate-400">·</span>
+                <a class="text-xs font-bold text-amber-700 hover:underline" href="{{ route('projects.site', $project) }}">Field Capture 📱</a>
             </div>
             <p class="mt-1 text-sm font-semibold uppercase tracking-wide text-slate-500">{{ $project->code }}</p>
             <h1 id="constraints-title" class="text-2xl font-black">Constraints & Site Impediments</h1>
             <p class="text-sm text-slate-600">{{ $project->name }} · active site roadblock tracking & resolution</p>
         </div>
         <div class="flex items-center gap-2">
+            <a href="{{ route('projects.site', $project) }}" class="rounded-lg bg-amber-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-amber-700">Site Capture 📱</a>
             <a href="{{ route('projects.alerts', $project) }}" class="rounded-lg bg-red-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-red-800">Alerts Center</a>
             <a href="{{ route('projects.lookahead', $project) }}" class="rounded-lg bg-cyan-700 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-cyan-800">Lookahead Schedule</a>
             @if (\Illuminate\Support\Facades\Route::has('projects.report'))

@@ -21,7 +21,8 @@ Next Stage: Phase 3 (Staging Infrastructure Provisioning & Deployment Readiness)
 - [x] Installation of Senior Engineer AI Capability Stack in `.agent/skills/` (Find, Plan, Remember, Design, Lean)
 - [x] Expanded Creative Visual & 3D WebGL Stack in `.agent/skills/` (React Three Fiber 3D Court Visualizer, Liquid Glass JS VisionOS Optics, Shader Gradient 3D Mesh GPU Shaders)
 - [x] Phase 3 — แนวทาง E: Staging Infrastructure Provisioning & Deployment Readiness (Docker multi-stage PHP 8.2-FPM, Nginx Alpine, MariaDB 10.11, Redis 7, Healthcheck probes `/health/liveness`, `/health/readiness`, GitHub Actions CI workflow, Runbook)
+- [x] Phase 3 — แนวทาง F: Role-based Mobile/Tablet Responsive Site Supervisor Inspection View (`/projects/{project}/site`, `SiteSupervisorQuickCaptureView` Livewire surface, 1-tap task status progress, 3-click fast constraint logger, active blocker clearance, sticky thumb navigation bar)
 
 ## Next Steps
-- [ ] Phase 3: Staging Live Deployment or Verification on Staging Server
-- [ ] แนวทาง F: Role-based Mobile/Tablet Responsive Site Supervisor Inspection View
+- [ ] Staging Live Deployment verification on physical/VPS host
+- [ ] Push commits and git tags to remote GitHub repository (`git push origin main --tags`)
