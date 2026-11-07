@@ -11,6 +11,8 @@
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
                 <span class="text-xs text-slate-400">·</span>
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.constraints', $project) }}">Constraints</a>
+                <span class="text-xs text-slate-400">·</span>
+                <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.heatmap') }}">Risk Heatmap</a>
             </div>
             <p class="mt-1 text-sm font-semibold uppercase tracking-wide text-slate-500">{{ $project->code }}</p>
             <h1 id="alerts-title" class="text-2xl font-black">Active Early-Warning Alerts</h1>

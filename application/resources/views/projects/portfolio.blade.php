@@ -8,10 +8,17 @@
 </head>
 <body class="min-h-screen bg-slate-100 text-slate-900 antialiased">
 <main class="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
-    <header>
-        <p class="text-sm font-bold uppercase tracking-wide text-cyan-700">CED-2026 · RM-08</p>
-        <h1 class="mt-1 text-3xl font-black">Executive Portfolio</h1>
-        <p class="mt-2 text-slate-600">Permitted projects only. Presentation ordering is stable and does not create a new ranking rule.</p>
+    <header class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+            <p class="text-sm font-bold uppercase tracking-wide text-cyan-700">CED-2026 · RM-08</p>
+            <h1 class="mt-1 text-3xl font-black">Executive Portfolio</h1>
+            <p class="mt-2 text-slate-600">Permitted projects only. Presentation ordering is stable and does not create a new ranking rule.</p>
+        </div>
+        <div>
+            <a href="{{ route('projects.heatmap') }}" class="rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white shadow hover:bg-slate-800 transition">
+                Executive Risk Heatmap Matrix →
+            </a>
+        </div>
     </header>
 
     @php

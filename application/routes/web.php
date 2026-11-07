@@ -23,6 +23,12 @@ Route::get('/', ExecutivePortfolioController::class);
 Route::get('/projects/portfolio', ExecutivePortfolioController::class)
     ->name('projects.portfolio');
 
+Route::get('/portfolio/heatmap', function () {
+    abort_unless(request()->user() !== null, 403);
+
+    return view('projects.heatmap');
+})->name('projects.heatmap');
+
 Route::get('/projects/{project}/executive', [ProjectHealthController::class, 'show'])
     ->name('projects.executive');
 

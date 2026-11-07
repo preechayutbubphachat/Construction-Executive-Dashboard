@@ -969,3 +969,23 @@ DELIVERABLES_COMPLETED:
 - Quality & Verification:
   - PHPUnit: 149 tests / 1,807 assertions PASS (100% test suite pass rate).
   - Pint Style: 100% compliant across all modified files.
+- Git Head: Commit `185497f` on `main`.
+
+## Phase 2 — Multi-Project Comparative Dashboard & Risk Heatmap Checkpoint — 2026-11-07
+
+PROJECT_ID: CED-2026
+PHASE: Phase 2 — Operations Workflow & Advanced Governance
+FEATURE: Multi-Project Comparative Dashboard & 2D Risk Heatmap (แนวทาง D)
+STATUS: VERIFIED_AND_ACCEPTED
+
+DELIVERABLES_COMPLETED:
+- Domain Service: `PortfolioRiskHeatmapService` (`CED_PORTFOLIO_RISK_HEATMAP_V1`) aggregating permitted projects, computing composite risk index (0-100), assigning risk tiers (`CRITICAL`, `HIGH`, `MEDIUM`, `LOW`), and mapping 2D operational quadrants (Schedule vs Finance/Constraint).
+- Interactive Livewire Heatmap Surface: `PortfolioRiskHeatmapView` at `/portfolio/heatmap` displaying 2D interactive risk quadrant matrix, comparative ranking table, column sorting (risk score, make-ready %, budget burn), and tier filtering.
+- Executive Cross-Integration:
+  - Executive Portfolio View (`/portfolio`): Prominent "Executive Risk Heatmap Matrix →" header button.
+  - Executive Briefing Report (`/report`): Risk Heatmap breadcrumb link.
+  - Schedule & Timeline View (`/schedule`): Risk Heatmap breadcrumb link.
+  - Alerts Center View (`/alerts`): Risk Heatmap breadcrumb link.
+- Quality & Verification:
+  - PHPUnit: 159 tests / 1,838 assertions PASS (100% test suite pass rate).
+  - Pint Style: 100% compliant across all modified files.
