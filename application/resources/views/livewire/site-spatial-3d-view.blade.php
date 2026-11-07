@@ -36,6 +36,9 @@
 
         {{-- Cross Navigation Dropdown / Buttons --}}
         <div class="flex items-center gap-1.5 text-xs">
+            <a href="{{ route('projects.evm', $project) }}" class="px-2.5 py-1 rounded bg-emerald-950/80 hover:bg-emerald-900/80 text-emerald-400 border border-emerald-700/80 font-bold transition">
+                EVM 📈
+            </a>
             <a href="{{ route('projects.schedule.show', $project) }}" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
                 Timeline
             </a>

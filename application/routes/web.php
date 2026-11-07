@@ -115,3 +115,10 @@ Route::get('/projects/{project}/3d-twin', [SiteSpatial3DController::class, 'show
     ->name('projects.3d-twin');
 Route::get('/projects/{project}/3d-twin/data', [SiteSpatial3DController::class, 'data'])
     ->name('projects.3d-twin.data');
+
+Route::get('/projects/{project}/evm', function (Project $project) {
+    abort_unless(request()->user() !== null, 403);
+    Gate::authorize('view', $project);
+
+    return view('projects.evm', ['project' => $project]);
+})->name('projects.evm');

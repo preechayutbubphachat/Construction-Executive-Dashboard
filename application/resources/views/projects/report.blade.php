@@ -53,6 +53,8 @@
             <a class="text-amber-700 hover:underline" href="{{ route('projects.site', $project) }}">Field Capture 📱</a>
             <span class="text-slate-400">·</span>
             <a class="text-indigo-700 hover:underline" href="{{ route('projects.3d-twin', $project) }}">3D Twin 🌐</a>
+            <span class="text-slate-400">·</span>
+            <a class="text-emerald-700 hover:underline" href="{{ route('projects.evm', $project) }}">EVM S-Curve 📈</a>
         </div>
         <button
             type="button"
