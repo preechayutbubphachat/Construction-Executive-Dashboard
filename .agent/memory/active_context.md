@@ -24,5 +24,8 @@ Next Stage: Phase 3 (Staging Infrastructure Provisioning & Deployment Readiness)
 - [x] Phase 3 — แนวทาง F: Role-based Mobile/Tablet Responsive Site Supervisor Inspection View (`/projects/{project}/site`, `SiteSupervisorQuickCaptureView` Livewire surface, 1-tap task status progress, 3-click fast constraint logger, active blocker clearance, sticky thumb navigation bar)
 
 ## Next Steps
+- [x] Push commits and git tags to remote GitHub repository (`git push origin main --tags` completed: `v1.0.0-phase1-core`, `v2.0.0-phase2-complete`)
+
+## Next Steps
+- [ ] Phase 4 Planning & Execution (AI Predictive Analytics, BIM 3D Visualizer, IoT Weather/Site Integration)
 - [ ] Staging Live Deployment verification on physical/VPS host
-- [ ] Push commits and git tags to remote GitHub repository (`git push origin main --tags`)
