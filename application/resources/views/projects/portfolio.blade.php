@@ -393,6 +393,7 @@
                     <a class="text-rose-700 font-bold" href="{{ route('projects.ncr.index', $card['project']) }}">🛡️ QC & NCR</a>
                     <a class="text-amber-800 font-bold" href="{{ route('projects.procurement.index', $card['project']) }}">🧱 Procurement</a>
                     <a class="text-sky-800 font-bold" href="{{ route('projects.resources.index', $card['project']) }}">👷 Workforce & Machinery</a>
+                    <a class="text-teal-800 font-bold" href="{{ route('projects.hse.index', $card['project']) }}">🦺 HSE & Permits</a>
                     <span class="text-slate-500">Dimension-specific source provenance is shown above.</span>
                 </div>
             </article>

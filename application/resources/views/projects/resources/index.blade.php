@@ -25,6 +25,8 @@
             <span class="text-slate-400">·</span>
             <a class="text-amber-800 hover:underline" href="{{ route('projects.procurement.index', $project) }}">🧱 Procurement</a>
             <span class="text-slate-400">·</span>
+            <a class="text-teal-800 hover:underline" href="{{ route('projects.hse.index', $project) }}">🦺 HSE & Permits</a>
+            <span class="text-slate-400">·</span>
             <span class="text-sky-800 font-bold underline">👷 Workforce & Machinery</span>
         </div>
     </div>

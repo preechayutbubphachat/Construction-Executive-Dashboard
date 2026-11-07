@@ -181,6 +181,16 @@ class Project extends Model
         return $this->hasMany(SiteMachineryLog::class);
     }
 
+    public function permitToWorks(): HasMany
+    {
+        return $this->hasMany(PermitToWork::class);
+    }
+
+    public function hseSafetyLogs(): HasMany
+    {
+        return $this->hasMany(HseSafetyLog::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);

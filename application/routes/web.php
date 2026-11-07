@@ -7,6 +7,7 @@ use App\Http\Controllers\ExecutivePortfolioController;
 use App\Http\Controllers\ExecutiveReportController;
 use App\Http\Controllers\FinanceTransactionReadController;
 use App\Http\Controllers\HealthCheckController;
+use App\Http\Controllers\HseSafetyOperationsController;
 use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\InterimPaymentController;
 use App\Http\Controllers\MaterialProcurementController;
@@ -188,6 +189,13 @@ Route::post('/projects/{project}/procurement/{mr}/deliver', [MaterialProcurement
 Route::get('/projects/{project}/resources', [SiteResourceOperationsController::class, 'index'])->name('projects.resources.index');
 Route::post('/projects/{project}/resources/manpower', [SiteResourceOperationsController::class, 'storeManpower'])->name('projects.resources.manpower.store');
 Route::post('/projects/{project}/resources/machinery', [SiteResourceOperationsController::class, 'storeMachinery'])->name('projects.resources.machinery.store');
+
+// HSE Safety, Permit-to-Work (PTW) & Safe Man-Hours (Phase 6C)
+Route::get('/projects/{project}/hse', [HseSafetyOperationsController::class, 'index'])->name('projects.hse.index');
+Route::post('/projects/{project}/hse/permits', [HseSafetyOperationsController::class, 'storePermit'])->name('projects.hse.permits.store');
+Route::post('/projects/{project}/hse/permits/{permit}/approve', [HseSafetyOperationsController::class, 'approvePermit'])->name('projects.hse.permits.approve');
+Route::post('/projects/{project}/hse/permits/{permit}/revoke', [HseSafetyOperationsController::class, 'revokePermit'])->name('projects.hse.permits.revoke');
+Route::post('/projects/{project}/hse/events', [HseSafetyOperationsController::class, 'storeEvent'])->name('projects.hse.events.store');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');
