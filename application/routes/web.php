@@ -8,6 +8,7 @@ use App\Http\Controllers\ExecutiveReportController;
 use App\Http\Controllers\FinanceTransactionReadController;
 use App\Http\Controllers\HealthCheckController;
 use App\Http\Controllers\ImportPreviewController;
+use App\Http\Controllers\MfaSecurityController;
 use App\Http\Controllers\ProgressEntryController;
 use App\Http\Controllers\ProjectAuditReadController;
 use App\Http\Controllers\ProjectController;
@@ -134,3 +135,10 @@ Route::get('/projects/{project}/evm', function (Project $project) {
 
     return view('projects.evm', ['project' => $project]);
 })->name('projects.evm');
+
+// Multi-Factor Authentication (MFA / 2FA TOTP)
+Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');
+Route::post('/mfa/enable', [MfaSecurityController::class, 'enable'])->name('mfa.enable');
+Route::post('/mfa/disable', [MfaSecurityController::class, 'disable'])->name('mfa.disable');
+Route::get('/mfa/challenge', [MfaSecurityController::class, 'challenge'])->name('mfa.challenge');
+Route::post('/mfa/verify', [MfaSecurityController::class, 'verify'])->name('mfa.verify');

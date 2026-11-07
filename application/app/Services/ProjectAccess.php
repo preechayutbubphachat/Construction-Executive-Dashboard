@@ -20,4 +20,29 @@ class ProjectAccess
 
         return $role !== null && ($roles === [] || in_array($role, $roles, true));
     }
+
+    public function isExecutive(User $user, Project $project): bool
+    {
+        return $this->allows($user, $project, ['EXECUTIVE']);
+    }
+
+    public function canManageOperations(User $user, Project $project): bool
+    {
+        return $this->allows($user, $project, ['EXECUTIVE', 'PROJECT_MANAGER']);
+    }
+
+    public function canCaptureSite(User $user, Project $project): bool
+    {
+        return $this->allows($user, $project, ['EXECUTIVE', 'PROJECT_MANAGER', 'SITE_SUPERVISOR', 'SAFETY_OFFICER']);
+    }
+
+    public function canApproveFinance(User $user, Project $project): bool
+    {
+        return $this->isExecutive($user, $project);
+    }
+
+    public function canArchive(User $user, Project $project): bool
+    {
+        return $this->isExecutive($user, $project);
+    }
 }
