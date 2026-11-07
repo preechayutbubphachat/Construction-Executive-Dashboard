@@ -726,19 +726,19 @@ OPERATIONAL_STATUS:
 - PRODUCTION_STATUS: FORBIDDEN
 - NEXT_ACTION: Phase 2 Kickoff (Operations Workflow) or Staging Infrastructure Setup.
 
-## Phase 2 Resume Pointer — Weekly Lookahead Schedule Complete — 2026-11-07
+## Phase 2 Resume Pointer — Automated Early-Warning Alerts Complete — 2026-11-07
 
 PROJECT_ID: CED-2026
 CURRENT_STAGE: PHASE_2_OPERATIONS_WORKFLOW
-ACTIVE_FEATURE: Weekly Lookahead Schedule (แนวทาง B)
+ACTIVE_FEATURE: Automated Early-Warning Alerts & Notification Engine (แนวทาง C)
 STATUS: IMPLEMENTED_AND_VERIFIED
 
 COMPLETED_IN_PHASE_2:
 - แนวทาง A: Constraint & Site Issue Management (`project_constraints`, `ConstraintManagement`, `ProjectConstraintManager` UI, Executive Linkage).
 - แนวทาง B: Weekly Lookahead Schedule 3-6 Weeks (`WeeklyLookaheadService`, `WeeklyLookaheadView` UI, Make-Ready Rate KPI, Executive Report & Portfolio Linkage).
-- Verification: 135 tests / 1,766 assertions PASS (100%), Pint 100% clean.
+- แนวทาง C: Automated Early-Warning Alerts Engine (`EarlyWarningAlertEngine`, `ProjectAlertsCenter` UI, 4 Risk Categories, Executive Report & Portfolio Linkage).
+- Verification: 149 tests / 1,807 assertions PASS (100%), Pint 100% clean.
 
 NEXT_RECOMMENDED_ACTIONS:
-- แนวทาง C: Automated Early-Warning Alerts & Notification Engine (แจ้งเตือนงานวิกฤต, อุปสรรคค้างเกินกำหนด)
 - แนวทาง D: Multi-project Comparative Dashboard & Risk Heatmap (เปรียบเทียบสุขภาพและสถานะทุกโครงการในมุมมองเดียว)
 - แนวทาง E: Staging Infrastructure Provisioning (เตรียมพร้อมระบบสำหรับ Deployment & Hosting)

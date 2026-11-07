@@ -45,6 +45,8 @@
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.constraints', $project) }}">Constraints</a>
             <span class="text-slate-400">·</span>
             <a class="text-cyan-700 hover:underline" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
+            <span class="text-slate-400">·</span>
+            <a class="text-cyan-700 hover:underline" href="{{ route('projects.alerts', $project) }}">Alerts</a>
         </div>
         <button
             type="button"
@@ -158,6 +160,46 @@
             </table>
         </div>
     </section>
+
+    <!-- Early-Warning Operational Alerts -->
+    @if (isset($alertData))
+        @php
+            $aSummary = $alertData['summary'];
+            $aAlerts = $alertData['alerts'];
+        @endphp
+        <section class="print-card rounded-xl bg-white p-6 shadow-sm border border-slate-200" aria-label="Early-Warning Alerts">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div>
+                    <h2 class="text-base font-bold uppercase tracking-wide text-slate-900">Early-Warning Operational Alerts ({{ $aSummary['total_alerts'] }})</h2>
+                    <p class="text-xs text-slate-500">Automated risk signals evaluated as of {{ \Carbon\Carbon::parse($alertData['evaluated_at'])->format('Y-m-d H:i') }} UTC</p>
+                </div>
+                <a href="{{ route('projects.alerts', $project) }}" class="no-print text-xs font-bold text-cyan-700 hover:underline">Manage Alerts Center →</a>
+            </div>
+            <div class="mt-4">
+                @if (empty($aAlerts))
+                    <p class="text-xs text-emerald-700 font-semibold">✓ All operations clear. Zero active early-warning anomalies detected.</p>
+                @else
+                    <div class="space-y-2">
+                        @foreach ($aAlerts as $alt)
+                            @php
+                                $altCritical = $alt['severity'] === 'CRITICAL';
+                            @endphp
+                            <div class="rounded-lg p-3 text-xs border {{ $altCritical ? 'bg-red-50/50 border-red-200 text-red-950' : 'bg-amber-50/50 border-amber-200 text-amber-950' }}">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="rounded px-1.5 py-0.5 text-[9px] font-black uppercase {{ $altCritical ? 'bg-red-200 text-red-900' : 'bg-amber-200 text-amber-900' }}">{{ $alt['severity'] }}</span>
+                                        <span class="font-bold">{{ $alt['title'] }}</span>
+                                    </div>
+                                    <span class="text-[10px] uppercase text-slate-500">{{ str_replace('_', ' ', $alt['category']) }}</span>
+                                </div>
+                                <p class="mt-1 text-slate-600">{{ $alt['message'] }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </section>
+    @endif
 
     <!-- Weekly Lookahead Schedule Summary -->
     @if (isset($lookahead))

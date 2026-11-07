@@ -20,6 +20,8 @@
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.constraints', $project) }}">Constraints</a>
                 <span class="text-xs text-slate-400">·</span>
                 <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
+                <span class="text-xs text-slate-400">·</span>
+                <a class="text-xs font-bold text-cyan-700 hover:underline" href="{{ route('projects.alerts', $project) }}">Alerts</a>
             </div>
             <h1 class="mt-2 text-2xl font-black text-slate-900">{{ $project->name }} ({{ $project->code }})</h1>
             <p class="text-sm text-slate-600">Schedule & Timeline · Baseline: {{ $project->baseline_start_date?->toDateString() ?? 'N/A' }} to {{ $project->baseline_finish_date?->toDateString() ?? 'N/A' }}</p>

@@ -7,6 +7,7 @@ use App\Services\CedFinanceExceptionV1Projection;
 use App\Services\CedFinanceV1ReadModel;
 use App\Services\CedProjectHealthV1ReadModel;
 use App\Services\CedScheduleProgressExceptionV1Projection;
+use App\Services\EarlyWarningAlertEngine;
 use App\Services\WeeklyLookaheadService;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
@@ -20,6 +21,7 @@ class ExecutiveReportController extends Controller
         CedFinanceV1ReadModel $financeBoundary,
         CedFinanceExceptionV1Projection $financeExceptionProjection,
         WeeklyLookaheadService $lookaheadService,
+        EarlyWarningAlertEngine $alertEngine,
     ): View {
         abort_unless(request()->user() !== null, 403);
         Gate::authorize('view', $project);
@@ -34,6 +36,7 @@ class ExecutiveReportController extends Controller
         $auditEvents = $project->auditEvents()->with('actor')->latest('occurred_at')->limit(10)->get();
         $constraints = $project->constraints()->with(['task', 'assignee'])->open()->orderBy('severity')->get();
         $lookahead = $lookaheadService->forProject($project, 3);
+        $alertData = $alertEngine->forProject($project);
 
         return view('projects.report', compact(
             'project',
@@ -47,6 +50,7 @@ class ExecutiveReportController extends Controller
             'auditEvents',
             'constraints',
             'lookahead',
+            'alertData',
         ));
     }
 }

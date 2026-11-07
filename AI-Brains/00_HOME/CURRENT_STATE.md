@@ -948,3 +948,24 @@ DELIVERABLES_COMPLETED:
 - Quality & Verification:
   - PHPUnit: 135 tests / 1,766 assertions PASS (100% test suite pass rate).
   - Pint Style: 100% compliant across all modified files.
+- Git Head: Commit `956f0e3` on `main`.
+
+## Phase 2 — Automated Early-Warning Alerts Engine Checkpoint — 2026-11-07
+
+PROJECT_ID: CED-2026
+PHASE: Phase 2 — Operations Workflow & Advanced Governance
+FEATURE: Automated Early-Warning Alerts & Notification Engine (แนวทาง C)
+STATUS: VERIFIED_AND_ACCEPTED
+
+DELIVERABLES_COMPLETED:
+- Domain Service: `EarlyWarningAlertEngine` (`CED_EARLY_WARNING_ALERTS_V1`) evaluating 4 operational risk rules (`SCHEDULE_OVERDUE`, `LOOKAHEAD_BLOCKED`, `CRITICAL_CONSTRAINT_STALE`, `BUDGET_BURNOUT`), computing severity and standardized actionable alert records with direct resolution paths.
+- Interactive Livewire Alerts Center: `ProjectAlertsCenter` at `/projects/{project}/alerts` with KPI summary cards (Total, Critical, Warning, Soundness), category filter tabs, and actionable alert resolution cards.
+- Executive Visibility Integration:
+  - Executive Briefing Report (`/report`): Added "Early-Warning Operational Alerts" section with active risk signals and direct resolution link.
+  - Schedule & Timeline View (`/schedule`): Alerts breadcrumb and navigation link.
+  - Constraints Register View (`/constraints`): Alerts Center button and breadcrumb.
+  - Weekly Lookahead Schedule View (`/lookahead`): Alerts Center action button and breadcrumb.
+  - Executive Portfolio View (`/portfolio`): Direct "Alerts" navigation link for all active projects.
+- Quality & Verification:
+  - PHPUnit: 149 tests / 1,807 assertions PASS (100% test suite pass rate).
+  - Pint Style: 100% compliant across all modified files.
