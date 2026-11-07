@@ -48,6 +48,8 @@
             <span class="text-slate-400">·</span>
             <a class="text-indigo-700 hover:underline" href="{{ route('projects.3d-twin', $project) }}">3D Twin 🌐</a>
             <span class="text-slate-400">·</span>
+            <a class="text-emerald-800 hover:underline font-bold" href="{{ route('projects.ipc.index', $project) }}">💰 IPC & Payment</a>
+            <span class="text-slate-400">·</span>
             <a class="text-slate-600 hover:underline" href="{{ route('projects.report', $project) }}">Briefing Overview</a>
         </div>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\ExecutiveReportController;
 use App\Http\Controllers\FinanceTransactionReadController;
 use App\Http\Controllers\HealthCheckController;
 use App\Http\Controllers\ImportPreviewController;
+use App\Http\Controllers\InterimPaymentController;
 use App\Http\Controllers\MfaSecurityController;
 use App\Http\Controllers\ProgressEntryController;
 use App\Http\Controllers\ProjectAuditReadController;
@@ -135,6 +136,22 @@ Route::get('/projects/{project}/evm', function (Project $project) {
 
     return view('projects.evm', ['project' => $project]);
 })->name('projects.evm');
+
+// Commercial Execution & Interim Payment Certificates (IPC Workflow)
+Route::get('/projects/{project}/ipc', [InterimPaymentController::class, 'index'])
+    ->name('projects.ipc.index');
+Route::get('/projects/{project}/ipc/create', [InterimPaymentController::class, 'create'])
+    ->name('projects.ipc.create');
+Route::post('/projects/{project}/ipc', [InterimPaymentController::class, 'store'])
+    ->name('projects.ipc.store');
+Route::get('/projects/{project}/ipc/{ipc}', [InterimPaymentController::class, 'show'])
+    ->name('projects.ipc.show');
+Route::post('/projects/{project}/ipc/{ipc}/verify-site', [InterimPaymentController::class, 'verifySite'])
+    ->name('projects.ipc.verify-site');
+Route::post('/projects/{project}/ipc/{ipc}/verify-qs', [InterimPaymentController::class, 'verifyQs'])
+    ->name('projects.ipc.verify-qs');
+Route::post('/projects/{project}/ipc/{ipc}/approve-director', [InterimPaymentController::class, 'approveDirector'])
+    ->name('projects.ipc.approve-director');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');

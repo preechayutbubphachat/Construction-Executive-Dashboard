@@ -52,8 +52,8 @@ class WeeklyExecutiveReportService
             ->orderByDesc('created_at')
             ->get();
 
-        $inflowThisWeek = $financeTransactions->where('direction', 'INFLOW')->where('status', 'POSTED')->sum('amount');
-        $outflowThisWeek = $financeTransactions->where('direction', 'OUTFLOW')->where('status', 'POSTED')->sum('amount');
+        $inflowThisWeek = $financeTransactions->whereIn('direction', ['INFLOW', 'INCOME'])->where('status', 'POSTED')->sum('amount');
+        $outflowThisWeek = $financeTransactions->whereIn('direction', ['OUTFLOW', 'EXPENSE'])->where('status', 'POSTED')->sum('amount');
 
         // 5. Site Constraints Delta (Logged this week vs Resolved this week)
         $constraintsOpened = ProjectConstraint::query()

@@ -46,6 +46,8 @@
             <span class="text-slate-400">·</span>
             <a class="text-indigo-700 hover:underline" href="{{ route('projects.reports.weekly', $project) }}">📊 Weekly Report &rarr;</a>
             <span class="text-slate-400">·</span>
+            <a class="text-emerald-800 hover:underline font-bold" href="{{ route('projects.ipc.index', $project) }}">💰 IPC & Payment</a>
+            <span class="text-slate-400">·</span>
             <a class="text-slate-600 hover:underline" href="{{ route('projects.report', $project) }}">Briefing Overview</a>
         </div>
 
