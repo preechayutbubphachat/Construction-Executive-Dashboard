@@ -2,23 +2,28 @@
 
 namespace App\Livewire;
 
+use App\Models\EvidenceDocument;
 use App\Models\Project;
 use App\Models\ProjectConstraint;
 use App\Models\WbsTask;
 use App\Services\ConstraintManagement;
+use App\Services\SitePhotoWatermarkService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class SiteSupervisorQuickCaptureView extends Component
 {
+    use WithFileUploads;
+
     #[Locked]
     public string $projectId;
 
-    public string $activeTab = 'TASKS'; // 'TASKS', 'LOG_BLOCKER', 'CONSTRAINTS', 'SUMMARY'
+    public string $activeTab = 'TASKS'; // 'TASKS', 'LOG_BLOCKER', 'CONSTRAINTS', 'PHOTOS', 'SUMMARY'
 
     public string $constraintType = 'MATERIAL';
 
@@ -38,6 +43,25 @@ class SiteSupervisorQuickCaptureView extends Component
 
     public ?string $errorMessage = null;
 
+    // Field Photo & Inspection state
+    public $photoFile;
+
+    public ?string $photoTaskId = null;
+
+    public ?string $photoConstraintId = null;
+
+    public string $photoCaption = '';
+
+    public string $photoCategory = 'PROGRESS'; // 'PROGRESS', 'DEFECT', 'QUALITY_CHECK', 'SAFETY'
+
+    public ?float $photoLat = null;
+
+    public ?float $photoLng = null;
+
+    public string $galleryFilter = 'ALL';
+
+    public ?string $previewEvidenceId = null;
+
     public function mount(Project $project): void
     {
         Gate::authorize('view', $project);
@@ -46,7 +70,7 @@ class SiteSupervisorQuickCaptureView extends Component
 
     public function switchTab(string $tab): void
     {
-        if (in_array($tab, ['TASKS', 'LOG_BLOCKER', 'CONSTRAINTS', 'SUMMARY'], true)) {
+        if (in_array($tab, ['TASKS', 'LOG_BLOCKER', 'CONSTRAINTS', 'PHOTOS', 'SUMMARY'], true)) {
             $this->activeTab = $tab;
             $this->resetFeedback();
         }
@@ -139,6 +163,62 @@ class SiteSupervisorQuickCaptureView extends Component
         }
     }
 
+    public function setCoordinates(?float $lat, ?float $lng): void
+    {
+        $this->photoLat = $lat;
+        $this->photoLng = $lng;
+    }
+
+    public function uploadSitePhoto(SitePhotoWatermarkService $service): void
+    {
+        $this->validate([
+            'photoFile' => ['required', 'image', 'max:12288'],
+            'photoCategory' => ['required', 'string', 'in:PROGRESS,DEFECT,QUALITY_CHECK,SAFETY'],
+            'photoCaption' => ['nullable', 'string', 'max:255'],
+            'photoTaskId' => ['nullable', 'string'],
+            'photoConstraintId' => ['nullable', 'string'],
+            'photoLat' => ['nullable', 'numeric'],
+            'photoLng' => ['nullable', 'numeric'],
+        ]);
+
+        $project = Project::query()->findOrFail($this->projectId);
+        Gate::authorize('view', $project);
+
+        try {
+            $service->storeSitePhoto($project, Auth::user(), $this->photoFile, [
+                'task_id' => $this->photoTaskId,
+                'constraint_id' => $this->photoConstraintId,
+                'caption' => $this->photoCaption,
+                'category' => $this->photoCategory,
+                'gps_latitude' => $this->photoLat,
+                'gps_longitude' => $this->photoLng,
+                'captured_at' => now(),
+            ]);
+
+            $this->photoFile = null;
+            $this->photoCaption = '';
+            $this->photoTaskId = null;
+            $this->photoConstraintId = null;
+            $this->photoCategory = 'PROGRESS';
+
+            $this->successMessage = 'Field photo uploaded and watermarked with telemetry.';
+            $this->errorMessage = null;
+        } catch (\Throwable $e) {
+            $this->errorMessage = $e->getMessage();
+            $this->successMessage = null;
+        }
+    }
+
+    public function openPhotoModal(string $evidenceId): void
+    {
+        $this->previewEvidenceId = $evidenceId;
+    }
+
+    public function closePhotoModal(): void
+    {
+        $this->previewEvidenceId = null;
+    }
+
     public function resetFeedback(): void
     {
         $this->successMessage = null;
@@ -180,6 +260,35 @@ class SiteSupervisorQuickCaptureView extends Component
         $soundCount = $tasksWithSoundness->where('is_sound', true)->count();
         $blockedCount = $tasksWithSoundness->where('is_sound', false)->count();
 
+        // Photos & inspection evidence
+        $photosQuery = EvidenceDocument::query()
+            ->where('project_id', $project->id)
+            ->with(['task', 'constraint', 'uploader'])
+            ->latest();
+
+        $allPhotos = (clone $photosQuery)->get();
+
+        if ($this->galleryFilter === 'GPS_ONLY') {
+            $photosQuery->whereNotNull('gps_latitude');
+        } elseif (in_array($this->galleryFilter, ['PROGRESS', 'DEFECT', 'QUALITY_CHECK', 'SAFETY'], true)) {
+            $photosQuery->where('metadata->category', $this->galleryFilter);
+        } elseif ($this->galleryFilter !== 'ALL') {
+            $photosQuery->where('wbs_task_id', $this->galleryFilter);
+        }
+
+        $filteredPhotos = $photosQuery->get();
+
+        $selectedPhoto = $this->previewEvidenceId
+            ? $allPhotos->firstWhere('id', $this->previewEvidenceId)
+            : null;
+
+        $photoStats = [
+            'total' => $allPhotos->count(),
+            'withGps' => $allPhotos->whereNotNull('gps_latitude')->count(),
+            'progress' => $allPhotos->filter(fn ($p) => ($p->metadata['category'] ?? '') === 'PROGRESS')->count(),
+            'defects' => $allPhotos->filter(fn ($p) => ($p->metadata['category'] ?? '') === 'DEFECT')->count(),
+        ];
+
         return view('livewire.site-supervisor-quick-capture-view', [
             'project' => $project,
             'tasks' => $tasks,
@@ -187,6 +296,9 @@ class SiteSupervisorQuickCaptureView extends Component
             'constraints' => $constraints,
             'soundCount' => $soundCount,
             'blockedCount' => $blockedCount,
+            'photos' => $filteredPhotos,
+            'selectedPhoto' => $selectedPhoto,
+            'photoStats' => $photoStats,
         ]);
     }
 }

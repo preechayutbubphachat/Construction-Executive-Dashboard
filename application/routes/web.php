@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EvidenceDownloadController;
+use App\Http\Controllers\EvidencePreviewController;
 use App\Http\Controllers\EvidenceUploadController;
 use App\Http\Controllers\ExecutivePortfolioController;
 use App\Http\Controllers\ExecutiveReportController;
@@ -79,6 +80,10 @@ Route::post('/projects/{project}/evidence', EvidenceUploadController::class)
 
 Route::get('/projects/{project}/evidence/{evidence}', EvidenceDownloadController::class)
     ->name('projects.evidence.download');
+
+Route::get('/projects/{project}/evidence/{evidence}/preview', EvidencePreviewController::class)
+    ->middleware('auth')
+    ->name('projects.evidence.preview');
 
 Route::get('/projects/{project}/report', ExecutiveReportController::class)
     ->name('projects.report');
