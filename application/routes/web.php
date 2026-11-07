@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EngineeringDocumentControlController;
 use App\Http\Controllers\EvidenceDownloadController;
 use App\Http\Controllers\EvidencePreviewController;
 use App\Http\Controllers\EvidenceUploadController;
@@ -196,6 +197,14 @@ Route::post('/projects/{project}/hse/permits', [HseSafetyOperationsController::c
 Route::post('/projects/{project}/hse/permits/{permit}/approve', [HseSafetyOperationsController::class, 'approvePermit'])->name('projects.hse.permits.approve');
 Route::post('/projects/{project}/hse/permits/{permit}/revoke', [HseSafetyOperationsController::class, 'revokePermit'])->name('projects.hse.permits.revoke');
 Route::post('/projects/{project}/hse/events', [HseSafetyOperationsController::class, 'storeEvent'])->name('projects.hse.events.store');
+
+// Engineering Document Control: RFI (7A) & Shop Drawing / Material Submittals (7B)
+Route::get('/projects/{project}/engineering', [EngineeringDocumentControlController::class, 'index'])->name('projects.engineering.index');
+Route::post('/projects/{project}/engineering/rfi', [EngineeringDocumentControlController::class, 'storeRfi'])->name('projects.engineering.rfi.store');
+Route::post('/projects/{project}/engineering/rfi/{rfi}/answer', [EngineeringDocumentControlController::class, 'answerRfi'])->name('projects.engineering.rfi.answer');
+Route::post('/projects/{project}/engineering/submittals', [EngineeringDocumentControlController::class, 'storeSubmittal'])->name('projects.engineering.submittals.store');
+Route::post('/projects/{project}/engineering/submittals/{submittal}/review', [EngineeringDocumentControlController::class, 'reviewSubmittal'])->name('projects.engineering.submittals.review');
+Route::post('/projects/{project}/engineering/submittals/{submittal}/resubmit', [EngineeringDocumentControlController::class, 'resubmitSubmittal'])->name('projects.engineering.submittals.resubmit');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');

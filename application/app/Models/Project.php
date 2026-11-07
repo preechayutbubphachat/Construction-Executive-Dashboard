@@ -191,6 +191,16 @@ class Project extends Model
         return $this->hasMany(HseSafetyLog::class);
     }
 
+    public function engineeringRfis(): HasMany
+    {
+        return $this->hasMany(EngineeringRfi::class);
+    }
+
+    public function engineeringSubmittals(): HasMany
+    {
+        return $this->hasMany(EngineeringSubmittal::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);
