@@ -143,6 +143,13 @@
                                         <input type="hidden" name="items[{{ $index }}][wbs_task_id]" value="{{ $task->id }}">
                                         <div class="font-bold text-slate-900">{{ $task->wbs_code }} · {{ $task->name }}</div>
                                         <div class="text-[10px] text-slate-400">{{ $task->status }}</div>
+                                        @if(isset($blockingNcrsByTask[$task->id]))
+                                            @foreach($blockingNcrsByTask[$task->id] as $bNcr)
+                                                <div class="mt-1 inline-block rounded bg-rose-100 border border-rose-300 px-2 py-0.5 text-[10px] font-bold text-rose-800">
+                                                    🚫 Payment Hold: {{ $bNcr->reference_no }} ({{ $bNcr->severity }})
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </td>
                                     <td class="px-4 py-3 text-right font-mono text-slate-600">
                                         ฿{{ number_format((float) ($task->planned_cost ?? 0), 2) }}

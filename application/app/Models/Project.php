@@ -161,6 +161,11 @@ class Project extends Model
         return $this->hasMany(VariationOrder::class);
     }
 
+    public function ncrs(): HasMany
+    {
+        return $this->hasMany(NonConformanceReport::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);

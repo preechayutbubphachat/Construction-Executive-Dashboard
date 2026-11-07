@@ -6,6 +6,7 @@ use App\Domain\Finance\FinanceStatus;
 use App\Models\FinanceTransaction;
 use App\Models\InterimPaymentCertificate;
 use App\Models\IpcItem;
+use App\Models\NonConformanceReport;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\VariationOrder;
@@ -129,6 +130,23 @@ class InterimPaymentService
                 // Skip unentered empty rows from large form unless it's the only item
                 if ($claimedAmt <= 0.00 && count($itemsData) > 1 && ($vo !== null || ! isset($item['contract_amount']))) {
                     continue;
+                }
+
+                if ($taskId !== null && $claimedAmt > 0.00) {
+                    $blockingNcr = NonConformanceReport::query()
+                        ->where('project_id', $project->id)
+                        ->where('wbs_task_id', $taskId)
+                        ->where('hold_payment', true)
+                        ->whereIn('status', NonConformanceReport::UNCLOSED_STATUSES)
+                        ->orderByDesc('ncr_number')
+                        ->first();
+
+                    if ($blockingNcr !== null) {
+                        $taskCode = $task?->wbs_code ?? $taskId;
+                        throw new DomainException(
+                            "Payment hold active: cannot claim payment for WBS task [{$taskCode}] while NCR {$blockingNcr->reference_no} ({$blockingNcr->severity}: {$blockingNcr->title}) remains unclosed."
+                        );
+                    }
                 }
 
                 $currentWorkAmount += $certifiedAmt;

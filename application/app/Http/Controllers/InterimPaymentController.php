@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InterimPaymentCertificate;
+use App\Models\NonConformanceReport;
 use App\Models\Project;
 use App\Models\WbsTask;
 use App\Services\InterimPaymentService;
@@ -65,6 +66,12 @@ class InterimPaymentController extends Controller
                 ->where('cost_impact', '>', 0)
                 ->orderBy('vo_number')
                 ->get(),
+            'blockingNcrsByTask' => $project->ncrs()
+                ->where('hold_payment', true)
+                ->whereIn('status', NonConformanceReport::UNCLOSED_STATUSES)
+                ->whereNotNull('wbs_task_id')
+                ->get()
+                ->groupBy('wbs_task_id'),
         ]);
     }
 

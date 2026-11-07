@@ -19,6 +19,8 @@
             <span class="text-slate-400">·</span>
             <a class="text-emerald-800 hover:underline" href="{{ route('projects.ipc.index', $project) }}">💰 IPC & Payment</a>
             <span class="text-slate-400">·</span>
+            <a class="text-rose-700 hover:underline" href="{{ route('projects.ncr.index', $project) }}">🛡️ QC & NCR</a>
+            <span class="text-slate-400">·</span>
             <span class="text-violet-800 underline">📑 Variation Orders</span>
         </div>
         <a href="{{ route('projects.vo.create', $project) }}" class="rounded-lg bg-violet-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-violet-700">+ New Variation Request (ขอเปลี่ยนแปลงงาน)</a>

@@ -9,6 +9,7 @@ use App\Http\Controllers\FinanceTransactionReadController;
 use App\Http\Controllers\HealthCheckController;
 use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\InterimPaymentController;
+use App\Http\Controllers\NonConformanceReportController;
 use App\Http\Controllers\VariationOrderController;
 use App\Http\Controllers\MfaSecurityController;
 use App\Http\Controllers\ProgressEntryController;
@@ -163,6 +164,15 @@ Route::post('/projects/{project}/vo/{vo}/verify-site', [VariationOrderController
 Route::post('/projects/{project}/vo/{vo}/verify-qs', [VariationOrderController::class, 'verifyQs'])->name('projects.vo.verify-qs');
 Route::post('/projects/{project}/vo/{vo}/approve-director', [VariationOrderController::class, 'approveDirector'])->name('projects.vo.approve-director');
 Route::post('/projects/{project}/vo/{vo}/reject', [VariationOrderController::class, 'reject'])->name('projects.vo.reject');
+
+// Quality Control & Non-Conformance Reports (NCR / Snag List with IPC Payment Hold)
+Route::get('/projects/{project}/ncr', [NonConformanceReportController::class, 'index'])->name('projects.ncr.index');
+Route::get('/projects/{project}/ncr/create', [NonConformanceReportController::class, 'create'])->name('projects.ncr.create');
+Route::post('/projects/{project}/ncr', [NonConformanceReportController::class, 'store'])->name('projects.ncr.store');
+Route::get('/projects/{project}/ncr/{ncr}', [NonConformanceReportController::class, 'show'])->name('projects.ncr.show');
+Route::post('/projects/{project}/ncr/{ncr}/rectify', [NonConformanceReportController::class, 'submitRectification'])->name('projects.ncr.rectify');
+Route::post('/projects/{project}/ncr/{ncr}/close', [NonConformanceReportController::class, 'verifyClose'])->name('projects.ncr.close');
+Route::post('/projects/{project}/ncr/{ncr}/reject-rectification', [NonConformanceReportController::class, 'rejectRectification'])->name('projects.ncr.reject-rectification');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');
