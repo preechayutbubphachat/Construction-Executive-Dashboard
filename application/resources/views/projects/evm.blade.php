@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $project->code }} &middot; Earned Value Management (EVM) & S-Curve</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
-</head>
-<body class="min-h-screen bg-slate-100 text-slate-900 antialiased">
-<main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+<x-layouts.app :project="$project" title="{{ $project->code }} · Earned Value Management (EVM) & S-Curve">
     <livewire:project-evm-s-curve-view :project="$project" />
-</main>
-@livewireScripts
-</body>
-</html>
+</x-layouts.app>
