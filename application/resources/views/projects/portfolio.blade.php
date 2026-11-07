@@ -395,6 +395,7 @@
                     <a class="text-sky-800 font-bold" href="{{ route('projects.resources.index', $card['project']) }}">👷 Workforce & Machinery</a>
                     <a class="text-teal-800 font-bold" href="{{ route('projects.hse.index', $card['project']) }}">🦺 HSE & Permits</a>
                     <a class="text-indigo-800 font-bold" href="{{ route('projects.engineering.index', $card['project']) }}">📐 RFI & Submittals</a>
+                    <a class="text-emerald-900 font-bold" href="{{ route('projects.handover.index', $card['project']) }}">🏁 Handover & Closeout</a>
                     <span class="text-slate-500">Dimension-specific source provenance is shown above.</span>
                 </div>
             </article>

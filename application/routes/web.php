@@ -12,18 +12,19 @@ use App\Http\Controllers\HseSafetyOperationsController;
 use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\InterimPaymentController;
 use App\Http\Controllers\MaterialProcurementController;
-use App\Http\Controllers\NonConformanceReportController;
-use App\Http\Controllers\VariationOrderController;
 use App\Http\Controllers\MfaSecurityController;
+use App\Http\Controllers\NonConformanceReportController;
 use App\Http\Controllers\ProgressEntryController;
 use App\Http\Controllers\ProjectAuditReadController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectHandoverCloseoutController;
 use App\Http\Controllers\ProjectHealthController;
 use App\Http\Controllers\ProjectScheduleController;
 use App\Http\Controllers\ProjectWbsController;
 use App\Http\Controllers\SiteReportController;
 use App\Http\Controllers\SiteResourceOperationsController;
 use App\Http\Controllers\SiteSpatial3DController;
+use App\Http\Controllers\VariationOrderController;
 use App\Http\Controllers\WbsTaskController;
 use App\Http\Controllers\WbsTaskReadController;
 use App\Models\Project;
@@ -205,6 +206,14 @@ Route::post('/projects/{project}/engineering/rfi/{rfi}/answer', [EngineeringDocu
 Route::post('/projects/{project}/engineering/submittals', [EngineeringDocumentControlController::class, 'storeSubmittal'])->name('projects.engineering.submittals.store');
 Route::post('/projects/{project}/engineering/submittals/{submittal}/review', [EngineeringDocumentControlController::class, 'reviewSubmittal'])->name('projects.engineering.submittals.review');
 Route::post('/projects/{project}/engineering/submittals/{submittal}/resubmit', [EngineeringDocumentControlController::class, 'resubmitSubmittal'])->name('projects.engineering.submittals.resubmit');
+
+// Project Handover, Punch List, Retention Money Release & Final Account Statement (Phase 8)
+Route::get('/projects/{project}/handover', [ProjectHandoverCloseoutController::class, 'index'])->name('projects.handover.index');
+Route::post('/projects/{project}/handover/punch-items', [ProjectHandoverCloseoutController::class, 'storePunchItem'])->name('projects.handover.punch.store');
+Route::post('/projects/{project}/handover/punch-items/{punchItem}/rectify', [ProjectHandoverCloseoutController::class, 'rectifyPunchItem'])->name('projects.handover.punch.rectify');
+Route::post('/projects/{project}/handover/punch-items/{punchItem}/verify', [ProjectHandoverCloseoutController::class, 'verifyPunchItem'])->name('projects.handover.punch.verify');
+Route::post('/projects/{project}/handover/certificates', [ProjectHandoverCloseoutController::class, 'issueCertificate'])->name('projects.handover.certificates.issue');
+Route::post('/projects/{project}/handover/certificates/{certificate}/release-retention', [ProjectHandoverCloseoutController::class, 'releaseRetention'])->name('projects.handover.certificates.release-retention');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');

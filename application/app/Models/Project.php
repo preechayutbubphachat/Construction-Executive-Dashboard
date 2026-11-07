@@ -201,6 +201,16 @@ class Project extends Model
         return $this->hasMany(EngineeringSubmittal::class);
     }
 
+    public function handoverPunchItems(): HasMany
+    {
+        return $this->hasMany(HandoverPunchItem::class);
+    }
+
+    public function handoverCertificates(): HasMany
+    {
+        return $this->hasMany(ProjectHandoverCertificate::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);
