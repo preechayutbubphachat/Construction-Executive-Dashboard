@@ -14,6 +14,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectHealthController;
 use App\Http\Controllers\ProjectScheduleController;
 use App\Http\Controllers\ProjectWbsController;
+use App\Http\Controllers\SiteReportController;
 use App\Http\Controllers\SiteSpatial3DController;
 use App\Http\Controllers\WbsTaskController;
 use App\Http\Controllers\WbsTaskReadController;
@@ -87,6 +88,12 @@ Route::get('/projects/{project}/evidence/{evidence}/preview', EvidencePreviewCon
 
 Route::get('/projects/{project}/report', ExecutiveReportController::class)
     ->name('projects.report');
+
+Route::get('/projects/{project}/reports/daily', [SiteReportController::class, 'daily'])
+    ->name('projects.reports.daily');
+
+Route::get('/projects/{project}/reports/weekly', [SiteReportController::class, 'weekly'])
+    ->name('projects.reports.weekly');
 
 Route::get('/projects/{project}/constraints', function (Project $project) {
     abort_unless(request()->user() !== null, 403);

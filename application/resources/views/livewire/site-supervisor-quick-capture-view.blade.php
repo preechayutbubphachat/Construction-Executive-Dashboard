@@ -18,6 +18,9 @@
             </div>
 
             <div class="flex items-center gap-2">
+                <a href="{{ route('projects.reports.daily', $project) }}" class="px-2.5 py-1.5 rounded-lg bg-blue-900/60 hover:bg-blue-800 text-xs font-bold text-blue-300 border border-blue-700 transition">
+                    Daily Log 📅
+                </a>
                 <a href="{{ route('projects.3d-twin', $project) }}" class="px-2.5 py-1.5 rounded-lg bg-indigo-900/60 hover:bg-indigo-800 text-xs font-bold text-indigo-300 border border-indigo-700 transition">
                     3D Twin 🌐
                 </a>

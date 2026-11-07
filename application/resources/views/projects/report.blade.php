@@ -52,6 +52,10 @@
             <span class="text-slate-400">·</span>
             <a class="text-amber-700 hover:underline" href="{{ route('projects.site', $project) }}">Field Capture 📱</a>
             <span class="text-slate-400">·</span>
+            <a class="text-blue-700 hover:underline font-bold" href="{{ route('projects.reports.daily', $project) }}">📅 Daily Report</a>
+            <span class="text-slate-400">·</span>
+            <a class="text-indigo-700 hover:underline font-bold" href="{{ route('projects.reports.weekly', $project) }}">📊 Weekly Report</a>
+            <span class="text-slate-400">·</span>
             <a class="text-indigo-700 hover:underline" href="{{ route('projects.3d-twin', $project) }}">3D Twin 🌐</a>
             <span class="text-slate-400">·</span>
             <a class="text-emerald-700 hover:underline" href="{{ route('projects.evm', $project) }}">EVM S-Curve 📈</a>
