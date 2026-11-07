@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EngineeringDocumentControlController;
 use App\Http\Controllers\EvidenceDownloadController;
 use App\Http\Controllers\EvidencePreviewController;
@@ -32,6 +33,12 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', ExecutivePortfolioController::class);
+
+// Authentication & Demo 1-Click Login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/quick-login/{user}', [AuthController::class, 'quickLogin'])->name('quick-login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/health/liveness', [HealthCheckController::class, 'liveness'])->name('health.liveness');
 Route::get('/health/readiness', [HealthCheckController::class, 'readiness'])->name('health.readiness');
