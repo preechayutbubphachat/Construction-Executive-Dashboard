@@ -389,6 +389,7 @@
                     <a class="text-indigo-700 font-bold" href="{{ route('projects.3d-twin', $card['project']) }}">3D Twin 🌐</a>
                     <a class="text-emerald-700 font-bold" href="{{ route('projects.evm', $card['project']) }}">EVM S-Curve 📈</a>
                     <a class="text-emerald-800 font-bold" href="{{ route('projects.ipc.index', $card['project']) }}">💰 IPC & Payment</a>
+                    <a class="text-violet-700 font-bold" href="{{ route('projects.vo.index', $card['project']) }}">📑 Variation Orders</a>
                     <span class="text-slate-500">Dimension-specific source provenance is shown above.</span>
                 </div>
             </article>

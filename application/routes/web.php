@@ -9,6 +9,7 @@ use App\Http\Controllers\FinanceTransactionReadController;
 use App\Http\Controllers\HealthCheckController;
 use App\Http\Controllers\ImportPreviewController;
 use App\Http\Controllers\InterimPaymentController;
+use App\Http\Controllers\VariationOrderController;
 use App\Http\Controllers\MfaSecurityController;
 use App\Http\Controllers\ProgressEntryController;
 use App\Http\Controllers\ProjectAuditReadController;
@@ -152,6 +153,16 @@ Route::post('/projects/{project}/ipc/{ipc}/verify-qs', [InterimPaymentController
     ->name('projects.ipc.verify-qs');
 Route::post('/projects/{project}/ipc/{ipc}/approve-director', [InterimPaymentController::class, 'approveDirector'])
     ->name('projects.ipc.approve-director');
+
+// Variation Orders (VO) & Change Management
+Route::get('/projects/{project}/vo', [VariationOrderController::class, 'index'])->name('projects.vo.index');
+Route::get('/projects/{project}/vo/create', [VariationOrderController::class, 'create'])->name('projects.vo.create');
+Route::post('/projects/{project}/vo', [VariationOrderController::class, 'store'])->name('projects.vo.store');
+Route::get('/projects/{project}/vo/{vo}', [VariationOrderController::class, 'show'])->name('projects.vo.show');
+Route::post('/projects/{project}/vo/{vo}/verify-site', [VariationOrderController::class, 'verifySite'])->name('projects.vo.verify-site');
+Route::post('/projects/{project}/vo/{vo}/verify-qs', [VariationOrderController::class, 'verifyQs'])->name('projects.vo.verify-qs');
+Route::post('/projects/{project}/vo/{vo}/approve-director', [VariationOrderController::class, 'approveDirector'])->name('projects.vo.approve-director');
+Route::post('/projects/{project}/vo/{vo}/reject', [VariationOrderController::class, 'reject'])->name('projects.vo.reject');
 
 // Multi-Factor Authentication (MFA / 2FA TOTP)
 Route::get('/mfa/setup', [MfaSecurityController::class, 'setup'])->name('mfa.setup');

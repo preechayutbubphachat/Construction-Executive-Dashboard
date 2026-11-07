@@ -8,6 +8,7 @@ use App\Models\InterimPaymentCertificate;
 use App\Models\IpcItem;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\VariationOrder;
 use App\Models\WbsTask;
 use DomainException;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -91,6 +92,20 @@ class InterimPaymentService
                 $taskId = $item['wbs_task_id'] ?? null;
                 $task = $taskId ? WbsTask::query()->find($taskId) : null;
 
+                $voId = $item['variation_order_id'] ?? null;
+                $vo = null;
+                if ($voId) {
+                    $vo = VariationOrder::query()
+                        ->where('project_id', $project->id)
+                        ->where('status', 'APPROVED')
+                        ->find($voId);
+                    if ($vo === null) {
+                        throw new DomainException('Only approved variation orders of this project can be claimed.');
+                    }
+                    $item['contract_amount'] = max(0.00, (float) $vo->cost_impact);
+                    $item['description'] ??= "[{$vo->reference_no}] {$vo->title}";
+                }
+
                 $contractAmt = (float) ($item['contract_amount'] ?? ($task?->planned_cost ?? 0.00));
                 if ($contractAmt <= 0.00 && $task !== null) {
                     $taskWeight = (float) ($task->weight ?? 1.0);
@@ -112,7 +127,7 @@ class InterimPaymentService
                 $desc = $item['description'] ?? ($task ? "[{$task->wbs_code}] {$task->name}" : 'Contract Item');
 
                 // Skip unentered empty rows from large form unless it's the only item
-                if ($claimedAmt <= 0.00 && count($itemsData) > 1 && ! isset($item['contract_amount'])) {
+                if ($claimedAmt <= 0.00 && count($itemsData) > 1 && ($vo !== null || ! isset($item['contract_amount']))) {
                     continue;
                 }
 
@@ -121,6 +136,7 @@ class InterimPaymentService
                 $processedItems[] = [
                     'id' => (string) Str::ulid(),
                     'wbs_task_id' => $taskId,
+                    'variation_order_id' => $vo?->id,
                     'description' => $desc,
                     'contract_amount' => $contractAmt,
                     'previous_percent' => $prevPct,

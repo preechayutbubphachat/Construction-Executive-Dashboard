@@ -156,6 +156,11 @@ class Project extends Model
         return $this->hasMany(InterimPaymentCertificate::class);
     }
 
+    public function variationOrders(): HasMany
+    {
+        return $this->hasMany(VariationOrder::class);
+    }
+
     public function auditEvents(): HasMany
     {
         return $this->hasMany(AuditEvent::class);

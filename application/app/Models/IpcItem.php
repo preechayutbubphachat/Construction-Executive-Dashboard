@@ -18,6 +18,7 @@ class IpcItem extends Model
         'id',
         'ipc_id',
         'wbs_task_id',
+        'variation_order_id',
         'description',
         'contract_amount',
         'previous_percent',

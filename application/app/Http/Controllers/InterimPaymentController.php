@@ -60,6 +60,11 @@ class InterimPaymentController extends Controller
             'nextNumber' => $nextNumber,
             'nextRef' => $nextRef,
             'lastIpc' => $lastIpc,
+            'approvedVos' => $project->variationOrders()
+                ->where('status', 'APPROVED')
+                ->where('cost_impact', '>', 0)
+                ->orderBy('vo_number')
+                ->get(),
         ]);
     }
 

@@ -162,6 +162,24 @@
                     </table>
                 </div>
             @endif
+
+            @if($approvedVos->isNotEmpty())
+                <div class="mt-4 border-t border-slate-100 pt-4">
+                    <h3 class="text-sm font-bold text-slate-900">Approved Variation Orders (งานเพิ่ม VO ที่อนุมัติแล้ว)</h3>
+                    <div class="mt-2 space-y-2">
+                        @foreach($approvedVos as $vIndex => $vo)
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center rounded-lg border border-emerald-100 bg-emerald-50/40 p-3 text-xs">
+                                <input type="hidden" name="items[{{ 1000 + $vIndex }}][variation_order_id]" value="{{ $vo->id }}">
+                                <div class="font-bold text-slate-800">{{ $vo->reference_no }} · {{ $vo->title }}
+                                    <div class="font-mono text-[10px] text-slate-500">Approved value ฿{{ number_format($vo->cost_impact, 2) }}</div>
+                                </div>
+                                <input type="number" step="1" min="0" max="100" name="items[{{ 1000 + $vIndex }}][current_percent]" placeholder="Cumulative % complete" class="rounded border border-slate-300 px-2 py-1 text-xs">
+                                <input type="text" name="items[{{ 1000 + $vIndex }}][notes]" placeholder="Remarks" class="rounded border border-slate-200 px-2 py-1 text-xs">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
 
         <!-- Submit Button Card -->

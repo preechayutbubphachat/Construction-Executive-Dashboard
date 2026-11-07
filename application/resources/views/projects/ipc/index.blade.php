@@ -26,6 +26,8 @@
             <span class="text-slate-400">·</span>
             <a class="text-indigo-700 hover:underline" href="{{ route('projects.reports.weekly', $project) }}">📊 Weekly Report</a>
             <span class="text-slate-400">·</span>
+            <a class="text-violet-700 hover:underline" href="{{ route('projects.vo.index', $project) }}">📑 Variation Orders</a>
+            <span class="text-slate-400">·</span>
             <span class="text-emerald-800 font-bold underline">💰 IPC Commercial Register</span>
         </div>
         <div class="flex items-center gap-3">
