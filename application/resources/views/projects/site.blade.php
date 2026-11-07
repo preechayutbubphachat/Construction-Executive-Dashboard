@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+<body class="min-h-screen bg-canvas-base text-slate-900 antialiased">
     <livewire:site-supervisor-quick-capture-view :project="$project" />
     @livewireScripts
 </body>

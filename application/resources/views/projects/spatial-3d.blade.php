@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-100 antialiased overflow-hidden">
+<body class="min-h-screen bg-canvas-base text-slate-900 antialiased overflow-hidden">
     <livewire:site-spatial-3d-view :project="$project" />
     @livewireScripts
 </body>
