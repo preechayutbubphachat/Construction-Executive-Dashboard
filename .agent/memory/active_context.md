@@ -29,7 +29,8 @@ Next Stage: Phase 3 (Staging Infrastructure Provisioning & Deployment Readiness)
 - [x] Phase 4 — เสาหลัก 2: Earned Value Management (EVM) & S-Curve Forecasting (`/projects/{project}/evm`, `EarnedValueManagementService` `CED_EVM_SCURVE_V1`, PV, EV, AC, CV, SV, CPI, SPI, EAC, VAC, TCPI, Interactive SVG S-Curve Chart)
 - [x] Phase 4 — เสาหลัก 3: Field Photo Evidence & Mobile Inspection Attachment (Daily Log) (`/projects/{project}/site`, `SitePhotoWatermarkService`, GD physical banner watermark, GPS lat/lng telemetry, immutable SHA-256 evidence disk storage, inline preview streaming, mobile inspection gallery grid, and cryptographic telemetry modal)
 - [x] Phase 4 — เสาหลัก 4: Automated Daily Site Log & Weekly Executive Status Reports (`/projects/{project}/reports/daily`, `/projects/{project}/reports/weekly`, `DailySiteReportService`, `WeeklyExecutiveReportService`, `SiteReportController`, weather & manpower tally, equipment log, daily photo evidence integration, EVM performance snapshot, lookahead schedule reliability, cashflow transactions, and print/PDF-optimized styling)
+- [x] Phase 4 — เสาหลัก 5: Multi-Factor Authentication (MFA / TOTP) & Enterprise RBAC Hardening (`TotpMfaService` RFC 6238, Base32, `EnsureMfaVerified` middleware, emergency recovery codes, `/mfa/setup`, `/mfa/challenge`, `/mfa/verify`, role matrices for `EXECUTIVE`, `PROJECT_MANAGER`, `SITE_SUPERVISOR`, `SAFETY_OFFICER`, `AUDITOR`)
 
 ## Next Steps
-- [ ] Phase 4 — เสาหลัก 5: Multi-Factor Authentication (MFA / TOTP) & Enterprise SSO Ready
-- [ ] Phase 4 — เสาหลัก 6: Executive Real-time Notification Webhook (Telegram / Line Notify) (ไว้ทำภายหลังตามที่ระบุ)
+- [ ] Phase 4 Final Checkpoint Sign-off & Release Tagging (`v4.0.0-phase4-complete`)
+- [ ] Phase 5 / Future: Executive Real-time Notification Webhook (Telegram / Line Notify) (ไว้ทำภายหลังตามที่ระบุ)
