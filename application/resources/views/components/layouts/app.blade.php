@@ -19,7 +19,7 @@
     <div class="flex h-full w-full overflow-hidden relative">
         
         <!-- Mobile Slide-over Drawer (Off-canvas Navigation for Mobile/Tablet) -->
-        <div x-show="mobileNavOpen" x-cloak class="relative z-50 md:hidden" role="dialog" aria-modal="true">
+        <div x-show="mobileNavOpen" x-cloak style="display: none;" class="relative z-50 md:hidden" role="dialog" aria-modal="true">
             <div x-show="mobileNavOpen" 
                  x-transition:enter="transition-opacity ease-linear duration-200" 
                  x-transition:enter-start="opacity-0" 
@@ -28,6 +28,7 @@
                  x-transition:leave-start="opacity-100" 
                  x-transition:leave-end="opacity-0" 
                  @click="mobileNavOpen = false"
+                 style="display: none;"
                  class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs"></div>
 
             <div class="fixed inset-0 flex">
@@ -108,13 +109,14 @@
                                 </button>
 
                                 <!-- Backdrop to catch outside clicks and prevent unwanted overlay hanging -->
-                                <div x-show="open" @click="open = false" x-cloak class="fixed inset-0 z-40 bg-slate-900/10 backdrop-blur-2xs"></div>
+                                <div x-show="open" @click="open = false" x-cloak style="display: none;" class="fixed inset-0 z-40 bg-slate-900/10 backdrop-blur-2xs"></div>
 
                                 <!-- Project Switcher Popover -->
                                 <div x-show="open" 
                                      @click.away="open = false" 
                                      @keydown.escape.window="open = false" 
                                      x-cloak
+                                     style="display: none;"
                                      x-transition:enter="transition ease-out duration-150"
                                      x-transition:enter-start="opacity-0 scale-95"
                                      x-transition:enter-end="opacity-100 scale-100"
