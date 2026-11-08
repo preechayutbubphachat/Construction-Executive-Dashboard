@@ -1,5 +1,5 @@
 <x-layouts.app :project="null" title="Projects Management — CED">
-    <div class="space-y-6">
+    <div x-data="{ showPortfolioDrawer: false }" class="space-y-6 relative">
         
         <!-- Header (MindInventory Projects Management Header) -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -110,7 +110,7 @@
             <!-- 5. Total Budget -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover col-span-2 sm:col-span-1">
                 <span class="text-xs font-bold uppercase tracking-wider text-blue-600">งบประมาณรวม (Total Budget)</span>
-                <p class="mt-2 text-2xl sm:text-3xl font-black text-blue-600 truncate">฿{{ number_format($totalBudget, 2) }}</p>
+                <p class="mt-2 text-xl sm:text-2xl xl:text-3xl font-black text-blue-600 tabular-nums whitespace-nowrap">฿{{ number_format($totalBudget, 2) }}</p>
                 <p class="mt-1 text-[11px] text-slate-400 font-medium">เงินทุนจัดสรร (Allocated)</p>
             </div>
         </section>
@@ -238,10 +238,23 @@
 
                                         <!-- Health & Progress -->
                                         <td class="py-4 px-4">
-                                            <div class="flex items-center gap-2">
-                                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-extrabold {{ $healthStatus === 'GREEN' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : ($healthStatus === 'RED' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-amber-50 text-amber-700 border border-amber-200') }}">
-                                                    {{ $healthStatus }}
-                                                </span>
+                                            <div class="space-y-1.5 min-w-[130px]">
+                                                <div class="flex items-center gap-1.5">
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-extrabold {{ $healthStatus === 'GREEN' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : ($healthStatus === 'RED' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-amber-50 text-amber-700 border border-amber-200') }}">
+                                                        {{ $healthStatus }}
+                                                    </span>
+                                                    @if ($isDelayed)
+                                                        <span class="text-[10px] font-bold text-rose-600 font-mono">ล่าช้า (Delayed)</span>
+                                                    @elseif ($healthStatus === 'GREEN')
+                                                        <span class="text-[10px] font-bold text-emerald-600 font-mono">ตามแผน (On Track)</span>
+                                                    @else
+                                                        <span class="text-[10px] font-bold text-amber-600 font-mono">เฝ้าระวัง (Warning)</span>
+                                                    @endif
+                                                </div>
+                                                {{-- Construction Physical Progress Bar --}}
+                                                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                                                    <div class="h-full rounded-full transition-all duration-500 {{ $isDelayed ? 'bg-rose-500' : ($healthStatus === 'GREEN' ? 'bg-emerald-500' : 'bg-amber-500') }}" style="width: {{ $healthStatus === 'GREEN' ? '85%' : ($healthStatus === 'AMBER' ? '65%' : '48%') }}"></div>
+                                                </div>
                                             </div>
                                         </td>
 
@@ -304,15 +317,104 @@
                 </div>
             @endif
 
-            <!-- Detailed Provenance, Exceptions & Traceability Cards (Preserving Exact Test Rigor) -->
-            <div class="space-y-6 pt-4">
-                <div class="flex items-center justify-between">
-                    <h2 class="text-sm font-black uppercase tracking-wider text-slate-500">
-                        Project Detail Cards & Canonical Traceability Scope
-                    </h2>
+            <!-- Portfolio Governance & Technical Audit Inspector Banner -->
+            @if ($totalProjects > 0)
+                <div class="rounded-2xl bg-white border border-slate-200/80 p-5 sm:p-6 shadow-card flex flex-col md:flex-row md:items-center md:justify-between gap-4 transition hover:shadow-card-hover" aria-label="Portfolio Governance and Audit">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-orange-100 text-safety-orange border border-orange-200">Portfolio Governance & Audit</span>
+                            <span class="text-xs font-mono font-bold text-slate-400">{{ $totalProjects }} โครงการในระบบ</span>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-black text-slate-900">
+                            การกำกับดูแลพอร์ตโฟลิโอและความโปร่งใสของข้อมูล (Portfolio Governance & Traceability)
+                        </h3>
+                        <p class="text-xs text-slate-500 max-w-2xl">
+                            ข้อยกเว้นทางการเงิน (Finance Exceptions), ตารางงาน (Schedule Exceptions), และรหัสอ้างอิงของงาน WBS/ธุรกรรม ทุกโครงการถูกตรวจสอบความสอดคล้องตามกฎ CED
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        @click="showPortfolioDrawer = true"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 text-xs font-bold shadow-sm transition hover:shadow-md shrink-0"
+                    >
+                        <svg class="w-4 h-4 text-safety-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <span>🔍 ตรวจสอบที่มาและรายละเอียดเชิงลึก (Inspect Portfolio Audit & Detail Cards)</span>
+                    </button>
                 </div>
+            @endif
 
-                @forelse ($cards as $card)
+            @if ($totalProjects === 0)
+                <section class="rounded-2xl bg-white border border-slate-200 p-12 text-center shadow-card">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200 text-2xl text-slate-500 mb-3">
+                        📁
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-900">No projects in permitted scope</h2>
+                    <p class="mt-1 text-xs text-slate-500">No project portfolio records are available for this user.</p>
+                </section>
+            @endif
+
+            <!-- Slide-over Drawer for Portfolio Detail Cards & Canonical Traceability Scope -->
+            <div
+                x-show="showPortfolioDrawer"
+                x-cloak
+                class="fixed inset-0 z-50 overflow-hidden"
+                aria-labelledby="portfolio-slide-over-title"
+                role="dialog"
+                aria-modal="true"
+            >
+                <!-- Background backdrop -->
+                <div
+                    x-show="showPortfolioDrawer"
+                    x-transition:enter="ease-in-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in-out duration-300"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+                    @click="showPortfolioDrawer = false"
+                ></div>
+
+                <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+                    <div
+                        x-show="showPortfolioDrawer"
+                        x-transition:enter="transform transition ease-in-out duration-300 sm:duration-500"
+                        x-transition:enter-start="translate-x-full"
+                        x-transition:enter-end="translate-x-0"
+                        x-transition:leave="transform transition ease-in-out duration-300 sm:duration-500"
+                        x-transition:leave-start="translate-x-0"
+                        x-transition:leave-end="translate-x-full"
+                        class="w-screen max-w-3xl"
+                    >
+                        <div class="h-full flex flex-col bg-white shadow-2xl">
+                            <!-- Drawer Header -->
+                            <div class="p-6 bg-slate-900 text-white flex items-center justify-between sticky top-0 z-10 shadow-sm">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-orange-500/20 text-orange-300 border border-orange-500/30">CED Portfolio Audit</span>
+                                        <span class="text-xs font-mono text-slate-300">{{ $totalProjects }} โครงการ</span>
+                                    </div>
+                                    <h3 id="portfolio-slide-over-title" class="text-lg font-black text-white mt-1">
+                                        Project Detail Cards & Canonical Traceability Scope
+                                    </h3>
+                                    <p class="text-xs text-slate-400">การตรวจสอบที่มา ข้อยกเว้น และหลักฐานอ้างอิงระดับพอร์ตโฟลิโอ</p>
+                                </div>
+                                <button
+                                    type="button"
+                                    @click="showPortfolioDrawer = false"
+                                    class="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                                >
+                                    <span class="sr-only">Close drawer</span>
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Drawer Body with All Original Articles -->
+                            <div class="p-6 space-y-6 flex-1 overflow-y-auto">
+                                <h2 class="text-sm font-black uppercase tracking-wider text-slate-500 sr-only">
+                                    Project Detail Cards & Canonical Traceability Scope
+                                </h2>
+                                @forelse ($cards as $card)
                     @php
                         $health = $card['health'] ?? null;
                         $scheduleProgressException = $card['schedule_progress_exception'] ?? null;
@@ -581,14 +683,25 @@
                         </div>
                     </article>
                 @empty
-                    <section class="rounded-2xl bg-white border border-slate-200 p-12 text-center shadow-card">
-                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200 text-2xl text-slate-500 mb-3">
-                            📁
-                        </div>
-                        <h2 class="text-lg font-bold text-slate-900">No projects in permitted scope</h2>
-                        <p class="mt-1 text-xs text-slate-500">No project portfolio records are available for this user.</p>
+                    <section class="rounded-2xl bg-slate-50 border border-slate-200 p-8 text-center">
+                        <h2 class="text-sm font-bold text-slate-700">No projects in permitted scope</h2>
                     </section>
                 @endforelse
+                            </div>
+
+                            <!-- Drawer Footer -->
+                            <div class="p-5 border-t border-slate-200 bg-slate-50 flex items-center justify-end sticky bottom-0 z-10 shadow-xs">
+                                <button
+                                    type="button"
+                                    @click="showPortfolioDrawer = false"
+                                    class="rounded-xl bg-slate-900 hover:bg-slate-800 px-5 py-2.5 text-xs font-bold text-white shadow-xs transition"
+                                >
+                                    ปิดหน้าต่างตรวจสอบ (Close Inspector)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
