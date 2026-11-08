@@ -58,7 +58,7 @@
         $renderableHealth = $healthIsRenderable ? $renderableHealth : null;
     @endphp
 
-    <div class="space-y-6">
+    <div x-data="{ showProvenanceDrawer: false }" class="space-y-6 relative">
         
         <!-- Project Sub-navigation Ribbon (Unified MindInventory Tabs) -->
         <x-ced.project-subnav :project="$project" active="projects.executive" />
@@ -355,65 +355,54 @@
             </div>
         </section>
 
-        <!-- 4. Accepted Health and Provenance Diagnostic Scope (Preserving Exact Rigor & Assertions) -->
+        <!-- 4. Accepted Health Summary (MindInventory Clean Executive Card with Progressive Disclosure) -->
         @if ($renderableHealth !== null)
-            <!-- Accepted Health Summary Card -->
-            <section class="rounded-2xl bg-white border border-slate-200/80 p-6 sm:p-7 shadow-card space-y-6" aria-label="Accepted health explanation and source scope">
-                <div class="flex flex-wrap items-start justify-between gap-4 pb-4 border-b border-slate-100">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">{{ $project->code }}</span>
-                            <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-slate-100 text-slate-700 border border-slate-200">Project status: {{ $project->status }}</span>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-900 mt-2">{{ $project->name }}</h2>
+            <section class="rounded-2xl bg-white border border-slate-200/80 p-6 sm:p-7 shadow-card flex flex-col md:flex-row md:items-center md:justify-between gap-5 transition hover:shadow-card-hover" aria-label="Accepted health summary">
+                <div class="space-y-2">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="font-mono text-xs font-bold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-md border border-sky-200">{{ $project->code }}</span>
+                        <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-slate-100 text-slate-700 border border-slate-200">Project status: {{ $project->status }}</span>
+                        <span class="px-2.5 py-0.5 text-xs font-black rounded-full uppercase border {{ $renderableHealth['status'] === 'GREEN' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : ($renderableHealth['status'] === 'RED' ? 'bg-rose-50 text-rose-700 border-rose-200' : 'bg-amber-50 text-amber-700 border-amber-200') }}">
+                            HEALTH: <span data-health-status="{{ $renderableHealth['status'] }}">{{ $renderableHealth['status'] }}</span>
+                        </span>
                     </div>
-                    <div class="rounded-2xl bg-slate-50 border border-slate-200 px-5 py-3.5 text-right shadow-2xs">
-                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Accepted health</p>
-                        <p class="text-2xl font-black {{ $renderableHealth['status'] === 'GREEN' ? 'text-emerald-600' : ($renderableHealth['status'] === 'RED' ? 'text-rose-600' : 'text-amber-600') }}" data-health-status="{{ $renderableHealth['status'] }}">{{ $renderableHealth['status'] }}</p>
+
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                        สุขภาพโครงการและการกำกับดูแล (Project Health & Governance)
+                    </h2>
+
+                    <p class="text-xs text-slate-600 font-medium max-w-2xl" data-health-explanation>
+                        {{ $renderableHealth['explanation'] }}
+                    </p>
+
+                    {{-- Exceptions Badges (Highlighting if critical items exist) --}}
+                    <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
+                        @if ($scheduleProgressException !== null)
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 font-bold">
+                                <span>🚨</span> ข้อยกเว้นแผนงาน: {{ $scheduleProgressException['status'] }} ({{ $scheduleProgressException['value'] }} {{ $scheduleProgressException['unit'] }})
+                            </span>
+                        @endif
+                        @if ($financeException !== null)
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 font-bold">
+                                <span>⚠️</span> ข้อยกเว้นการเงิน: {{ $financeException['status'] }}
+                            </span>
+                        @endif
+                        <span class="text-[11px] text-slate-400 font-mono">
+                            ประเมินตามเกณฑ์ CED_HEALTH_V1_0_0 &bull; 4 มิติหลัก (Schedule, Cost, Freshness, Integrity)
+                        </span>
                     </div>
                 </div>
 
-                <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4 shadow-2xs">
-                    <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Accepted Health Explanation</p>
-                    <p class="mt-1 text-sm font-medium text-slate-800" data-health-explanation>{{ $renderableHealth['explanation'] }}</p>
-                    <p class="mt-2 text-xs text-slate-500 font-mono">Rule version: {{ $renderableHealth['rule_version'] }} · Calculated at: {{ $renderableHealth['calculated_at'] }}</p>
-                </div>
-
-                <div>
-                    <h2 class="text-base font-extrabold text-slate-900">Accepted health dimensions and sources</h2>
-                    <ul class="mt-4 grid gap-4 md:grid-cols-2">
-                        @foreach ($renderableHealth['dimensions'] as $dimension => $signal)
-                            <li class="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-2xs space-y-2 hover:border-slate-300 transition" data-health-source-dimension="{{ $dimension }}">
-                                <div class="flex items-center justify-between">
-                                    <p class="font-bold text-xs text-slate-900">{{ $dimension }} · {{ $signal['status'] }}</p>
-                                    <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full {{ $signal['status'] === 'GREEN' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : ($signal['status'] === 'RED' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-amber-50 text-amber-700 border border-amber-200') }}">
-                                        {{ $signal['status'] }}
-                                    </span>
-                                </div>
-                                @if (array_key_exists('value', $signal) && (is_int($signal['value']) || is_float($signal['value'])))
-                                    <p class="text-xs text-slate-700 font-mono font-semibold">Value: {{ $signal['value'] }}@if (isset($signal['unit']) && is_string($signal['unit']) && trim($signal['unit']) !== '') {{ $signal['unit'] }}@endif</p>
-                                @endif
-                                <p class="text-xs text-slate-600">Dimension reason: {{ $signal['reason'] }}</p>
-                                <p class="text-[11px] text-slate-500">Canonical reason: {{ $renderableHealth['reasons'][$dimension] }}</p>
-                                @php($sourceKey = $dimension === 'DATA_FRESHNESS' ? 'freshness' : strtolower($dimension))
-                                <div class="space-y-1.5 pt-2 border-t border-slate-200/70">
-                                    @foreach ($renderableHealth['source_scope'][$sourceKey] as $sourceRef)
-                                        @if ($sourceRef['project_id'] === (string) $project->id)
-                                            @php($sourceLink = app(\App\Services\CedExecutiveSourceLinkResolver::class)->resolve($project, $sourceRef))
-                                            <div>
-                                                @if ($sourceLink)
-                                                    <a class="block font-mono text-xs font-bold text-sky-700 hover:underline" data-health-source-id="{{ $sourceLink['source_id'] }}" data-health-source-type="{{ $sourceLink['source_type'] }}" href="{{ $sourceLink['url'] }}">{{ $sourceLink['label'] }}</a>
-                                                @else
-                                                    <span class="block font-mono text-xs text-slate-600">{{ $sourceRef['label'] }}</span>
-                                                @endif
-                                                <span class="block text-[11px] text-slate-500 font-mono">Source type: {{ $sourceRef['source_type'] }} · Source ID: {{ $sourceRef['source_id'] }} · Project ID: {{ $sourceRef['project_id'] }}</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                {{-- Progressive Disclosure Action Button --}}
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+                    <button
+                        type="button"
+                        @click="showProvenanceDrawer = true"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 text-xs font-bold shadow-sm transition hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                        <svg class="w-4 h-4 text-safety-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <span>🔍 ตรวจสอบที่มาและการคำนวณ (Inspect Technical Audit & Provenance)</span>
+                    </button>
                 </div>
             </section>
         @else
@@ -430,59 +419,198 @@
             </section>
         @endif
 
-        @if ($scheduleProgressException !== null)
-            <section class="rounded-2xl border border-rose-200 bg-rose-50/70 p-6 shadow-card" aria-label="Schedule/progress exception" data-schedule-progress-exception="true">
-                <p class="text-xs font-black uppercase tracking-wider text-rose-700">Schedule/progress exception</p>
-                <p class="mt-1 font-bold text-rose-950">Status: <span data-schedule-progress-status>{{ $scheduleProgressException['status'] }}</span></p>
-                <p class="mt-1 text-sm text-rose-900">Schedule variance: <span data-schedule-progress-value>{{ $scheduleProgressException['value'] }} {{ $scheduleProgressException['unit'] }}</span></p>
-                <p class="mt-1 text-sm text-rose-900">Reason: <span data-schedule-progress-reason>{{ $scheduleProgressException['reason'] }}</span></p>
-                <p class="mt-2 text-xs text-rose-800 font-mono">Rule version: {{ $scheduleProgressException['rule_version'] }} · Calculated at: {{ $scheduleProgressException['calculated_at'] }}</p>
-                <p class="mt-0.5 text-xs text-rose-800 font-mono">Dimension: {{ $scheduleProgressException['dimension'] }} · Project ID: {{ $scheduleProgressException['project_id'] }}</p>
-                <ul class="mt-4 space-y-2">
-                    @foreach ($scheduleProgressException['source_scope'] as $sourceRef)
-                        @php($sourceLink = app(\App\Services\CedExecutiveSourceLinkResolver::class)->resolve($project, $sourceRef))
-                        <li data-schedule-progress-source-project-id="{{ $sourceRef['project_id'] }}" data-schedule-progress-source-type="{{ $sourceRef['source_type'] }}">
-                            @if ($sourceLink)
-                                <a class="block font-mono text-xs font-bold text-sky-700 hover:underline" data-schedule-progress-source-id="{{ $sourceLink['source_id'] }}" href="{{ $sourceLink['url'] }}">{{ $sourceLink['label'] }}</a>
-                            @else
-                                <span class="block font-mono text-xs text-slate-700">{{ $sourceRef['label'] }}</span>
-                            @endif
-                            <span class="block text-xs text-rose-800 font-mono">Source type: {{ $sourceRef['source_type'] }} · Source ID: {{ $sourceRef['source_id'] }} · Project ID: {{ $sourceRef['project_id'] }}</span>
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-        @endif
+        <!-- Slide-Over Technical Provenance & Diagnostic Inspector Drawer (Progressive Disclosure) -->
+        <div
+            x-show="showProvenanceDrawer"
+            x-cloak
+            style="display: none;"
+            class="relative z-50"
+            role="dialog"
+            aria-modal="true"
+        >
+            <!-- Overlay Scrim -->
+            <div
+                x-show="showProvenanceDrawer"
+                x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                @click="showProvenanceDrawer = false"
+                class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity"
+            ></div>
 
-        @if ($financeException !== null)
-            <section class="rounded-2xl border border-amber-200 bg-amber-50/70 p-6 shadow-card" aria-label="Finance exception" data-finance-exception="true">
-                <p class="text-xs font-black uppercase tracking-wider text-amber-700">Finance exception</p>
-                <p class="mt-1 font-bold text-amber-950">Status: <span data-finance-exception-status>{{ $financeException['status'] }}</span></p>
-                <p class="mt-1 text-sm text-amber-900">Cost projection: <span data-finance-exception-value>{{ $financeException['value'] }} {{ $financeException['unit'] }}</span></p>
-                <p class="mt-1 text-sm text-amber-900">Reason: <span data-finance-exception-reason>{{ $financeException['reason'] }}</span></p>
-                <p class="mt-2 text-xs text-amber-800 font-mono">Health rule version: {{ $financeException['health_rule_version'] }} · Health calculated at: {{ $financeException['health_calculated_at'] }}</p>
-                <p class="mt-0.5 text-xs text-amber-800 font-mono">Finance rule version: {{ $financeException['finance_rule_version'] }} · Finance calculated at: {{ $financeException['finance_calculated_at'] }}</p>
-                <div class="mt-3 rounded-xl border border-amber-200 bg-white p-4 shadow-2xs" aria-label="Canonical finance summary">
-                    <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Canonical finance summary</p>
-                    <p class="mt-1 text-sm font-semibold text-slate-800 tabular-nums">Income: <span data-finance-exception-income>{{ $finance['income'] }}</span> · Expense: <span data-finance-exception-expense>{{ $finance['expense'] }}</span> · Net: <span data-finance-exception-net>{{ $finance['net'] }}</span></p>
-                    <p class="mt-1 text-xs text-slate-600" data-finance-exception-explanation>{{ $finance['explanation'] }}</p>
+            <div class="fixed inset-0 overflow-hidden">
+                <div class="absolute inset-0 overflow-hidden">
+                    <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6 sm:pl-16">
+                        <div
+                            x-show="showProvenanceDrawer"
+                            x-transition:enter="transform transition ease-in-out duration-300 sm:duration-500"
+                            x-transition:enter-start="translate-x-full"
+                            x-transition:enter-end="translate-x-0"
+                            x-transition:leave="transform transition ease-in-out duration-300 sm:duration-500"
+                            x-transition:leave-start="translate-x-0"
+                            x-transition:leave-end="translate-x-full"
+                            class="pointer-events-auto w-screen max-w-2xl bg-white shadow-2xl flex flex-col justify-between overflow-y-auto"
+                        >
+                            <!-- Drawer Top Header -->
+                            <div class="p-6 border-b border-slate-200 bg-slate-50 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-orange-100 text-safety-orange border border-orange-200">CED Technical Audit</span>
+                                        <span class="text-xs font-mono font-bold text-slate-500">{{ $project->code }}</span>
+                                    </div>
+                                    <h3 class="text-lg font-black text-slate-900 mt-1">การตรวจสอบที่มาและการคำนวณ (Audit & Provenance Inspector)</h3>
+                                    <p class="text-xs text-slate-500">กฎระเบียบการประเมิน, ข้อยกเว้น, ตัวแปรมิติเชิงลึก และรหัสอ้างอิงข้อมูลต้นทาง</p>
+                                </div>
+                                <button
+                                    type="button"
+                                    @click="showProvenanceDrawer = false"
+                                    class="rounded-xl p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-200 transition"
+                                >
+                                    <span class="sr-only">Close drawer</span>
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Drawer Body with Comprehensive Diagnostic Breakdown -->
+                            <div class="p-6 space-y-6 flex-1 overflow-y-auto">
+                                
+                                @if ($renderableHealth !== null)
+                                    <!-- A. Accepted Health Explanation -->
+                                    <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 shadow-2xs space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Accepted Health Explanation</p>
+                                            <span class="text-xs font-mono font-bold {{ $renderableHealth['status'] === 'GREEN' ? 'text-emerald-700' : ($renderableHealth['status'] === 'RED' ? 'text-rose-700' : 'text-amber-700') }}">
+                                                {{ $renderableHealth['status'] }}
+                                            </span>
+                                        </div>
+                                        <p class="text-sm font-semibold text-slate-800">{{ $renderableHealth['explanation'] }}</p>
+                                        <p class="text-xs text-slate-500 font-mono pt-1 border-t border-slate-200/70">
+                                            Rule version: {{ $renderableHealth['rule_version'] }} · Calculated at: {{ $renderableHealth['calculated_at'] }}
+                                        </p>
+                                    </div>
+
+                                    <!-- B. Accepted Health Dimensions and Sources -->
+                                    <div class="space-y-3">
+                                        <h4 class="text-sm font-black text-slate-900 uppercase tracking-wider">
+                                            Accepted health dimensions and sources
+                                        </h4>
+                                        <ul class="space-y-3">
+                                            @foreach ($renderableHealth['dimensions'] as $dimension => $signal)
+                                                <li class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs space-y-2 hover:border-slate-300 transition" data-health-source-dimension="{{ $dimension }}">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="font-bold text-xs text-slate-900">{{ $dimension }} · {{ $signal['status'] }}</p>
+                                                        <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full {{ $signal['status'] === 'GREEN' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : ($signal['status'] === 'RED' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-amber-50 text-amber-700 border border-amber-200') }}">
+                                                            {{ $signal['status'] }}
+                                                        </span>
+                                                    </div>
+                                                    @if (array_key_exists('value', $signal) && (is_int($signal['value']) || is_float($signal['value'])))
+                                                        <p class="text-xs text-slate-700 font-mono font-semibold">Value: {{ $signal['value'] }}@if (isset($signal['unit']) && is_string($signal['unit']) && trim($signal['unit']) !== '') {{ $signal['unit'] }}@endif</p>
+                                                    @endif
+                                                    <p class="text-xs text-slate-600">Dimension reason: {{ $signal['reason'] }}</p>
+                                                    <p class="text-[11px] text-slate-500">Canonical reason: {{ $renderableHealth['reasons'][$dimension] }}</p>
+                                                    @php($sourceKey = $dimension === 'DATA_FRESHNESS' ? 'freshness' : strtolower($dimension))
+                                                    <div class="space-y-1.5 pt-2 border-t border-slate-100">
+                                                        @foreach ($renderableHealth['source_scope'][$sourceKey] as $sourceRef)
+                                                            @if ($sourceRef['project_id'] === (string) $project->id)
+                                                                @php($sourceLink = app(\App\Services\CedExecutiveSourceLinkResolver::class)->resolve($project, $sourceRef))
+                                                                <div>
+                                                                    @if ($sourceLink)
+                                                                        <a class="block font-mono text-xs font-bold text-sky-700 hover:underline" data-health-source-id="{{ $sourceLink['source_id'] }}" data-health-source-type="{{ $sourceLink['source_type'] }}" href="{{ $sourceLink['url'] }}">{{ $sourceLink['label'] }}</a>
+                                                                    @else
+                                                                        <span class="block font-mono text-xs text-slate-600">{{ $sourceRef['label'] }}</span>
+                                                                    @endif
+                                                                    <span class="block text-[11px] text-slate-500 font-mono">Source type: {{ $sourceRef['source_type'] }} · Source ID: {{ $sourceRef['source_id'] }} · Project ID: {{ $sourceRef['project_id'] }}</span>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <!-- C. Schedule / Progress Exception Diagnostics -->
+                                @if ($scheduleProgressException !== null)
+                                    <div class="rounded-2xl border border-rose-200 bg-rose-50/70 p-5 shadow-sm space-y-2.5" aria-label="Schedule/progress exception" data-schedule-progress-exception="true">
+                                        <div class="flex items-center justify-between border-b border-rose-200/60 pb-2">
+                                            <p class="text-xs font-black uppercase tracking-wider text-rose-700">Schedule/progress exception</p>
+                                            <span class="px-2 py-0.5 rounded font-bold text-[10px] bg-rose-200 text-rose-900">Active Warning</span>
+                                        </div>
+                                        <p class="font-bold text-rose-950 text-xs">Status: <span data-schedule-progress-status>{{ $scheduleProgressException['status'] }}</span></p>
+                                        <p class="text-xs text-rose-900">Schedule variance: <span data-schedule-progress-value>{{ $scheduleProgressException['value'] }} {{ $scheduleProgressException['unit'] }}</span></p>
+                                        <p class="text-xs text-rose-900">Reason: <span data-schedule-progress-reason>{{ $scheduleProgressException['reason'] }}</span></p>
+                                        <p class="text-[11px] text-rose-800 font-mono pt-1 border-t border-rose-200/50">Rule version: {{ $scheduleProgressException['rule_version'] }} · Calculated at: {{ $scheduleProgressException['calculated_at'] }}</p>
+                                        <p class="text-[11px] text-rose-800 font-mono">Dimension: {{ $scheduleProgressException['dimension'] }} · Project ID: {{ $scheduleProgressException['project_id'] }}</p>
+                                        <ul class="space-y-1.5 pt-1">
+                                            @foreach ($scheduleProgressException['source_scope'] as $sourceRef)
+                                                @php($sourceLink = app(\App\Services\CedExecutiveSourceLinkResolver::class)->resolve($project, $sourceRef))
+                                                <li class="bg-white/70 p-2.5 rounded-lg border border-rose-100" data-schedule-progress-source-project-id="{{ $sourceRef['project_id'] }}" data-schedule-progress-source-type="{{ $sourceRef['source_type'] }}">
+                                                    @if ($sourceLink)
+                                                        <a class="block font-mono text-xs font-bold text-sky-700 hover:underline" data-schedule-progress-source-id="{{ $sourceLink['source_id'] }}" href="{{ $sourceLink['url'] }}">{{ $sourceLink['label'] }}</a>
+                                                    @else
+                                                        <span class="block font-mono text-xs text-slate-700">{{ $sourceRef['label'] }}</span>
+                                                    @endif
+                                                    <span class="block text-[10px] text-rose-800 font-mono">Source type: {{ $sourceRef['source_type'] }} · Source ID: {{ $sourceRef['source_id'] }} · Project ID: {{ $sourceRef['project_id'] }}</span>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <!-- D. Finance Exception Diagnostics -->
+                                @if ($financeException !== null)
+                                    <div class="rounded-2xl border border-amber-200 bg-amber-50/70 p-5 shadow-sm space-y-2.5" aria-label="Finance exception" data-finance-exception="true">
+                                        <div class="flex items-center justify-between border-b border-amber-200/60 pb-2">
+                                            <p class="text-xs font-black uppercase tracking-wider text-amber-800">Finance exception</p>
+                                            <span class="px-2 py-0.5 rounded font-bold text-[10px] bg-amber-200 text-amber-900">Budget Alert</span>
+                                        </div>
+                                        <p class="font-bold text-amber-950 text-xs">Status: <span data-finance-exception-status>{{ $financeException['status'] }}</span></p>
+                                        <p class="text-xs text-amber-900">Cost projection: <span data-finance-exception-value>{{ $financeException['value'] }} {{ $financeException['unit'] }}</span></p>
+                                        <p class="text-xs text-amber-900">Reason: <span data-finance-exception-reason>{{ $financeException['reason'] }}</span></p>
+                                        <p class="text-[11px] text-amber-800 font-mono pt-1 border-t border-amber-200/50">Health rule version: {{ $financeException['health_rule_version'] }} · Health calculated at: {{ $financeException['health_calculated_at'] }}</p>
+                                        <p class="text-[11px] text-amber-800 font-mono">Finance rule version: {{ $financeException['finance_rule_version'] }} · Finance calculated at: {{ $financeException['finance_calculated_at'] }}</p>
+                                        <div class="rounded-xl border border-amber-200 bg-white p-3.5 shadow-2xs" aria-label="Canonical finance summary">
+                                            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Canonical finance summary</p>
+                                            <p class="mt-1 text-xs font-semibold text-slate-800 tabular-nums">Income: <span data-finance-exception-income>{{ $finance['income'] }}</span> · Expense: <span data-finance-exception-expense>{{ $finance['expense'] }}</span> · Net: <span data-finance-exception-net>{{ $finance['net'] }}</span></p>
+                                            <p class="mt-1 text-xs text-slate-600" data-finance-exception-explanation>{{ $finance['explanation'] }}</p>
+                                        </div>
+                                        <p class="text-xs font-bold uppercase tracking-wider text-amber-900 pt-1">Canonical finance source scope</p>
+                                        <ul class="space-y-1.5">
+                                            @foreach ($financeException['source_scope'] as $sourceRef)
+                                                @php($sourceLink = app(\App\Services\CedExecutiveSourceLinkResolver::class)->resolve($project, $sourceRef))
+                                                <li class="bg-white/70 p-2.5 rounded-lg border border-amber-100" data-finance-exception-source-project-id="{{ $sourceRef['project_id'] }}" data-finance-exception-source-type="{{ $sourceRef['source_type'] }}">
+                                                    @if ($sourceLink)
+                                                        <a class="block font-mono text-xs font-bold text-sky-700 hover:underline" data-finance-exception-source-id="{{ $sourceLink['source_id'] }}" href="{{ $sourceLink['url'] }}">{{ $sourceLink['label'] }}</a>
+                                                    @else
+                                                        <span class="block font-mono text-xs text-slate-700">{{ $sourceRef['label'] }}</span>
+                                                    @endif
+                                                    <span class="block text-[10px] text-amber-800 font-mono">Source type: {{ $sourceRef['source_type'] }} · Source ID: {{ $sourceRef['source_id'] }} · Project ID: {{ $sourceRef['project_id'] }}</span>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <!-- Drawer Bottom Footer -->
+                            <div class="p-5 border-t border-slate-200 bg-slate-50 flex items-center justify-end sticky bottom-0 z-20 shadow-xs">
+                                <button
+                                    type="button"
+                                    @click="showProvenanceDrawer = false"
+                                    class="rounded-xl bg-slate-900 hover:bg-slate-800 px-5 py-2.5 text-xs font-bold text-white shadow-xs transition"
+                                >
+                                    ปิดหน้าต่างตรวจสอบ (Close Inspector)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="mt-3 text-xs font-bold uppercase tracking-wider text-amber-900">Canonical finance source scope</p>
-                <ul class="mt-2 space-y-2">
-                    @foreach ($financeException['source_scope'] as $sourceRef)
-                        @php($sourceLink = app(\App\Services\CedExecutiveSourceLinkResolver::class)->resolve($project, $sourceRef))
-                        <li data-finance-exception-source-project-id="{{ $sourceRef['project_id'] }}" data-finance-exception-source-type="{{ $sourceRef['source_type'] }}">
-                            @if ($sourceLink)
-                                <a class="block font-mono text-xs font-bold text-sky-700 hover:underline" data-finance-exception-source-id="{{ $sourceLink['source_id'] }}" href="{{ $sourceLink['url'] }}">{{ $sourceLink['label'] }}</a>
-                            @else
-                                <span class="block font-mono text-xs text-slate-700">{{ $sourceRef['label'] }}</span>
-                            @endif
-                            <span class="block text-xs text-amber-800 font-mono">Source type: {{ $sourceRef['source_type'] }} · Source ID: {{ $sourceRef['source_id'] }} · Project ID: {{ $sourceRef['project_id'] }}</span>
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-        @endif
+            </div>
+        </div>
 
         <!-- Executive Drill-Down Matrix (4-Quadrant Cards) -->
         <section class="grid gap-6 lg:grid-cols-2" aria-label="Executive drill-down">
