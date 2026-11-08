@@ -74,6 +74,8 @@
                     $greenCount++;
                 }
             }
+
+            $firstProject = isset($cards[0]['project']) ? $cards[0]['project'] : null;
         @endphp
 
         <!-- 5 KPI Summary Strip (MindInventory Exact 5-Box Metric Cards) -->
@@ -116,7 +118,7 @@
         </section>
 
         <!-- Executive Priority Action Queue: สิ่งที่ต้องทำก่อนวันนี้ -->
-        <x-ced.action-priority-center :project="null" />
+        <x-ced.action-priority-center :project="$firstProject" />
 
         <!-- Main Interactive Workspace (Search, Table, and Drill-down Cards) -->
         <div x-data="{ search: '', filter: 'ALL' }" class="space-y-6">

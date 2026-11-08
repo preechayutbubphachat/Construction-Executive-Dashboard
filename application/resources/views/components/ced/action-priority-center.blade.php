@@ -1,10 +1,14 @@
 @props([
-    'project',
+    'project' => null,
     'pendingIpcCount' => 1,
     'openNcrCount' => 1,
     'ordersTodayCount' => 13,
     'openConstraintsCount' => 2,
 ])
+
+@php
+    $targetProject = $project;
+@endphp
 
 <div class="rounded-2xl bg-white p-5 sm:p-6 shadow-card border border-slate-200/80 space-y-4">
     <!-- Header -->
@@ -45,11 +49,17 @@
                 <p class="text-[11px] text-slate-600 mt-1">
                     มีใบรับรองค่างวด <strong class="text-rose-700 font-bold">{{ $pendingIpcCount }} รายการ</strong> รอการลงนามอนุมัติเบิกจ่าย (Director Gate)
                 </p>
+                @if ($targetProject)
+                    <div class="mt-2.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-rose-100/80 border border-rose-200 text-[10px] font-mono font-bold text-rose-800">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                        <span class="truncate max-w-[200px]">{{ $targetProject->code }} &middot; {{ $targetProject->name }}</span>
+                    </div>
+                @endif
             </div>
-            <a href="{{ isset($project) ? route('projects.ipc.index', $project) : route('projects.portfolio') }}"
-               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-xs transition">
+            <a href="{{ $targetProject ? route('projects.ipc.index', $targetProject) : '#' }}"
+               class="group inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 rounded-lg bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white font-bold text-xs shadow-xs transition hover:shadow-sm">
                 <span>ตรวจสอบและอนุมัติ IPC (Approve IPC)</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
         </div>
 
@@ -65,11 +75,17 @@
                 <p class="text-[11px] text-slate-600 mt-1">
                     มี <strong class="text-amber-800 font-bold">{{ $openNcrCount }} รายการ</strong> ที่ระงับการเบิกจ่าย (Payment Hold) รอการแก้ไขหน้างาน
                 </p>
+                @if ($targetProject)
+                    <div class="mt-2.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-100/80 border border-amber-200 text-[10px] font-mono font-bold text-amber-800">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#EA580C]"></span>
+                        <span class="truncate max-w-[200px]">{{ $targetProject->code }} &middot; {{ $targetProject->name }}</span>
+                    </div>
+                @endif
             </div>
-            <a href="{{ isset($project) ? route('projects.ncr.index', $project) : route('projects.portfolio') }}"
-               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-xs shadow-xs transition">
+            <a href="{{ $targetProject ? route('projects.ncr.index', $targetProject) : '#' }}"
+               class="group inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 rounded-lg bg-[#EA580C] hover:bg-[#C2410C] active:bg-[#9A3412] text-white font-bold text-xs shadow-xs transition hover:shadow-sm">
                 <span>จัดการรายการ NCR (Resolve Defect)</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
         </div>
 
@@ -85,11 +101,17 @@
                 <p class="text-[11px] text-slate-600 mt-1">
                     มีคำสั่งซื้อ <strong class="text-[#EA580C] font-bold">{{ $ordersTodayCount }} รายการ</strong> คาดว่าจะมาส่งวันนี้ พร้อมรายการคงคลังต่ำ
                 </p>
+                @if ($targetProject)
+                    <div class="mt-2.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-orange-100/80 border border-orange-200 text-[10px] font-mono font-bold text-orange-800">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FF6B00]"></span>
+                        <span class="truncate max-w-[200px]">{{ $targetProject->code }} &middot; {{ $targetProject->name }}</span>
+                    </div>
+                @endif
             </div>
-            <a href="{{ isset($project) ? route('projects.procurement.index', $project) : route('projects.portfolio') }}"
-               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-[#FF6B00] hover:bg-[#E05E00] text-white font-bold text-xs shadow-xs transition">
+            <a href="{{ $targetProject ? route('projects.procurement.index', $targetProject) : '#' }}"
+               class="group inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 rounded-lg bg-[#FF6B00] hover:bg-[#E05E00] active:bg-[#C2410C] text-white font-bold text-xs shadow-xs transition hover:shadow-sm">
                 <span>ตรวจรับของเข้าคลัง (Check Delivery)</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
         </div>
 
@@ -105,11 +127,17 @@
                 <p class="text-[11px] text-slate-600 mt-1">
                     มี <strong class="text-slate-900 font-bold">{{ $openConstraintsCount }} อุปสรรค</strong> ที่ต้องปลดล็อกก่อนเริ่มกิจกรรมสัปดาห์หน้า
                 </p>
+                @if ($targetProject)
+                    <div class="mt-2.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-200/80 border border-slate-300 text-[10px] font-mono font-bold text-slate-800">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                        <span class="truncate max-w-[200px]">{{ $targetProject->code }} &middot; {{ $targetProject->name }}</span>
+                    </div>
+                @endif
             </div>
-            <a href="{{ isset($project) ? route('projects.lookahead', $project) : route('projects.portfolio') }}"
-               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-xs transition">
+            <a href="{{ $targetProject ? route('projects.lookahead', $targetProject) : '#' }}"
+               class="group inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 active:bg-slate-950 text-white font-bold text-xs shadow-xs transition hover:shadow-sm">
                 <span>เปิดดู Lookahead 6 สัปดาห์ (View 6-Week)</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
         </div>
 
