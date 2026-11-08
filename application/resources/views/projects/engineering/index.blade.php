@@ -45,34 +45,34 @@
         <!-- KPI Metrics Grid -->
         <section class="grid grid-cols-2 lg:grid-cols-6 gap-4" aria-label="Engineering Metrics">
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total RFIs</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">คำถามทั้งหมด (Total RFIs)</span>
                 <div class="mt-2 text-2xl font-black text-slate-900">{{ $stats['total_rfis'] }}</div>
-                <span class="text-[10px] text-slate-400">Engineering queries</span>
+                <span class="text-[10px] text-slate-400">ข้อซักถามแบบวิศวกรรม</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Open RFIs</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">รอคำตอบ (Open RFIs)</span>
                 <div class="mt-2 text-2xl font-black text-amber-600">{{ $stats['open_rfis'] }}</div>
-                <span class="text-[10px] text-slate-400">Awaiting consultant</span>
+                <span class="text-[10px] text-slate-400">รอที่ปรึกษาตอบกลับ</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-rose-200 bg-rose-50/20">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700">Overdue SLA RFIs</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700">เกินกำหนด (Overdue SLA RFIs)</span>
                 <div class="mt-2 text-2xl font-black text-rose-800">{{ $stats['overdue_rfis'] }}</div>
-                <span class="text-[10px] text-rose-600 font-semibold">Exceeded turnaround</span>
+                <span class="text-[10px] text-rose-600 font-semibold">เกินกำหนดระยะเวลา SLA</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total Submittals</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">ส่งอนุมัติทั้งหมด (Total Submittals)</span>
                 <div class="mt-2 text-2xl font-black text-slate-900">{{ $stats['total_submittals'] }}</div>
-                <span class="text-[10px] text-slate-400">Drawings & samples</span>
+                <span class="text-[10px] text-slate-400">แบบและตัวอย่างวัสดุ</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Approved Submittals</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">อนุมัติแล้ว (Approved Submittals)</span>
                 <div class="mt-2 text-2xl font-black text-emerald-700">{{ $stats['approved_submittals'] }}</div>
-                <span class="text-[10px] text-slate-400">Approved for construction</span>
+                <span class="text-[10px] text-slate-400">อนุมัติให้นำไปก่อสร้างได้</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-orange-200 bg-orange-50/20">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-safety-700">Open Design Constraints</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-safety-700">อุปสรรคด้านแบบ (Open Design Constraints)</span>
                 <div class="mt-2 text-2xl font-black text-safety-600">{{ $stats['open_design_constraints'] }}</div>
-                <span class="text-[10px] text-safety-700 font-semibold">Impacting work mobilization</span>
+                <span class="text-[10px] text-safety-700 font-semibold">ที่กระทบต่อการเข้าทำงาน</span>
             </div>
         </section>
 

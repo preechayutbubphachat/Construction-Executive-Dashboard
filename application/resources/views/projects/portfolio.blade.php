@@ -5,10 +5,10 @@
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
                 <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
-                    Project Management
+                    การจัดการโครงการ (Projects Management)
                 </h1>
                 <p class="mt-1 text-xs text-slate-500">
-                    Executive Portfolio oversight, capital allocation & operational status
+                    ภาพรวมพอร์ตโฟลิโอผู้บริหาร การจัดสรรเงินทุน และสถานะการดำเนินงาน (Executive Portfolio oversight, capital allocation & operational status)
                 </p>
             </div>
             
@@ -17,25 +17,25 @@
                 <a href="{{ route('projects.heatmap') }}"
                    class="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 shadow-2xs hover:border-slate-300 transition">
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                    <span>Executive Risk Heatmap</span>
+                    <span>แผนผังความเสี่ยง (Executive Risk Heatmap)</span>
                 </a>
                 
                 <button type="button" onclick="window.print()"
                         class="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 shadow-2xs hover:border-slate-300 transition">
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                    <span>Download Report</span>
+                    <span>พิมพ์รายงาน (Download Report)</span>
                 </button>
 
                 <button type="button"
                         class="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 shadow-2xs hover:border-slate-300 transition">
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
-                    <span>Filter</span>
+                    <span>ตัวกรอง (Filter)</span>
                 </button>
 
                 <a href="#"
-                   class="inline-flex items-center gap-2 rounded-xl bg-safety-orange hover:bg-orange-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm shadow-orange-500/20 transition">
+                   class="inline-flex items-center gap-2 rounded-xl bg-[#FF6B00] hover:bg-[#E05E00] px-4 py-2.5 text-xs font-bold text-white shadow-sm shadow-orange-500/20 transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-                    <span>Add New Project</span>
+                    <span>+ เพิ่มโครงการ (Add New Project)</span>
                 </a>
             </div>
         </div>
@@ -81,37 +81,37 @@
             
             <!-- 1. Total Projects -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Projects</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">โครงการทั้งหมด (Total Projects)</span>
                 <p class="mt-2 text-3xl font-black text-slate-900">{{ str_pad($totalProjects, 2, '0', STR_PAD_LEFT) }}</p>
-                <p class="mt-1 text-[11px] text-slate-400 font-medium">In portfolio register</p>
+                <p class="mt-1 text-[11px] text-slate-400 font-medium">ในระบบแฟ้มสะสมงาน (In register)</p>
             </div>
 
             <!-- 2. Active Projects -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
-                <span class="text-xs font-bold uppercase tracking-wider text-safety-orange">Active Projects</span>
-                <p class="mt-2 text-3xl font-black text-safety-orange">{{ str_pad($activeCount, 2, '0', STR_PAD_LEFT) }}</p>
-                <p class="mt-1 text-[11px] text-slate-400 font-medium">In execution phase</p>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#FF6B00]">กำลังก่อสร้าง (Active Projects)</span>
+                <p class="mt-2 text-3xl font-black text-[#FF6B00]">{{ str_pad($activeCount, 2, '0', STR_PAD_LEFT) }}</p>
+                <p class="mt-1 text-[11px] text-slate-400 font-medium">กำลังดำเนินการ (In execution)</p>
             </div>
 
             <!-- 3. Completed Projects -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
-                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Completed Projects</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">ส่งมอบแล้วเสร็จ (Completed)</span>
                 <p class="mt-2 text-3xl font-black text-emerald-600">{{ str_pad($completedCount, 2, '0', STR_PAD_LEFT) }}</p>
-                <p class="mt-1 text-[11px] text-slate-400 font-medium">Successfully delivered</p>
+                <p class="mt-1 text-[11px] text-slate-400 font-medium">ส่งมอบสำเร็จ (Delivered)</p>
             </div>
 
             <!-- 4. Delayed Projects -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
-                <span class="text-xs font-bold uppercase tracking-wider text-rose-600">Delayed Projects</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-600">ล่าช้า/วิกฤต (Delayed Projects)</span>
                 <p class="mt-2 text-3xl font-black text-rose-600">{{ str_pad($redCount, 2, '0', STR_PAD_LEFT) }}</p>
-                <p class="mt-1 text-[11px] text-slate-400 font-medium">Requiring executive action</p>
+                <p class="mt-1 text-[11px] text-slate-400 font-medium">ต้องเร่งตัดสินใจ (Action required)</p>
             </div>
 
             <!-- 5. Total Budget -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover col-span-2 sm:col-span-1">
-                <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Total Budget</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600">งบประมาณรวม (Total Budget)</span>
                 <p class="mt-2 text-2xl sm:text-3xl font-black text-blue-600 truncate">฿{{ number_format($totalBudget, 2) }}</p>
-                <p class="mt-1 text-[11px] text-slate-400 font-medium">Allocated capital</p>
+                <p class="mt-1 text-[11px] text-slate-400 font-medium">เงินทุนจัดสรร (Allocated)</p>
             </div>
         </section>
 
@@ -131,7 +131,7 @@
                         <input
                             x-model="search"
                             type="text"
-                            placeholder="Search projects..."
+                            placeholder="ค้นหาชื่อโครงการ หรือรหัส... (Search projects...)"
                             class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50/70 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-safety-orange focus:ring-1 focus:ring-safety-orange transition"
                         >
                     </div>
@@ -143,7 +143,7 @@
                             :class="filter === 'ALL' ? 'bg-slate-900 text-white shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'"
                             class="rounded-xl px-3.5 py-1.5 transition"
                         >
-                            All ({{ $totalProjects }})
+                            ทั้งหมด (All: {{ $totalProjects }})
                         </button>
                         <button
                             type="button"
@@ -151,7 +151,7 @@
                             :class="filter === 'red' ? 'bg-rose-600 text-white shadow-sm' : 'bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200'"
                             class="rounded-xl px-3.5 py-1.5 transition"
                         >
-                            Critical ({{ $redCount }})
+                            วิกฤต (Critical: {{ $redCount }})
                         </button>
                         <button
                             type="button"
@@ -159,7 +159,7 @@
                             :class="filter === 'amber' ? 'bg-amber-500 text-white shadow-sm' : 'bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200'"
                             class="rounded-xl px-3.5 py-1.5 transition"
                         >
-                            Warning ({{ $amberCount }})
+                            เตือน (Warning: {{ $amberCount }})
                         </button>
                         <button
                             type="button"
@@ -167,7 +167,7 @@
                             :class="filter === 'green' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200'"
                             class="rounded-xl px-3.5 py-1.5 transition"
                         >
-                            Healthy ({{ $greenCount }})
+                            ปกติ (Healthy: {{ $greenCount }})
                         </button>
                     </div>
                 </div>
@@ -178,14 +178,14 @@
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="border-b border-slate-100 bg-slate-50/60 text-[11px] font-black uppercase tracking-wider text-slate-500">
-                                    <th class="py-3.5 px-5">Project Name</th>
-                                    <th class="py-3.5 px-4">Budget</th>
-                                    <th class="py-3.5 px-4">Location</th>
-                                    <th class="py-3.5 px-4">Start Date</th>
-                                    <th class="py-3.5 px-4">End Date</th>
-                                    <th class="py-3.5 px-4">Health & Progress</th>
-                                    <th class="py-3.5 px-4">Status</th>
-                                    <th class="py-3.5 px-5 text-right">Action</th>
+                                    <th class="py-3.5 px-5">ชื่อโครงการ (Project Name)</th>
+                                    <th class="py-3.5 px-4">งบประมาณ (Budget)</th>
+                                    <th class="py-3.5 px-4">สถานที่ (Location)</th>
+                                    <th class="py-3.5 px-4">วันเริ่ม (Start Date)</th>
+                                    <th class="py-3.5 px-4">กำหนดเสร็จ (End Date)</th>
+                                    <th class="py-3.5 px-4">สถานะ & ความคืบหน้า (Health & Progress)</th>
+                                    <th class="py-3.5 px-4">สถานะ (Status)</th>
+                                    <th class="py-3.5 px-5 text-right">ดำเนินการ (Action)</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 text-xs">

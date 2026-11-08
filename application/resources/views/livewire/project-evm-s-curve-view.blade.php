@@ -11,22 +11,22 @@
                     {{ $project->code }}
                 </span>
                 <h1 class="text-2xl font-black text-slate-900 tracking-tight">
-                    Earned Value Management (EVM) & S-Curve Forecasting
+                    การบริหารมูลค่างานและคาดการณ์ S-Curve (EVM & S-Curve Forecasting)
                 </h1>
             </div>
             <p class="text-xs text-slate-500 mt-1">
-                {{ $project->name }} &middot; International Construction EVM Standard &middot; Pure Projection
+                {{ $project->name }} &middot; มาตรฐานการวิเคราะห์ความคุ้มค่าโครงการตามหลักสากล (International Construction EVM Standard)
             </p>
         </div>
 
         <div class="flex items-center gap-2">
             @if (\Illuminate\Support\Facades\Route::has('projects.report'))
                 <a href="{{ route('projects.report', $project) }}" class="rounded-xl border border-slate-200/80 bg-white px-4 py-2 text-xs font-bold text-slate-800 shadow-card hover:bg-slate-50 transition">
-                    Executive PDF Report
+                    รายงานผู้บริหาร PDF (Executive Report)
                 </a>
             @endif
             <a href="{{ route('projects.3d-twin', $project) }}" class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-card hover:bg-slate-800 transition">
-                3D BIM Model &rarr;
+                โมเดล 3D Twin &rarr;
             </a>
         </div>
     </header>
@@ -34,33 +34,33 @@
     {{-- 4 Core EVM Financial Metrics --}}
     <section class="grid grid-cols-2 lg:grid-cols-4 gap-4" aria-label="EVM Core Values">
         <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-card">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">BAC (Total Budget)</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">งบประมาณรวม BAC (Total Budget)</span>
             <p class="text-2xl font-black text-slate-900 mt-1">฿{{ number_format($metrics['bac'], 2) }}</p>
-            <p class="text-[11px] text-slate-500 mt-1">Budget at Completion baseline</p>
+            <p class="text-[11px] text-slate-500 mt-1">งบประมาณตามสัญญา (Budget at Completion)</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-card">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-cyan-700">PV (Planned Value)</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-cyan-700">มูลค่าตามแผน (PV: Planned Value)</span>
                 <span class="text-xs font-mono text-cyan-600 font-bold bg-cyan-50 px-2 py-0.5 rounded border border-cyan-100">{{ number_format($evmData['progress']['planned_percent'], 1) }}%</span>
             </div>
             <p class="text-2xl font-black text-cyan-700 mt-1">฿{{ number_format($metrics['pv'], 2) }}</p>
-            <p class="text-[11px] text-slate-500 mt-1">Budgeted cost of work scheduled</p>
+            <p class="text-[11px] text-slate-500 mt-1">ค่างานที่ต้องทำให้ได้ตามแผน (Work scheduled)</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-card">
             <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">EV (Earned Value)</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">มูลค่างานจริง (EV: Earned Value)</span>
                 <span class="text-xs font-mono text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">{{ number_format($evmData['progress']['actual_percent'], 1) }}%</span>
             </div>
             <p class="text-2xl font-black text-emerald-700 mt-1">฿{{ number_format($metrics['ev'], 2) }}</p>
-            <p class="text-[11px] text-slate-500 mt-1">Budgeted value of completed work</p>
+            <p class="text-[11px] text-slate-500 mt-1">ค่างานที่ทำเสร็จจริงหน้างาน (Work performed)</p>
         </div>
 
         <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-card">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-600">AC (Actual Cost)</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-600">ค่าใช้จ่ายจริง (AC: Actual Cost)</span>
             <p class="text-2xl font-black text-slate-800 mt-1">฿{{ number_format($metrics['ac'], 2) }}</p>
-            <p class="text-[11px] text-slate-500 mt-1">Total posted actual expenses</p>
+            <p class="text-[11px] text-slate-500 mt-1">ยอดจ่ายเงินจริงสะสม (Actual expenditure)</p>
         </div>
     </section>
 
@@ -70,23 +70,23 @@
         <div class="p-5 rounded-2xl bg-white border {{ $indices['cpi'] >= 1.0 ? 'border-emerald-200/80 bg-emerald-50/20' : 'border-rose-200/80 bg-rose-50/20' }} shadow-card">
             <div class="flex items-start justify-between">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Cost Performance</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">ดัชนีประสิทธิภาพด้านต้นทุน (Cost Performance)</span>
                     <h3 class="text-xl font-black text-slate-900 mt-0.5">
                         CPI: <span class="{{ $indices['cpi'] >= 1.0 ? 'text-emerald-700' : 'text-rose-700' }}">{{ number_format($indices['cpi'], 2) }}</span>
                     </h3>
                 </div>
                 <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase {{ $indices['cpi'] >= 1.0 ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-rose-100 text-rose-800 border border-rose-200' }}">
-                    {{ $indices['cpi'] >= 1.0 ? 'Cost Efficient' : 'Cost Overrun' }}
+                    {{ $indices['cpi'] >= 1.0 ? 'อยู่ในงบประมาณ (Cost Efficient)' : 'งบเกินแผน (Cost Overrun)' }}
                 </span>
             </div>
             <div class="mt-3 pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs">
-                <span class="text-slate-600 font-medium">Cost Variance (CV = EV - AC):</span>
+                <span class="text-slate-600 font-medium">ส่วนต่างต้นทุน (Cost Variance: CV = EV - AC):</span>
                 <span class="font-mono font-bold {{ $variances['cv'] >= 0 ? 'text-emerald-700' : 'text-rose-700' }}">
                     {{ $variances['cv'] >= 0 ? '+' : '' }}฿{{ number_format($variances['cv'], 2) }}
                 </span>
             </div>
             <p class="text-[11px] text-slate-500 mt-1">
-                {{ $indices['cpi'] >= 1.0 ? 'Earning more value than expenditure.' : 'Generating less than ฿1.00 of physical value per ฿1.00 spent.' }}
+                {{ $indices['cpi'] >= 1.0 ? 'มูลค่างานที่ได้รับสูงกว่าค่าใช้จ่ายที่เกิดขึ้นจริง' : 'เกิดมูลค่างานต่ำกว่า ฿1.00 ต่อทุก ฿1.00 ที่จ่ายไปจริง' }}
             </p>
         </div>
 
@@ -94,23 +94,23 @@
         <div class="p-5 rounded-2xl bg-white border {{ $indices['spi'] >= 1.0 ? 'border-emerald-200/80 bg-emerald-50/20' : 'border-rose-200/80 bg-rose-50/20' }} shadow-card">
             <div class="flex items-start justify-between">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Schedule Performance</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">ดัชนีประสิทธิภาพด้านเวลา (Schedule Performance)</span>
                     <h3 class="text-xl font-black text-slate-900 mt-0.5">
                         SPI: <span class="{{ $indices['spi'] >= 1.0 ? 'text-emerald-700' : 'text-rose-700' }}">{{ number_format($indices['spi'], 2) }}</span>
                     </h3>
                 </div>
                 <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase {{ $indices['spi'] >= 1.0 ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-rose-100 text-rose-800 border border-rose-200' }}">
-                    {{ $indices['spi'] >= 1.0 ? 'Ahead of Schedule' : 'Schedule Delayed' }}
+                    {{ $indices['spi'] >= 1.0 ? 'เร็วกว่าแผน (Ahead of Schedule)' : 'ล่าช้ากว่าแผน (Schedule Delayed)' }}
                 </span>
             </div>
             <div class="mt-3 pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs">
-                <span class="text-slate-600 font-medium">Schedule Variance (SV = EV - PV):</span>
+                <span class="text-slate-600 font-medium">ส่วนต่างเวลา (Schedule Variance: SV = EV - PV):</span>
                 <span class="font-mono font-bold {{ $variances['sv'] >= 0 ? 'text-emerald-700' : 'text-rose-700' }}">
                     {{ $variances['sv'] >= 0 ? '+' : '' }}฿{{ number_format($variances['sv'], 2) }}
                 </span>
             </div>
             <p class="text-[11px] text-slate-500 mt-1">
-                {{ $indices['spi'] >= 1.0 ? 'Project progressing ahead of planned velocity.' : 'Physical progress is lagging behind baseline timeline.' }}
+                {{ $indices['spi'] >= 1.0 ? 'ความเร็วในการดำเนินงานเร็วกว่าเส้นฐานที่วางแผนไว้' : 'งานหน้างานล่าช้ากว่าไทม์ไลน์เป้าหมาย' }}
             </p>
         </div>
     </section>

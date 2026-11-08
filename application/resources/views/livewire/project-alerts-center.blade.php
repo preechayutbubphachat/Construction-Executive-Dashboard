@@ -6,17 +6,17 @@
         <div>
             <div class="flex items-center gap-2">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-safety-orange/10 text-safety-orange border border-safety-orange/20">
-                    System Intelligence · Real-time Anomalies
+                    ระบบตรวจจับความผิดปกติอัตโนมัติ (System Intelligence · Real-time Anomalies)
                 </span>
             </div>
             <p class="mt-2 text-xs font-bold uppercase tracking-wider text-slate-500">{{ $project->code }}</p>
-            <h1 id="alerts-title" class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Active Early-Warning Alerts</h1>
-            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} · automated operational anomaly detection & risk mitigation</p>
+            <h1 id="alerts-title" class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">ศูนย์แจ้งเตือนความเสี่ยงล่วงหน้า Active Early-Warning Alerts</h1>
+            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} · ระบบตรวจจับความผิดปกติในการดำเนินงานและลดความเสี่ยงอัตโนมัติ (automated operational anomaly detection & risk mitigation)</p>
         </div>
         <div class="flex items-center gap-2">
             @if (\Illuminate\Support\Facades\Route::has('projects.report'))
                 <a href="{{ route('projects.report', $project) }}" class="rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition">
-                    Executive Report
+                    รายงานสรุปผู้บริหาร (Executive Report)
                 </a>
             @endif
         </div>
@@ -26,44 +26,44 @@
     <section class="grid gap-4 sm:grid-cols-4" aria-label="Alerts KPI summary">
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
             <div class="flex items-center justify-between">
-                <p class="text-[11px] font-black uppercase tracking-wider text-slate-500">Total Alerts</p>
+                <p class="text-[11px] font-black uppercase tracking-wider text-slate-500">การแจ้งเตือนทั้งหมด (Total Alerts)</p>
                 <div class="h-2 w-2 rounded-full bg-slate-400"></div>
             </div>
             <p class="mt-2 text-3xl font-black text-slate-900">{{ $summary['total_alerts'] }}</p>
-            <p class="mt-1 text-xs text-slate-500">Active operational signals</p>
+            <p class="mt-1 text-xs text-slate-500">สัญญาณแจ้งเตือนที่เปิดอยู่</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
             <div class="flex items-center justify-between">
-                <p class="text-[11px] font-black uppercase tracking-wider text-rose-600">Critical Severity</p>
+                <p class="text-[11px] font-black uppercase tracking-wider text-rose-600">ระดับวิกฤต (Critical Severity)</p>
                 <div class="h-2 w-2 rounded-full bg-rose-500"></div>
             </div>
             <p class="mt-2 text-3xl font-black text-rose-600">{{ $summary['critical_count'] }}</p>
-            <p class="mt-1 text-xs text-slate-500">Immediate action required</p>
+            <p class="mt-1 text-xs text-slate-500">ต้องดำเนินการแก้ไขทันที</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
             <div class="flex items-center justify-between">
-                <p class="text-[11px] font-black uppercase tracking-wider text-amber-600">Warning Level</p>
+                <p class="text-[11px] font-black uppercase tracking-wider text-amber-600">ระดับเฝ้าระวัง (Warning Level)</p>
                 <div class="h-2 w-2 rounded-full bg-amber-500"></div>
             </div>
             <p class="mt-2 text-3xl font-black text-amber-600">{{ $summary['warning_count'] }}</p>
-            <p class="mt-1 text-xs text-slate-500">Approaching risk thresholds</p>
+            <p class="mt-1 text-xs text-slate-500">ใกล้ถึงเกณฑ์ขีดจำกัดความเสี่ยง</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 transition-all hover:shadow-card-hover">
             <div class="flex items-center justify-between">
-                <p class="text-[11px] font-black uppercase tracking-wider text-slate-500">Status Level</p>
+                <p class="text-[11px] font-black uppercase tracking-wider text-slate-500">ระดับสถานะรวม (Status Level)</p>
                 <div class="h-2 w-2 rounded-full {{ $summary['highest_severity'] === 'CRITICAL' ? 'bg-rose-500' : ($summary['highest_severity'] === 'WARNING' ? 'bg-amber-500' : 'bg-emerald-500') }}"></div>
             </div>
             <p class="mt-2 text-3xl font-black {{ $summary['highest_severity'] === 'CRITICAL' ? 'text-rose-600' : ($summary['highest_severity'] === 'WARNING' ? 'text-amber-600' : 'text-emerald-600') }}">
                 {{ $summary['highest_severity'] === 'NONE' ? 'NORMAL' : $summary['highest_severity'] }}
             </p>
-            <p class="mt-1 text-xs text-slate-500">Evaluated {{ \Carbon\Carbon::parse($evaluatedAt)->format('H:i') }} UTC</p>
+            <p class="mt-1 text-xs text-slate-500">ประมวลผลเมื่อ {{ \Carbon\Carbon::parse($evaluatedAt)->format('H:i') }} UTC</p>
         </div>
     </section>
 
     {{-- Filter Toolbar --}}
     <section class="rounded-2xl bg-white p-4 shadow-card border border-slate-200/80 flex flex-wrap items-center justify-between gap-3" aria-label="Alert filters">
         <div class="flex flex-wrap items-center gap-1.5">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-2">Filter Category:</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-2">หมวดหมู่ตัวกรอง (Filter Category):</span>
             @foreach ([
                 'ALL' => 'All Alerts',
                 'CRITICAL' => 'Critical Only',
@@ -79,7 +79,7 @@
                 </button>
             @endforeach
         </div>
-        <p class="text-xs font-semibold text-slate-400">Showing {{ count($alerts) }} item(s)</p>
+        <p class="text-xs font-semibold text-slate-400">แสดง {{ count($alerts) }} รายการ</p>
     </section>
 
     {{-- Alerts List --}}

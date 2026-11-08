@@ -81,7 +81,7 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                             </div>
                             <input type="text"
-                                   placeholder="Search..."
+                                   placeholder="ค้นหาโครงการ, สัญญา, WBS, หรือเอกสาร... (Search projects, WBS, docs...)"
                                    class="w-full pl-9 pr-4 py-1.5 sm:py-2 text-xs rounded-xl border border-slate-200 bg-slate-50/70 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-safety-orange focus:ring-1 focus:ring-safety-orange transition">
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open" type="button"
                                         class="inline-flex items-center gap-1.5 sm:gap-2 rounded-xl border border-slate-300 bg-white px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition shadow-2xs">
-                                    <span class="text-slate-400 font-medium hidden sm:inline">Project:</span>
+                                    <span class="text-slate-400 font-medium hidden sm:inline">โครงการ (Project):</span>
                                     <span class="text-slate-900 font-extrabold truncate max-w-[120px] sm:max-w-[170px]">{{ $project->name }}</span>
                                     <svg class="w-3.5 h-3.5 text-slate-500 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                                 </button>
@@ -126,13 +126,13 @@
                                      class="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl bg-white p-3 shadow-2xl border border-slate-200 text-xs z-50">
                                     
                                     <div class="flex items-center justify-between px-2 pb-2 border-b border-slate-100">
-                                        <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">Switch Project (เปลี่ยนโครงการ)</span>
+                                        <span class="text-[10px] font-black uppercase tracking-wider text-slate-400">สลับโครงการ (Switch Project)</span>
                                         <button @click="open = false" type="button" class="text-slate-400 hover:text-slate-700 font-bold p-1 text-base leading-none">&times;</button>
                                     </div>
 
                                     <!-- Current Active Scope Card -->
                                     <div class="my-2 p-2.5 rounded-xl bg-orange-50 border border-orange-200">
-                                        <div class="text-[10px] uppercase font-bold text-safety-orange">Current Active Scope</div>
+                                        <div class="text-[10px] uppercase font-bold text-safety-orange">ขอบเขตโครงการที่เลือก (Current Active Scope)</div>
                                         <div class="font-extrabold text-slate-900 truncate mt-0.5">{{ $project->code }} &middot; {{ $project->name }}</div>
                                     </div>
 
@@ -155,7 +155,7 @@
                                     <div class="mt-2 pt-2 border-t border-slate-100">
                                         <a href="{{ route('projects.portfolio') }}" 
                                            class="flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition">
-                                            <span>← All Projects Portfolio (ดูทุกโครงการ)</span>
+                                            <span>← แฟ้มสะสมงานทุกโครงการ (All Projects Portfolio)</span>
                                         </a>
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@
                             <a href="{{ route('projects.portfolio') }}"
                                class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold text-slate-800 shadow-2xs">
                                 <span class="w-2 h-2 rounded-full bg-safety-orange"></span>
-                                <span class="hidden sm:inline">Multi-Project Portfolio</span>
+                                <span class="hidden sm:inline">แฟ้มโครงการรวม (Multi-Project Portfolio)</span>
                                 <span class="sm:hidden">Portfolio</span>
                             </a>
                         @endif

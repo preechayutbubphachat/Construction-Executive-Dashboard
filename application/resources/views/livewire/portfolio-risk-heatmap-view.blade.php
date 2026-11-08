@@ -4,14 +4,14 @@
         <div>
             <div class="flex items-center gap-2">
                 <a class="inline-flex items-center gap-1.5 text-xs font-bold text-orange-600 hover:text-orange-700 transition" href="{{ route('projects.portfolio') }}">
-                    ← Back to Executive Portfolio
+                    ← กลับสู่แฟ้มโครงการ (Back to Executive Portfolio)
                 </a>
             </div>
             <h1 id="heatmap-title" class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2.5">
                 <span>🗺️</span>
-                <span>Executive Risk Heatmap & Comparative Portfolio</span>
+                <span>แผนผังความเสี่ยงพอร์ตโครงการ (Executive Risk Heatmap)</span>
             </h1>
-            <p class="text-xs text-slate-500 mt-0.5">Cross-project risk index, make-ready benchmarking, and 2D operational quadrant matrix</p>
+            <p class="text-xs text-slate-500 mt-0.5">ดัชนีความเสี่ยงข้ามโครงการ เกณฑ์ชี้วัดความพร้อมของงาน และเมทริกซ์การดำเนินงาน 2 มิติ (Cross-project risk index & 2D matrix)</p>
         </div>
         <div class="flex items-center gap-2">
             <span class="rounded-lg bg-orange-100 border border-orange-200 px-3 py-1 text-xs font-mono font-bold text-orange-700">
@@ -23,29 +23,29 @@
     {{-- Portfolio KPI Bar (MindInventory Clean White Card Deck) --}}
     <section class="grid gap-4 sm:grid-cols-5" aria-label="Portfolio Risk Overview">
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/90 hover:shadow-card-hover transition-all">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Portfolio Scope</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">ขอบเขตโครงการ (Portfolio Scope)</p>
             <p class="mt-2 text-3xl font-black text-slate-900 tabular-nums">{{ $summary['total_projects'] }}</p>
-            <p class="mt-1 text-xs text-slate-500">Permitted projects</p>
+            <p class="mt-1 text-xs text-slate-500">โครงการที่มีสิทธิ์เข้าถึง (Permitted)</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/90 hover:shadow-card-hover transition-all">
-            <p class="text-xs font-bold uppercase tracking-wider text-rose-600">Critical Risk</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-600">ความเสี่ยงวิกฤต (Critical Risk)</p>
             <p class="mt-2 text-3xl font-black text-rose-600 tabular-nums">{{ $summary['critical_count'] }}</p>
-            <p class="mt-1 text-xs text-slate-500">Require C-level intervention</p>
+            <p class="mt-1 text-xs text-slate-500">ต้องเร่งตัดสินใจแก้ไข (Action required)</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/90 hover:shadow-card-hover transition-all">
-            <p class="text-xs font-bold uppercase tracking-wider text-orange-600">High Risk</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-orange-600">ความเสี่ยงสูง (High Risk)</p>
             <p class="mt-2 text-3xl font-black text-orange-600 tabular-nums">{{ $summary['high_count'] }}</p>
-            <p class="mt-1 text-xs text-slate-500">Escalated monitoring</p>
+            <p class="mt-1 text-xs text-slate-500">เฝ้าระวังอย่างใกล้ชิด (Monitoring)</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/90 hover:shadow-card-hover transition-all">
-            <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">Avg Make-Ready</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">ความพร้อมเฉลี่ย (Avg Make-Ready)</p>
             <p class="mt-2 text-3xl font-black text-emerald-600 tabular-nums">{{ number_format($summary['average_make_ready_rate'], 1) }}%</p>
-            <p class="mt-1 text-xs text-slate-500">3-week lookahead readiness</p>
+            <p class="mt-1 text-xs text-slate-500">ความพร้อมงาน 3 สัปดาห์ (3-wk readiness)</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/90 hover:shadow-card-hover transition-all">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Portfolio Spent</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">งบประมาณใช้จริง (Total Spent)</p>
             <p class="mt-2 text-2xl font-black text-slate-900 tabular-nums font-mono">฿{{ number_format($summary['total_expense'], 0) }}</p>
-            <p class="mt-1 text-xs text-slate-500">of ฿{{ number_format($summary['total_budget'], 0) }} planned</p>
+            <p class="mt-1 text-xs text-slate-500">จากแผน ฿{{ number_format($summary['total_budget'], 0) }}</p>
         </div>
     </section>
 
@@ -53,8 +53,8 @@
     <section class="rounded-2xl bg-white p-6 sm:p-7 shadow-card border border-slate-200/90 space-y-4" aria-label="2D Risk Matrix">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b border-slate-100 pb-4">
             <div>
-                <h2 class="text-base font-extrabold text-slate-900">2D Operational Risk Distribution Matrix</h2>
-                <p class="text-xs text-slate-500">Horizontal: Schedule & Lookahead Risk → | Vertical: Financial & Constraint Risk ↑</p>
+                <h2 class="text-base font-extrabold text-slate-900">เมทริกซ์การกระจายความเสี่ยงในการดำเนินงาน 2 มิติ (2D Operational Risk Distribution Matrix)</h2>
+                <p class="text-xs text-slate-500">แนวนอน: ความเสี่ยงด้านแผนงาน (Schedule Risk &rarr;) | แนวตั้ง: ความเสี่ยงการเงินและข้อจำกัด (Financial & Constraint Risk &uarr;)</p>
             </div>
             <div class="flex flex-wrap items-center gap-2 text-xs">
                 <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 border border-rose-200 font-bold text-rose-700">

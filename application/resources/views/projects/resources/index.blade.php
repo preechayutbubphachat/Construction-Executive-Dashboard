@@ -8,23 +8,23 @@
         <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
                 <div class="flex items-center gap-2 text-xs font-bold text-slate-400">
-                    <a href="{{ route('projects.portfolio') }}" class="hover:text-slate-600 transition">Resources Management</a>
+                    <a href="{{ route('projects.portfolio') }}" class="hover:text-slate-600 transition">การจัดการทรัพยากร (Resources)</a>
                     <span>/</span>
-                    <span class="text-slate-700">Labor</span>
+                    <span class="text-slate-700">กำลังพลและคนงาน (Labor)</span>
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
-                    Labor
+                    กำลังพลและคนงาน (Labor & Workforce Management)
                 </h1>
-                <p class="text-xs text-slate-500 mt-0.5">Workforce attendance, individual productivity & trade performance</p>
+                <p class="text-xs text-slate-500 mt-0.5">การเข้างานของกำลังพล ประสิทธิภาพรายบุคคล และผลการทำงานรายสายงาน (Workforce attendance & performance)</p>
             </div>
             <div class="flex flex-wrap items-center gap-2.5">
                 <button type="button" onclick="window.print()" class="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 shadow-2xs hover:border-slate-300 transition">
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                    <span>Download CSV Report</span>
+                    <span>ดาวน์โหลดรายงาน (Download CSV)</span>
                 </button>
                 <a href="#manpower-form" class="inline-flex items-center gap-2 rounded-xl bg-safety-orange hover:bg-orange-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm shadow-orange-500/20 transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
-                    <span>+ Add New Labor</span>
+                    <span>+ เพิ่มกำลังพล (+ Add New Labor)</span>
                 </a>
             </div>
         </header>
@@ -47,11 +47,11 @@
             <!-- Card 1: Manpower Onsite -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Manpower Onsite</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">กำลังพลหน้างาน (Manpower Onsite)</span>
                     <p class="mt-2 text-3xl font-black text-slate-900">
                         32<span class="text-base font-semibold text-slate-400">/44</span>
                     </p>
-                    <p class="mt-1 text-[11px] text-slate-400 font-medium">92% trade mobilization</p>
+                    <p class="mt-1 text-[11px] text-slate-400 font-medium">เข้างาน 92% (Trade mobilization)</p>
                 </div>
                 <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/70 text-safety-orange flex items-center justify-center">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
@@ -61,7 +61,7 @@
             <!-- Card 2: Pending Tasks -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Pending Tasks</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">งานรอดำเนินการ (Pending Tasks)</span>
                     <p class="mt-2 text-3xl font-black text-slate-900">10</p>
                     <p class="mt-1 text-[11px] text-rose-600 font-bold">3+ more pending from last week</p>
                 </div>
@@ -73,7 +73,7 @@
             <!-- Card 3: Inprogress Tasks -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Inprogress Tasks</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">งานกำลังทำ (Inprogress Tasks)</span>
                     <p class="mt-2 text-3xl font-black text-slate-900">22</p>
                     <p class="mt-1 text-[11px] text-emerald-600 font-bold">7+ more completed from last week</p>
                 </div>
@@ -85,7 +85,7 @@
             <!-- Card 4: Closed Deadlines -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Closed Deadlines</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">งานเสร็จตามกำหนด (Closed Tasks)</span>
                     <p class="mt-2 text-3xl font-black text-slate-900">75</p>
                     <p class="mt-1 text-[11px] text-emerald-600 font-bold">12+ more closed from last week</p>
                 </div>

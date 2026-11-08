@@ -3,7 +3,7 @@
     <header class="absolute top-0 inset-x-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-card">
         <div class="flex items-center gap-3">
             <a href="{{ route('projects.portfolio') }}" class="text-xs font-bold text-safety-600 hover:text-safety-700 transition">
-                &larr; Portfolio
+                &larr; แฟ้มโครงการ (Portfolio)
             </a>
             <span class="text-slate-300">&bull;</span>
             <span class="px-2 py-0.5 rounded-lg text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
@@ -11,7 +11,7 @@
             </span>
             <div>
                 <h1 class="text-sm font-bold text-slate-900 leading-tight">
-                    {{ $project->name }} &middot; <span class="text-safety-600 font-extrabold">3D Spatial Digital Twin</span>
+                    {{ $project->name }} &middot; <span class="text-safety-600 font-extrabold">แบบจำลอง 3 มิติ (3D Spatial Digital Twin)</span>
                 </h1>
             </div>
         </div>
@@ -19,17 +19,17 @@
         {{-- KPI Quick Counters --}}
         <div class="flex items-center gap-2 text-xs">
             <span class="px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 font-mono text-slate-700">
-                Total: <strong class="text-slate-900">{{ $summary['total_elements'] }}</strong>
+                ทั้งหมด (Total): <strong class="text-slate-900">{{ $summary['total_elements'] }}</strong>
             </span>
             <span class="px-2.5 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono">
-                Done: <strong>{{ $summary['completed_count'] }}</strong>
+                เสร็จแล้ว (Done): <strong>{{ $summary['completed_count'] }}</strong>
             </span>
             <span class="px-2.5 py-1 rounded-xl bg-orange-50 border border-orange-200 text-safety-700 font-mono">
-                Active: <strong>{{ $summary['in_progress_count'] }}</strong>
+                กำลังทำ (Active): <strong>{{ $summary['in_progress_count'] }}</strong>
             </span>
             @if ($summary['blocked_count'] > 0)
                 <span class="px-2.5 py-1 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 font-mono font-bold animate-pulse">
-                    Blocked: {{ $summary['blocked_count'] }}
+                    ติดอุปสรรค (Blocked): {{ $summary['blocked_count'] }}
                 </span>
             @endif
         </div>
@@ -66,35 +66,35 @@
     {{-- Floating Left Control Panel (Camera Presets & Exploded View) --}}
     <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-20 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 shadow-card space-y-4 max-w-xs text-xs text-slate-800">
         <div>
-            <label class="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">Camera Presets</label>
+            <label class="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">มุมมองกล้อง (Camera Presets)</label>
             <div class="grid grid-cols-3 gap-1.5">
                 <button wire:click="setCameraPreset('ISOMETRIC')" class="py-1.5 px-2 rounded-xl font-bold transition border {{ $cameraPreset === 'ISOMETRIC' ? 'bg-safety-600 text-white border-safety-600 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100' }}">
-                    Isometric
+                    ไอโซเมตริก (Isometric)
                 </button>
                 <button wire:click="setCameraPreset('TOP_DOWN')" class="py-1.5 px-2 rounded-xl font-bold transition border {{ $cameraPreset === 'TOP_DOWN' ? 'bg-safety-600 text-white border-safety-600 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100' }}">
-                    Top-Down
+                    มุมบน (Top-Down)
                 </button>
                 <button wire:click="setCameraPreset('FRONT')" class="py-1.5 px-2 rounded-xl font-bold transition border {{ $cameraPreset === 'FRONT' ? 'bg-safety-600 text-white border-safety-600 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100' }}">
-                    Elevation
+                    รูปด้าน (Elevation)
                 </button>
             </div>
         </div>
 
         <div>
-            <label class="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">Spatial Filter</label>
+            <label class="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">ตัวกรองชิ้นส่วน (Spatial Filter)</label>
             <div class="grid grid-cols-2 gap-1.5">
                 <button wire:click="setFilterMode('ALL')" class="py-1.5 px-2 rounded-xl font-bold transition border {{ $filterMode === 'ALL' ? 'bg-slate-900 text-white border-slate-900 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100' }}">
-                    All Elements
+                    ชิ้นส่วนทั้งหมด (All Elements)
                 </button>
                 <button wire:click="setFilterMode('BLOCKED_ONLY')" class="py-1.5 px-2 rounded-xl font-bold transition border {{ $filterMode === 'BLOCKED_ONLY' ? 'bg-rose-600 text-white border-rose-600 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100' }}">
-                    Blocked Only 🚨
+                    เฉพาะติดอุปสรรค (Blocked Only 🚨)
                 </button>
             </div>
         </div>
 
         <div>
             <div class="flex items-center justify-between font-bold text-slate-700 uppercase tracking-wider mb-1">
-                <span>Exploded View</span>
+                <span>ระยะระเบิดชิ้นส่วน (Exploded View)</span>
                 <span class="font-mono text-safety-600">{{ number_format($explodedGap, 1) }}m</span>
             </div>
             <input 

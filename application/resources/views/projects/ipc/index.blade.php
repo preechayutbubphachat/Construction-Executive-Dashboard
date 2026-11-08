@@ -11,14 +11,14 @@
                     <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                         {{ $project->code }}
                     </span>
-                    <h1 class="text-2xl font-black text-slate-900 tracking-tight">Interim Payment Certificates (IPC Register)</h1>
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight">ใบรับรองการชำระเงินค่างวดงาน (IPC Register)</h1>
                 </div>
                 <p class="text-xs text-slate-500 mt-1">ระบบบริหารจัดการการตรวจรับ ตรวจสอบปริมาณงาน (QS) และเบิกจ่ายเงินค่างวดงานก่อสร้าง 3 ระดับ &middot; Multi-tier Approval</p>
             </div>
             <div class="flex items-center gap-3">
                 <a href="{{ route('projects.ipc.create', $project) }}" class="inline-flex items-center gap-2 rounded-xl bg-safety-600 hover:bg-safety-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    + New Payment Application (ยื่นเบิกค่างวด)
+                    + ยื่นเบิกค่างวดใหม่ (New Payment Application)
                 </a>
             </div>
         </header>
@@ -36,36 +36,36 @@
         <!-- KPI Summary Cards -->
         <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" aria-label="IPC Financial Summary">
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total IPCs</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">งวดงานทั้งหมด (Total IPCs)</span>
                 <div class="mt-2 text-xl font-black text-slate-900">{{ number_format($stats['total_ipcs']) }} <span class="text-xs font-normal text-slate-500">งวด</span></div>
-                <span class="text-[10px] text-slate-400">Applications filed</span>
+                <span class="text-[10px] text-slate-400">ยื่นคำขอเบิก (Applications)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Gross Certified</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">มูลค่ารับรองสะสม (Gross Certified)</span>
                 <div class="mt-2 text-xl font-black text-emerald-700">฿{{ number_format($stats['total_gross_certified'], 2) }}</div>
-                <span class="text-[10px] text-slate-400">Approved gross work</span>
+                <span class="text-[10px] text-slate-400">ค่างานรับรองแล้ว (Gross work)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Retention Held</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">เงินประกันผลงาน (Retention Held)</span>
                 <div class="mt-2 text-xl font-black text-amber-700">฿{{ number_format($stats['total_retention_held'], 2) }}</div>
-                <span class="text-[10px] text-slate-400">เงินประกันผลงานสะสม</span>
+                <span class="text-[10px] text-slate-400">เงินประกันผลงานสะสม (5%)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Advance Recovered</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">หักเงินล่วงหน้า (Advance Recovered)</span>
                 <div class="mt-2 text-xl font-black text-indigo-700">฿{{ number_format($stats['total_advance_recovered'], 2) }}</div>
                 <span class="text-[10px] text-slate-400">หักเงินล่วงหน้าสะสม</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total Net Disbursed</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">เบิกจ่ายสุทธิสะสม (Net Disbursed)</span>
                 <div class="mt-2 text-xl font-black text-safety-600">฿{{ number_format($stats['total_net_disbursed'], 2) }}</div>
                 <span class="text-[10px] text-slate-400">จ่ายจริงกระทบยอดบัญชี</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">In Progress / Pending</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">รอการอนุมัติ (Pending Approval)</span>
                 <div class="mt-2 text-xl font-black {{ $stats['pending_approval'] > 0 ? 'text-amber-600' : 'text-slate-400' }}">
                     {{ number_format($stats['pending_approval']) }} <span class="text-xs font-normal text-slate-500">งวด</span>
                 </div>
-                <span class="text-[10px] text-slate-400">Awaiting approval</span>
+                <span class="text-[10px] text-slate-400">รอผู้มีอำนาจลงนาม</span>
             </div>
         </section>
 
@@ -73,8 +73,8 @@
         <section class="rounded-2xl bg-white shadow-card border border-slate-200/80 overflow-hidden">
             <div class="border-b border-slate-200/80 bg-slate-50/50 px-6 py-4 flex items-center justify-between">
                 <div>
-                    <h2 class="text-sm font-bold text-slate-900">Interim Payment Certificates List (ทะเบียนใบรับรองค่างวดงาน)</h2>
-                    <p class="text-[11px] text-slate-500">Official certificate chain and verification stage audit log</p>
+                    <h2 class="text-sm font-bold text-slate-900">ทะเบียนใบรับรองค่างวดงาน (Interim Payment Certificates List)</h2>
+                    <p class="text-[11px] text-slate-500">บันทึกขั้นตอนการตรวจรับและประวัติการอนุมัติ (Audit log & verification stage)</p>
                 </div>
                 <span class="text-xs text-slate-500 font-mono font-bold">{{ $ipcs->count() }} Records</span>
             </div>

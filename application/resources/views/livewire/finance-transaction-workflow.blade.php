@@ -8,14 +8,14 @@
                 <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                     {{ $project->code }}
                 </span>
-                <h1 id="finance-title" class="text-2xl font-black text-slate-900 tracking-tight">Finance workflow</h1>
+                <h1 id="finance-title" class="text-2xl font-black text-slate-900 tracking-tight">กระแสเงินสดและการเงิน Finance workflow</h1>
             </div>
-            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} &middot; authenticated project scope &middot; CED Ledger V1</p>
+            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} &middot; บันทึกรายการบัญชีโครงการ (CED Ledger V1)</p>
         </div>
         <div>
             @if (\Illuminate\Support\Facades\Route::has('projects.report'))
                 <a href="{{ route('projects.report', $project) }}" class="rounded-xl border border-slate-200/80 bg-white px-4 py-2 text-xs font-bold text-slate-800 shadow-card hover:bg-slate-50 transition">
-                    Executive Report
+                    รายงานผู้บริหาร (Executive Report)
                 </a>
             @endif
         </div>
@@ -33,19 +33,19 @@
 
     <section class="grid gap-4 sm:grid-cols-3" aria-label="Posted finance totals">
         <div class="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-card">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Posted income</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">รายรับบันทึกบัญชี (Posted income)</p>
             <p class="mt-2 text-2xl font-black text-emerald-700">฿{{ number_format((float) ($postedTotals['income'] ?? 0), 2) }}</p>
-            <p class="text-[11px] text-slate-400 mt-1">Confirmed cash inflow from client</p>
+            <p class="text-[11px] text-slate-400 mt-1">เงินเข้ายืนยันแล้วจากผู้ว่าจ้าง</p>
         </div>
         <div class="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-card">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Posted expense</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">รายจ่ายบันทึกบัญชี (Posted expense)</p>
             <p class="mt-2 text-2xl font-black text-rose-700">฿{{ number_format((float) ($postedTotals['expense'] ?? 0), 2) }}</p>
-            <p class="text-[11px] text-slate-400 mt-1">Actual posted subcontractor / material costs</p>
+            <p class="text-[11px] text-slate-400 mt-1">ค่าจ้างผู้รับเหมาช่วงและค่าพัสดุ</p>
         </div>
         <div class="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-card">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Posted net</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">กำไรสุทธิตามบัญชี (Posted net)</p>
             <p class="mt-2 text-2xl font-black text-slate-900">฿{{ number_format((float) ($postedTotals['net'] ?? 0), 2) }}</p>
-            <p class="text-[11px] text-slate-400 mt-1">Realized project operating margin</p>
+            <p class="text-[11px] text-slate-400 mt-1">มาร์จิ้นดำเนินการจริงของโครงการ</p>
         </div>
     </section>
 
@@ -57,7 +57,7 @@
     @if ($plannedBudget > 0)
         <section class="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-card space-y-3" aria-label="Budget Utilization">
             <div class="flex justify-between items-center text-xs font-bold">
-                <span class="text-slate-700">Budget Utilization (Spent: ฿{{ number_format($postedExpense, 2) }} / Planned: ฿{{ number_format($plannedBudget, 2) }})</span>
+                <span class="text-slate-700">การใช้งบประมาณ Budget Utilization (ใช้ไป: ฿{{ number_format($postedExpense, 2) }} / งบตามแผน: ฿{{ number_format($plannedBudget, 2) }})</span>
                 <span class="{{ $utilizationRate > 90 ? 'text-rose-700' : 'text-slate-900' }} font-mono font-bold">{{ number_format($utilizationRate, 1) }}%</span>
             </div>
             <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-100">

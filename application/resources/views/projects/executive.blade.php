@@ -67,25 +67,25 @@
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
                 <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
-                    Dashboard
+                    แดชบอร์ดบริหารโครงการ (Executive Dashboard)
                 </h1>
                 <p class="mt-1 text-xs text-slate-500">
-                    {{ $project->name }} ({{ $project->code }}) · Executive health overview, stages & cost estimation
+                    {{ $project->name }} ({{ $project->code }}) · ภาพรวมสุขภาพโครงการ ลำดับขั้นตอน และการเงิน (Executive health overview, stages & cost estimation)
                 </p>
             </div>
             
             <div class="flex flex-wrap items-center gap-2.5">
                 <button type="button" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-50 hover:border-slate-400 transition">
                     <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-                    <span>Customise Widget</span>
+                    <span>ปรับแต่งวิดเจ็ต (Customise Widget)</span>
                 </button>
                 <button type="button" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-50 hover:border-slate-400 transition">
                     <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
-                    <span>Filter</span>
+                    <span>ตัวกรอง (Filter)</span>
                 </button>
                 <div class="inline-flex items-center gap-1.5 rounded-xl border border-orange-300 bg-orange-50 px-3.5 py-2 text-xs font-extrabold text-[#EA580C] shadow-2xs">
                     <svg class="w-3.5 h-3.5 text-[#EA580C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <span>Current Month</span>
+                    <span>เดือนปัจจุบัน (Current Month)</span>
                 </div>
             </div>
         </div>
@@ -101,63 +101,63 @@
             
             <!-- Card 1: Onsite Today -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex flex-col justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Onsite Today</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">กำลังพลหน้างานวันนี้ (Onsite Today)</span>
                 <div class="mt-3 grid grid-cols-2 gap-3">
                     <div class="rounded-xl bg-gradient-to-br from-safety-orange to-orange-600 p-3.5 text-white flex flex-col justify-between shadow-xs">
-                        <span class="text-[11px] font-bold text-white/80">Crew</span>
+                        <span class="text-[11px] font-bold text-white/80">ช่าง/คนงาน (Crew)</span>
                         <div class="mt-2 font-mono text-xl font-black">32<span class="text-sm font-semibold text-white/70">/44</span></div>
                     </div>
                     <div class="rounded-xl bg-[#0B132B] p-3.5 text-white flex flex-col justify-between shadow-xs">
-                        <span class="text-[11px] font-bold text-slate-400">Equipments</span>
+                        <span class="text-[11px] font-bold text-slate-400">เครื่องจักร (Equipments)</span>
                         <div class="mt-2 font-mono text-xl font-black text-white">08<span class="text-sm font-semibold text-slate-400">/12</span></div>
                     </div>
                 </div>
-                <div class="mt-3 text-[11px] text-slate-400 font-medium">92% active shift attendance</div>
+                <div class="mt-3 text-[11px] text-slate-400 font-medium">เข้ากะทำงานปกติ 92% (92% active shift attendance)</div>
             </div>
 
             <!-- Card 2: Upcoming Milestones & Tasks -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex flex-col justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Upcoming</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500">เหตุการณ์สำคัญถัดไป (Upcoming)</span>
                 <div class="mt-3 grid grid-cols-2 gap-3 text-xs">
                     <div>
-                        <span class="text-[10px] uppercase font-bold text-slate-400">Next Milestone</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">ไมล์สโตนถัดไป (Next Milestone)</span>
                         <p class="font-mono text-sm font-black text-safety-orange mt-0.5">0 Days Left</p>
                     </div>
                     <div>
-                        <span class="text-[10px] uppercase font-bold text-slate-400">In Progress</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">งานระหว่างทำ (In Progress)</span>
                         <p class="font-mono text-sm font-black text-slate-900 mt-0.5">฿{{ number_format((float) ($project->budget_amount ? $project->budget_amount * 0.45 : 75000), 0) }}</p>
                     </div>
                     <div class="pt-2 border-t border-slate-100">
-                        <span class="text-[10px] uppercase font-bold text-slate-400">Next Checkpoint</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">จุดตรวจถัดไป (Next Checkpoint)</span>
                         <p class="font-mono text-sm font-black text-slate-800 mt-0.5">12 Days Left</p>
                     </div>
                     <div class="pt-2 border-t border-slate-100">
-                        <span class="text-[10px] uppercase font-bold text-slate-400">Task Count</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">จำนวนงาน WBS (Task Count)</span>
                         <p class="font-mono text-sm font-black text-slate-800 mt-0.5">{{ $tasks->count() }} Tasks</p>
                     </div>
                 </div>
-                <div class="mt-3 text-[11px] text-slate-400 font-medium">Critical milestone on track</div>
+                <div class="mt-3 text-[11px] text-slate-400 font-medium">ไมล์สโตนวิกฤตเป็นไปตามแผน (Critical milestone on track)</div>
             </div>
 
             <!-- Card 3: Project Total Value & Dates -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Project Total Value</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">มูลค่าโครงการรวม (Project Total Value)</span>
                     <p class="mt-1 font-mono text-2xl font-black text-slate-900">
                         ฿{{ number_format((float) ($project->budget_amount ?? 182700), 2) }}
                     </p>
                 </div>
                 <div class="mt-3 space-y-1.5 text-[11px] border-t border-slate-100 pt-2.5">
                     <div class="flex justify-between">
-                        <span class="text-slate-400 font-medium">Start Date:</span>
+                        <span class="text-slate-400 font-medium">วันเริ่ม (Start Date):</span>
                         <span class="font-mono font-bold text-slate-700">{{ $project->baseline_start_date ? \Carbon\Carbon::parse($project->baseline_start_date)->format('d M Y') : '04 Jan 2026' }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-slate-400 font-medium">End Date:</span>
+                        <span class="text-slate-400 font-medium">กำหนดเสร็จ (End Date):</span>
                         <span class="font-mono font-bold text-slate-700">{{ $project->baseline_finish_date ? \Carbon\Carbon::parse($project->baseline_finish_date)->format('d M Y') : '10 Oct 2026' }}</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-rose-500 font-bold">Forecast End Date:</span>
+                        <span class="text-rose-500 font-bold">คาดการณ์เสร็จจริง (Forecast End Date):</span>
                         <span class="font-mono font-bold text-rose-600">{{ $project->baseline_finish_date ? \Carbon\Carbon::parse($project->baseline_finish_date)->addMonths(2)->format('d M Y') : '18 May 2027' }}</span>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
             <!-- Card 4: Working Hours Donut Chart (MindInventory Exact Graphic) -->
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex flex-col justify-between">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Working Hours</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">ชั่วโมงทำงานสะสม (Working Hours)</span>
                     <span class="text-[10px] font-bold text-safety-orange bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">Active</span>
                 </div>
                 <div class="my-2 flex items-center justify-center">
@@ -182,13 +182,13 @@
                         </svg>
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
                             <span class="font-mono text-base font-black text-slate-900 leading-tight">525.7</span>
-                            <span class="text-[9px] font-bold text-slate-400 uppercase">Hours</span>
+                            <span class="text-[9px] font-bold text-slate-400 uppercase">ชม. (Hours)</span>
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center justify-between text-[11px] border-t border-slate-100 pt-2 font-medium">
-                    <span class="text-slate-500">Regular: <strong class="text-slate-800 font-mono">330.2 hrs</strong></span>
-                    <span class="text-slate-500">Overtime: <strong class="text-safety-orange font-mono">195.5 hrs</strong></span>
+                    <span class="text-slate-500">ปกติ (Regular): <strong class="text-slate-800 font-mono">330.2 hrs</strong></span>
+                    <span class="text-slate-500">ล่วงเวลา (Overtime): <strong class="text-safety-orange font-mono">195.5 hrs</strong></span>
                 </div>
             </div>
         </section>
@@ -200,24 +200,24 @@
             <div class="lg:col-span-2 rounded-2xl bg-white p-6 shadow-card border border-slate-200/80 space-y-4">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <div>
-                        <h2 class="text-base font-extrabold text-slate-900">Project Stage</h2>
-                        <p class="text-xs text-slate-500">Milestone lifecycle execution tracking</p>
+                        <h2 class="text-base font-extrabold text-slate-900">ลำดับขั้นโครงการ (Project Stage)</h2>
+                        <p class="text-xs text-slate-500">ติดตามความคืบหน้าตามวงจรชีวิตโครงการ (Milestone lifecycle execution tracking)</p>
                     </div>
-                    <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-xl">Current Month ▾</span>
+                    <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-xl">เดือนปัจจุบัน (Current Month) ▾</span>
                 </div>
 
                 <!-- Gantt Rails with Black Bars & Orange Milestone Pins -->
                 <div class="space-y-4 pt-2">
                     @foreach ([
-                        ['name' => 'Designing', 'start' => 15, 'width' => 20, 'pin' => 28],
-                        ['name' => 'Engineering', 'start' => 30, 'width' => 25, 'pin' => 45],
-                        ['name' => 'Procurement', 'start' => 42, 'width' => 50, 'pin' => 65],
-                        ['name' => 'Construction', 'start' => 25, 'width' => 60, 'pin' => 35],
-                        ['name' => 'Commission', 'start' => 25, 'width' => 40, 'pin' => 55],
-                        ['name' => 'Close Out', 'start' => 58, 'width' => 15, 'pin' => null],
+                        ['name' => 'ออกแบบ (Designing)', 'start' => 15, 'width' => 20, 'pin' => 28],
+                        ['name' => 'วิศวกรรม (Engineering)', 'start' => 30, 'width' => 25, 'pin' => 45],
+                        ['name' => 'จัดซื้อจัดจ้าง (Procurement)', 'start' => 42, 'width' => 50, 'pin' => 65],
+                        ['name' => 'ก่อสร้าง (Construction)', 'start' => 25, 'width' => 60, 'pin' => 35],
+                        ['name' => 'ทดสอบระบบ (Commission)', 'start' => 25, 'width' => 40, 'pin' => 55],
+                        ['name' => 'ส่งมอบปิดโครงการ (Close Out)', 'start' => 58, 'width' => 15, 'pin' => null],
                     ] as $stage)
                         <div class="flex items-center gap-4">
-                            <span class="w-24 text-xs font-bold text-slate-700 shrink-0">{{ $stage['name'] }}</span>
+                            <span class="w-36 text-xs font-bold text-slate-700 shrink-0 truncate">{{ $stage['name'] }}</span>
                             <div class="flex-1 relative h-2.5 bg-slate-100 rounded-full">
                                 <!-- Black Rail -->
                                 <div class="absolute h-full bg-slate-900 rounded-full"
@@ -234,15 +234,15 @@
                     @endforeach
 
                     <!-- Months Horizon Line -->
-                    <div class="flex justify-between pl-28 text-[11px] font-mono text-slate-400 border-t border-slate-100 pt-3">
-                        <span>Jan 26</span>
-                        <span>Feb 26</span>
-                        <span>Mar 26</span>
-                        <span>Apr 26</span>
-                        <span>May 26</span>
-                        <span>Jun 26</span>
-                        <span>Jul 26</span>
-                        <span>Aug 26</span>
+                    <div class="flex justify-between pl-36 text-[11px] font-mono text-slate-400 border-t border-slate-100 pt-3">
+                        <span>ม.ค. (Jan)</span>
+                        <span>ก.พ. (Feb)</span>
+                        <span>มี.ค. (Mar)</span>
+                        <span>เม.ย. (Apr)</span>
+                        <span>พ.ค. (May)</span>
+                        <span>มิ.ย. (Jun)</span>
+                        <span>ก.ค. (Jul)</span>
+                        <span>ส.ค. (Aug)</span>
                     </div>
                 </div>
             </div>
@@ -251,8 +251,8 @@
             <div class="rounded-2xl bg-white p-6 shadow-card border border-slate-200/80 space-y-4 flex flex-col justify-between">
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <div>
-                        <h2 class="text-base font-extrabold text-slate-900">Safety Hazards</h2>
-                        <p class="text-xs text-slate-500">Incident rates & risk trend</p>
+                        <h2 class="text-base font-extrabold text-slate-900">ความปลอดภัยหน้างาน (Safety Hazards)</h2>
+                        <p class="text-xs text-slate-500">อัตราการเกิดอุบัติการณ์และความเสี่ยง (Incident rates & risk trend)</p>
                     </div>
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500" title="Low Severity"></span>
                 </div>
@@ -279,9 +279,9 @@
 
                 <!-- Legend -->
                 <div class="flex flex-wrap items-center justify-between text-[10px] font-bold text-slate-500 border-t border-slate-100 pt-3">
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-amber-700"></span> Fall</span>
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-safety-orange"></span> Heavy Equip</span>
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-orange-200"></span> Electrical</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-amber-700"></span> ตกจากที่สูง (Fall)</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-safety-orange"></span> เครื่องจักร (Equip)</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-orange-200"></span> ไฟฟ้า (Elec)</span>
                 </div>
             </div>
         </section>
@@ -290,13 +290,13 @@
         <section class="rounded-2xl bg-white p-6 sm:p-7 shadow-card border border-slate-200/80 space-y-6" aria-label="Cost Estimation and Financials">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-100 pb-4">
                 <div>
-                    <h2 class="text-base font-extrabold text-slate-900">Cost Estimation</h2>
-                    <p class="text-xs text-slate-500">Planned vs. Utilized expenditure trajectory</p>
+                    <h2 class="text-base font-extrabold text-slate-900">การประมาณการต้นทุนและการเงิน (Cost Estimation)</h2>
+                    <p class="text-xs text-slate-500">เปรียบเทียบงบประมาณตามแผนกับค่าใช้จ่ายจริงที่เกิดขึ้น (Planned vs. Utilized expenditure trajectory)</p>
                 </div>
                 <div class="flex items-center gap-4 text-xs font-bold">
-                    <span class="flex items-center gap-1.5 text-slate-800"><span class="w-3 h-0.5 bg-slate-900"></span> Planned Amount</span>
-                    <span class="flex items-center gap-1.5 text-safety-orange"><span class="w-3 h-0.5 bg-safety-orange"></span> Utilized Amount</span>
-                    <span class="flex items-center gap-1.5 text-orange-400"><span class="w-3 h-0.5 border-t border-dashed border-orange-400"></span> Budget Forecasting</span>
+                    <span class="flex items-center gap-1.5 text-slate-800"><span class="w-3 h-0.5 bg-slate-900"></span> งบตามแผน (Planned Amount)</span>
+                    <span class="flex items-center gap-1.5 text-safety-orange"><span class="w-3 h-0.5 bg-safety-orange"></span> ค่าใช้จ่ายจริง (Utilized Amount)</span>
+                    <span class="flex items-center gap-1.5 text-orange-400"><span class="w-3 h-0.5 border-t border-dashed border-orange-400"></span> คาดการณ์งบ (Budget Forecasting)</span>
                 </div>
             </div>
 
@@ -323,7 +323,7 @@
                             <circle cx="280" cy="55" r="4.5" fill="#FF6B00" stroke="#FFFFFF" stroke-width="2"/>
                         </svg>
                         <div class="absolute left-64 top-4 bg-orange-100 border border-orange-300 rounded px-2 py-0.5 text-[10px] font-bold text-orange-800 shadow-2xs">
-                            Cost Overrun 179
+                            งบเกินแผน (Cost Overrun) 179
                         </div>
                     </div>
                     <!-- Months Horizontal Axis -->
@@ -336,16 +336,16 @@
                 <div class="space-y-5 lg:border-l lg:border-slate-100 lg:pl-6">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Actual Amount</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">เบิกจ่ายจริง (Actual Amount)</span>
                             <p class="font-mono text-lg font-black text-slate-900 mt-0.5">฿{{ number_format((float) ($finance['expense'] ?? 5505000), 2) }}</p>
                         </div>
                         <div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Planned Amount</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">งบตามสัญญา (Planned Amount)</span>
                             <p class="font-mono text-lg font-black text-slate-900 mt-0.5">฿{{ number_format((float) ($project->budget_amount ?? 4500000), 2) }}</p>
                         </div>
                     </div>
                     <div class="rounded-xl bg-orange-50/60 border border-orange-200/80 p-4">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-safety-orange">Forecasted Utilization by EOP</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-safety-orange">คาดการณ์ยอดใช้จริงเมื่อจบโครงการ (Forecasted Utilization by EOP)</span>
                         <p class="font-mono text-2xl font-black text-safety-orange mt-1">
                             ฿{{ number_format((float) (($project->budget_amount ?? 4500000) * 1.15), 2) }}
                         </p>
@@ -555,7 +555,7 @@
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                     <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
                         <span>🔒</span>
-                        <span>Private evidence</span>
+                        <span>หลักฐานเอกสารเฉพาะโครงการ (Private evidence)</span>
                     </h2>
                     <span class="text-xs font-mono font-bold text-slate-500">Total: {{ $evidenceDocuments->count() }}</span>
                 </div>
@@ -601,7 +601,7 @@
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                 <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
                     <span>🛡️</span>
-                    <span>Recent audit events</span>
+                    <span>บันทึกประวัติการตรวจสอบล่าสุด (Recent audit events)</span>
                 </h2>
                 <span class="text-xs font-mono font-bold text-slate-500">Total: {{ $auditEvents->count() }}</span>
             </div>

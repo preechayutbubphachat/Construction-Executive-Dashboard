@@ -11,14 +11,14 @@
                     <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                         {{ $project->code }}
                     </span>
-                    <h1 class="text-2xl font-black text-slate-900 tracking-tight">Non-Conformance Reports (NCR Register)</h1>
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight">รายงานข้อบกพร่องคุณภาพงาน (Non-Conformance Reports - NCR)</h1>
                 </div>
                 <p class="text-xs text-slate-500 mt-1">ระบบควบคุมคุณภาพ ตรวจจับข้อบกพร่องหน้างาน (CAPA Workflow) และเชื่อมโยงการระงับเบิกจ่ายเงินค่างวด (IPC Payment Hold) อัตโนมัติ</p>
             </div>
             <div>
                 <a href="{{ route('projects.ncr.create', $project) }}" class="inline-flex items-center gap-2 rounded-xl bg-rose-600 hover:bg-rose-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    + Issue New NCR (เปิดใบแจ้งงานบกพร่อง)
+                    + เปิดใบแจ้งงานบกพร่องใหม่ (Issue New NCR)
                 </a>
             </div>
         </header>
@@ -33,29 +33,29 @@
         <!-- KPI Summary Cards -->
         <section class="grid grid-cols-2 lg:grid-cols-5 gap-4" aria-label="NCR Quality Summary">
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total NCRs</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">NCR ทั้งหมด (Total NCRs)</span>
                 <div class="mt-2 text-2xl font-black text-slate-900">{{ $stats['total'] }}</div>
-                <span class="text-[10px] text-slate-400">Total defects recorded</span>
+                <span class="text-[10px] text-slate-400">บันทึกข้อบกพร่อง (Defects recorded)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Open / Rejected</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">รอแก้ไข/ไม่ผ่าน (Open / Rejected)</span>
                 <div class="mt-2 text-2xl font-black text-rose-700">{{ $stats['open'] }}</div>
-                <span class="text-[10px] text-slate-400">Under CAPA rectification</span>
+                <span class="text-[10px] text-slate-400">อยู่ระหว่างแก้ไข (Under CAPA)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Awaiting QC Sign-off</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">รอ QC ตรวจงาน (Awaiting QC)</span>
                 <div class="mt-2 text-2xl font-black text-amber-600">{{ $stats['awaiting_verification'] }}</div>
-                <span class="text-[10px] text-slate-400">Ready for verification</span>
+                <span class="text-[10px] text-slate-400">พร้อมตรวจสอบ (Ready to verify)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Closed (Compliant)</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">ปิดงานแก้ไขแล้ว (Closed)</span>
                 <div class="mt-2 text-2xl font-black text-emerald-700">{{ $stats['closed'] }}</div>
-                <span class="text-[10px] text-slate-400">Corrective actions certified</span>
+                <span class="text-[10px] text-slate-400">ผ่านเกณฑ์คุณภาพ (Compliant)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-rose-200 bg-rose-50/25">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700">Active IPC Payment Holds</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700">ระงับเบิกค่างวด (IPC Holds)</span>
                 <div class="mt-2 text-2xl font-black text-rose-800">{{ $stats['blocking_payment'] }} <span class="text-xs font-normal text-slate-500">NCRs</span></div>
-                <span class="text-[10px] text-rose-600 font-semibold">Blocks WBS claim in IPC</span>
+                <span class="text-[10px] text-rose-600 font-semibold">ระงับเบิกเงินค่างวด WBS</span>
             </div>
         </section>
 

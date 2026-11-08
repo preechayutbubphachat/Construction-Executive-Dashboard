@@ -51,7 +51,7 @@
         <!-- Final Account Statement Summary KPI Cards (MindInventory Clean White Card Deck) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <x-ced.kpi-card
-                title="Original Contract"
+                title="มูลค่าสัญญาเดิม (Original Contract)"
                 value="฿{{ number_format($fa['original_contract_sum'], 2) }}"
                 subtitle="Approved VOs: +฿{{ number_format($fa['approved_vo_total'], 2) }}"
                 badge="Baseline"
@@ -59,7 +59,7 @@
             />
 
             <x-ced.kpi-card
-                title="Final Contract Sum"
+                title="มูลค่าสัญญาสุดท้าย (Final Contract Sum)"
                 value="฿{{ number_format($fa['revised_contract_sum'], 2) }}"
                 subtitle="Certified Gross: ฿{{ number_format($fa['total_certified_gross'], 2) }}"
                 badge="Revised"
@@ -67,7 +67,7 @@
             />
 
             <x-ced.kpi-card
-                title="Retention Held Total"
+                title="เงินประกันผลงานสะสม (Retention Held Total)"
                 value="฿{{ number_format($fa['total_retention_held'], 2) }}"
                 subtitle="Released: ฿{{ number_format($fa['total_retention_released'], 2) }}"
                 badge="5% Deductions"
@@ -75,7 +75,7 @@
             />
 
             <x-ced.kpi-card
-                title="Retention Available"
+                title="เงินประกันพร้อมคืน (Retention Available)"
                 value="฿{{ number_format($fa['available_retention_balance'], 2) }}"
                 subtitle="Ready for TOC / DLC Release"
                 badge="Liquid Cash"
@@ -83,7 +83,7 @@
             />
 
             <x-ced.kpi-card
-                title="Handover Gate"
+                title="ด่านตรวจส่งมอบ (Handover Gate)"
                 value="{{ $readiness['is_ready_for_toc'] ? 'READY FOR TOC' : 'GATE BLOCKED' }}"
                 subtitle="Open NCRs: {{ $readiness['open_ncr_count'] }} · Open Punch: {{ $readiness['open_punch_count'] }}"
                 badge="{{ $readiness['is_ready_for_toc'] ? 'CLEARED' : 'BLOCKED' }}"

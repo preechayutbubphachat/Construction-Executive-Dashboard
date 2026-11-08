@@ -8,15 +8,15 @@
                 <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                     {{ $project->code }}
                 </span>
-                <h1 id="lookahead-title" class="text-2xl font-black text-slate-900 tracking-tight">Weekly Lookahead Schedule (WLS)</h1>
+                <h1 id="lookahead-title" class="text-2xl font-black text-slate-900 tracking-tight">แผนการทำงานล่วงหน้ารายสัปดาห์ Weekly Lookahead Schedule (WLS)</h1>
             </div>
-            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} &middot; Lean Last Planner {{ $weeks }}-week lookahead & make-ready analysis</p>
+            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} &middot; การวิเคราะห์ความพร้อมหน้างานล่วงหน้า {{ $weeks }} สัปดาห์ (Lean Last Planner {{ $weeks }}-week lookahead & make-ready analysis)</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-            <a href="{{ route('projects.site', $project) }}" class="rounded-xl bg-safety-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-safety-700 transition">Site Capture 📱</a>
-            <a href="{{ route('projects.3d-twin', $project) }}" class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition">3D Twin 🌐</a>
+            <a href="{{ route('projects.site', $project) }}" class="rounded-xl bg-safety-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-safety-700 transition">ตรวจหน้างาน (Site Capture) 📱</a>
+            <a href="{{ route('projects.3d-twin', $project) }}" class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition">โมเดล 3D Twin 🌐</a>
             @if (\Illuminate\Support\Facades\Route::has('projects.report'))
-                <a href="{{ route('projects.report', $project) }}" class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-800 shadow-card border border-slate-200 hover:bg-slate-50 transition">Executive Report</a>
+                <a href="{{ route('projects.report', $project) }}" class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-800 shadow-card border border-slate-200 hover:bg-slate-50 transition">รายงานสรุปผู้บริหาร (Executive Report)</a>
             @endif
         </div>
     </header>
@@ -34,29 +34,29 @@
     {{-- KPI Summary Bar --}}
     <section class="grid gap-4 sm:grid-cols-5" aria-label="Lookahead KPI Overview">
         <div class="rounded-2xl bg-white p-5 shadow-card border {{ $rateColor }}">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Make-Ready Rate</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">อัตราความพร้อมงาน (Make-Ready Rate)</p>
             <p class="mt-2 text-2xl font-black">{{ number_format($rate, 1) }}%</p>
-            <p class="mt-1 text-xs opacity-70">Sound tasks without constraints</p>
+            <p class="mt-1 text-xs opacity-70">งานที่พร้อมทำจริงไร้อุปสรรคขัดขวาง</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Tasks in Window</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">งานในกรอบเวลา (Tasks in Window)</p>
             <p class="mt-2 text-2xl font-black text-slate-900">{{ $summary['total_tasks'] }}</p>
-            <p class="mt-1 text-xs text-slate-400">Scheduled in next {{ $weeks }} weeks</p>
+            <p class="mt-1 text-xs text-slate-400">งานที่มีแผนในอีก {{ $weeks }} สัปดาห์ข้างหน้า</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-            <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">Make-Ready (Ready)</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">พร้อมดำเนินการ (Make-Ready (Ready))</p>
             <p class="mt-2 text-2xl font-black text-emerald-700">{{ $summary['make_ready_count'] }}</p>
-            <p class="mt-1 text-xs text-slate-400">Zero active impediments</p>
+            <p class="mt-1 text-xs text-slate-400">ไม่มีอุปสรรคตกค้าง เข้าหน้างานได้ทันที</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-            <p class="text-xs font-bold uppercase tracking-wider text-amber-700">Constrained (Blocked)</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-amber-700">ติดอุปสรรค (Constrained (Blocked))</p>
             <p class="mt-2 text-2xl font-black text-amber-700">{{ $summary['constrained_count'] }}</p>
-            <p class="mt-1 text-xs text-slate-400">Require constraint removal</p>
+            <p class="mt-1 text-xs text-slate-400">ต้องเร่งเคลียร์แบบ/พัสดุ/ใบอนุญาตก่อนเริ่ม</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-            <p class="text-xs font-bold uppercase tracking-wider text-rose-700">Critical Blockers</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-700">อุปสรรควิกฤต (Critical Blockers)</p>
             <p class="mt-2 text-2xl font-black text-rose-700">{{ $summary['critical_blockers_count'] }}</p>
-            <p class="mt-1 text-xs text-slate-400">Critical impediments</p>
+            <p class="mt-1 text-xs text-slate-400">สั่งหยุดงานหรือเสี่ยงกระทบ Critical Path</p>
         </div>
     </section>
 
@@ -65,7 +65,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4">
             {{-- Window Duration Selector --}}
             <div class="flex items-center gap-2">
-                <span class="text-xs font-bold uppercase text-slate-500">Horizon:</span>
+                <span class="text-xs font-bold uppercase text-slate-500">กรอบเวลา (Horizon):</span>
                 @foreach ([3 => '3 Weeks', 4 => '4 Weeks', 6 => '6 Weeks'] as $wCount => $wLabel)
                     <button
                         wire:click="setWeeks({{ $wCount }})"
@@ -78,7 +78,7 @@
 
             {{-- Status Filters --}}
             <div class="flex items-center gap-2">
-                <span class="text-xs font-bold uppercase text-slate-500">Status:</span>
+                <span class="text-xs font-bold uppercase text-slate-500">สถานะ (Status):</span>
                 @foreach (['ALL' => 'All Tasks', 'MAKE_READY' => 'Make-Ready Only', 'CONSTRAINED' => 'Constrained Only'] as $fKey => $fLabel)
                     <button
                         wire:click="setFilter('{{ $fKey }}')"
@@ -92,13 +92,13 @@
             {{-- Timeline Window Navigation --}}
             <div class="flex items-center gap-2">
                 <button wire:click="shiftWindow(-1)" class="rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-200 transition">
-                    &larr; Prev
+                    &larr; ก่อนหน้า (Prev)
                 </button>
                 <button wire:click="resetToToday" class="rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-200 transition">
-                    Current
+                    สัปดาห์ปัจจุบัน (Current)
                 </button>
                 <button wire:click="shiftWindow(1)" class="rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-200 transition">
-                    Next &rarr;
+                    ถัดไป (Next) &rarr;
                 </button>
                 <span class="text-xs font-mono font-bold text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1 rounded-xl">
                     {{ $window['start_date'] }} &rarr; {{ $window['end_date'] }}
@@ -111,11 +111,11 @@
     <section class="rounded-2xl bg-white shadow-card border border-slate-200/80 overflow-hidden space-y-0" aria-label="Lookahead Task Matrix">
         <div class="border-b border-slate-200/80 bg-slate-50/50 px-6 py-4 flex items-center justify-between">
             <div>
-                <h2 class="text-sm font-bold text-slate-900">Lookahead Work Packages ({{ count($tasks) }})</h2>
-                <p class="text-xs text-slate-500">Tasks active between {{ $window['start_date'] }} and {{ $window['end_date'] }}</p>
+                <h2 class="text-sm font-bold text-slate-900">แพ็กเกจงานในแผนล่วงหน้า Lookahead Work Packages ({{ count($tasks) }})</h2>
+                <p class="text-xs text-slate-500">งานที่มีกิจกรรมระหว่าง {{ $window['start_date'] }} ถึง {{ $window['end_date'] }}</p>
             </div>
             <a href="{{ route('projects.constraints', $project) }}" class="text-xs font-bold text-safety-600 hover:underline">
-                Open Constraints Register &rarr;
+                เปิดสมุดทะเบียนอุปสรรค (Constraints Register) &rarr;
             </a>
         </div>
 
@@ -128,12 +128,12 @@
                 <table class="w-full text-left text-xs text-slate-600">
                     <thead class="border-b border-slate-200/80 bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 font-bold">
                         <tr>
-                            <th class="px-6 py-3.5">WBS / Task</th>
-                            <th class="px-6 py-3.5">Baseline Dates</th>
-                            <th class="px-6 py-3.5">Progress</th>
-                            <th class="px-6 py-3.5 text-center">Make-Ready Status</th>
-                            <th class="px-6 py-3.5">Active Weeks</th>
-                            <th class="px-6 py-3.5">Active Impediments</th>
+                            <th class="px-6 py-3.5">รหัสงาน WBS / Task</th>
+                            <th class="px-6 py-3.5">กำหนดการแผนฐาน (Baseline Dates)</th>
+                            <th class="px-6 py-3.5">ความคืบหน้า (Progress)</th>
+                            <th class="px-6 py-3.5 text-center">สถานะความพร้อม (Make-Ready Status)</th>
+                            <th class="px-6 py-3.5">สัปดาห์ที่ปฏิบัติงาน (Active Weeks)</th>
+                            <th class="px-6 py-3.5">อุปสรรคที่ค้างอยู่ (Active Impediments)</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 font-medium">

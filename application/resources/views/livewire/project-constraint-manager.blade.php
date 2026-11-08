@@ -8,15 +8,15 @@
                 <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                     {{ $project->code }}
                 </span>
-                <h1 id="constraints-title" class="text-2xl font-black text-slate-900 tracking-tight">Constraints & Site Impediments</h1>
+                <h1 id="constraints-title" class="text-2xl font-black text-slate-900 tracking-tight">การจัดการอุปสรรคและข้อจำกัดหน้างาน Constraints & Site Impediments</h1>
             </div>
-            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} &middot; active site roadblock tracking & resolution</p>
+            <p class="text-xs text-slate-500 mt-1">{{ $project->name }} &middot; การติดตามและปลดล็อกปัญหาอุปสรรคหน้างาน (Active site roadblock tracking & resolution)</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-            <a href="{{ route('projects.site', $project) }}" class="rounded-xl bg-safety-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-safety-700 transition">Site Capture 📱</a>
-            <a href="{{ route('projects.3d-twin', $project) }}" class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition">3D Twin 🌐</a>
+            <a href="{{ route('projects.site', $project) }}" class="rounded-xl bg-safety-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-safety-700 transition">ตรวจหน้างาน (Site Capture) 📱</a>
+            <a href="{{ route('projects.3d-twin', $project) }}" class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition">โมเดล 3D Twin 🌐</a>
             @if (\Illuminate\Support\Facades\Route::has('projects.report'))
-                <a href="{{ route('projects.report', $project) }}" class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-800 shadow-card border border-slate-200 hover:bg-slate-50 transition">Executive Report</a>
+                <a href="{{ route('projects.report', $project) }}" class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-800 shadow-card border border-slate-200 hover:bg-slate-50 transition">รายงานสรุปผู้บริหาร (Executive Report)</a>
             @endif
         </div>
     </header>
@@ -38,24 +38,24 @@
     {{-- KPI Cards --}}
     <section class="grid gap-4 sm:grid-cols-4" aria-label="Constraint summary statistics">
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Logged</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-500">อุปสรรคที่บันทึกทั้งหมด (Total Logged)</p>
             <p class="mt-2 text-2xl font-black text-slate-900">{{ $stats['total'] }}</p>
-            <p class="mt-1 text-xs text-slate-400">Total registered impediments</p>
+            <p class="mt-1 text-xs text-slate-400">รายการข้อจำกัดสะสมทั้งหมด</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-orange-200 bg-orange-50/20">
-            <p class="text-xs font-bold uppercase tracking-wider text-safety-700">Open Impediments</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-safety-700">อุปสรรคที่รอแก้ไข (Open Impediments)</p>
             <p class="mt-2 text-2xl font-black text-safety-600">{{ $stats['open'] }}</p>
-            <p class="mt-1 text-xs text-safety-700 font-semibold">Requiring field resolution</p>
+            <p class="mt-1 text-xs text-safety-700 font-semibold">ต้องเร่งประสานงานแก้ไขหน้างาน</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-rose-200 bg-rose-50/20">
-            <p class="text-xs font-bold uppercase tracking-wider text-rose-700">Critical Severity</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-700">ระดับวิกฤต (Critical Severity)</p>
             <p class="mt-2 text-2xl font-black text-rose-700">{{ $stats['critical'] }}</p>
-            <p class="mt-1 text-xs text-rose-600 font-semibold">Immediate stop-work hazards</p>
+            <p class="mt-1 text-xs text-rose-600 font-semibold">ความเสี่ยงหยุดชะงักงานทันที</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-            <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resolved</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">แก้ไขแล้วเสร็จ (Resolved)</p>
             <p class="mt-2 text-2xl font-black text-emerald-700">{{ $stats['resolved'] }}</p>
-            <p class="mt-1 text-xs text-slate-400">Cleared & unblocked</p>
+            <p class="mt-1 text-xs text-slate-400">ปลดล็อกแล้วและเริ่มงานต่อได้</p>
         </div>
     </section>
 
@@ -63,10 +63,10 @@
     <section class="rounded-2xl bg-white p-6 shadow-card border border-slate-200/80" aria-label="Log new constraint">
         <div class="border-b border-slate-100 pb-3 mb-4">
             <span class="text-xs font-mono font-bold uppercase tracking-wider text-safety-600 bg-orange-100 border border-orange-200/70 px-2.5 py-0.5 rounded-full inline-block">
-                Field Intake
+                บันทึกหน้างาน (Field Intake)
             </span>
-            <h2 class="text-base font-black text-slate-900 mt-1">Log New Site Constraint</h2>
-            <p class="text-xs text-slate-500">Record an obstacle (materials, permits, labor, site access) impacting execution or safety.</p>
+            <h2 class="text-base font-black text-slate-900 mt-1">แจ้งบันทึกอุปสรรคหน้างานใหม่ (Log New Site Constraint)</h2>
+            <p class="text-xs text-slate-500">บันทึกสิ่งกีดขวาง (แบบก่อสร้าง, พัสดุ, กำลังพล, เครื่องจักร, ใบอนุญาต) ที่กระทบต่อการทำงาน</p>
         </div>
 
         <form wire:submit.prevent="createConstraint" class="grid gap-4 sm:grid-cols-2">
@@ -186,13 +186,13 @@
                 <table class="w-full text-left text-xs text-slate-600">
                     <thead class="border-b border-slate-200/80 bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 font-bold">
                         <tr>
-                            <th class="px-6 py-3.5">Type</th>
-                            <th class="px-6 py-3.5">Title & Task</th>
-                            <th class="px-6 py-3.5">Severity</th>
-                            <th class="px-6 py-3.5">Status</th>
-                            <th class="px-6 py-3.5">Target Date</th>
-                            <th class="px-6 py-3.5">Assigned To</th>
-                            <th class="px-6 py-3.5 text-right">Action</th>
+                            <th class="px-6 py-3.5">ประเภท (Type)</th>
+                            <th class="px-6 py-3.5">หัวข้อและงาน WBS (Title & Task)</th>
+                            <th class="px-6 py-3.5">ระดับความรุนแรง (Severity)</th>
+                            <th class="px-6 py-3.5">สถานะ (Status)</th>
+                            <th class="px-6 py-3.5">กำหนดแล้วเสร็จ (Target Date)</th>
+                            <th class="px-6 py-3.5">ผู้รับผิดชอบ (Assigned To)</th>
+                            <th class="px-6 py-3.5 text-right">ดำเนินการ (Action)</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 font-medium">

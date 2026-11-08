@@ -20,10 +20,10 @@
                 🏗️
             </div>
             <h1 class="text-2xl font-extrabold tracking-tight text-slate-900">
-                Construction Executive Dashboard
+                แดชบอร์ดบริหารโครงการ (CED)
             </h1>
             <p class="text-xs text-slate-500 font-medium">
-                Enterprise Construction Project Management & Commercial Execution
+                ระบบบริหารโครงการก่อสร้างและการเงินเชิงพาณิชย์ (Construction Executive Dashboard)
             </p>
         </div>
 
@@ -44,8 +44,8 @@
         <!-- Quick 1-Click Role Login for Demo (Clean White Card) -->
         <div class="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-7 shadow-card space-y-4">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-orange-600">⚡ 1-Click Demo Personas</span>
-                <span class="text-[11px] text-slate-400 font-medium">Maker-Checker Ready</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-orange-600">⚡ เลือกบทบาทเข้าใช้งาน (1-Click Demo Personas)</span>
+                <span class="text-[11px] text-slate-400 font-medium">สลับบทบาทได้ทันที</span>
             </div>
 
             <div class="space-y-3">

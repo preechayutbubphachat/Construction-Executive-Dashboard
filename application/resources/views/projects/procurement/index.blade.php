@@ -8,23 +8,23 @@
         <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
                 <div class="flex items-center gap-2 text-xs font-bold text-slate-400">
-                    <a href="{{ route('projects.portfolio') }}" class="hover:text-slate-600 transition">Resources Management</a>
+                    <a href="{{ route('projects.portfolio') }}" class="hover:text-slate-600 transition">การจัดการทรัพยากร (Resources)</a>
                     <span>/</span>
-                    <span class="text-slate-700">Materials</span>
+                    <span class="text-slate-700">พัสดุและจัดซื้อ (Materials)</span>
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
-                    Materials
+                    พัสดุและการจัดซื้อจัดจ้าง (Materials & Procurement)
                 </h1>
-                <p class="text-xs text-slate-500 mt-0.5">Physical inventory stock, requisitions & material delivery tracking</p>
+                <p class="text-xs text-slate-500 mt-0.5">สต็อกพัสดุคงคลังจริง ใบขอซื้อ (MR) และการติดตามการส่งมอบวัสดุ (Physical inventory & MR delivery)</p>
             </div>
             <div class="flex flex-wrap items-center gap-2.5">
                 <button type="button" onclick="window.print()" class="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-700 shadow-2xs hover:border-slate-300 transition">
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                    <span>Download CSV Report</span>
+                    <span>ดาวน์โหลดรายงาน (Download CSV)</span>
                 </button>
                 <a href="{{ route('projects.procurement.create', $project) }}" class="inline-flex items-center gap-2 rounded-xl bg-safety-orange hover:bg-orange-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm shadow-orange-500/20 transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
-                    <span>+ Add New Material</span>
+                    <span>+ ยื่นขอเบิกพัสดุ (+ Add New MR)</span>
                 </a>
             </div>
         </header>
@@ -66,7 +66,7 @@
                     <!-- Card 1: Order Expected Today -->
                     <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex items-center justify-between">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Order Expected Today</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">ของมาส่งวันนี้ (Order Expected Today)</span>
                             <p class="mt-2 text-3xl font-black text-slate-900">13</p>
                         </div>
                         <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/70 text-safety-orange flex items-center justify-center">
@@ -77,7 +77,7 @@
                     <!-- Card 2: Issued -->
                     <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex items-center justify-between">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Issued</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">เบิกจ่ายแล้ว (Issued)</span>
                             <p class="mt-2 text-3xl font-black text-slate-900">120</p>
                         </div>
                         <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200/70 text-blue-600 flex items-center justify-center">
@@ -88,7 +88,7 @@
                     <!-- Card 3: Invoices by Vendors -->
                     <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80 flex items-center justify-between">
                         <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Invoices by Vendors</span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">ใบแจ้งหนี้คู่ค้า (Invoices by Vendors)</span>
                             <p class="mt-2 text-3xl font-black text-slate-900">140</p>
                         </div>
                         <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/70 text-emerald-600 flex items-center justify-center">
@@ -101,12 +101,12 @@
                 <div class="rounded-2xl bg-white shadow-card border border-slate-200/80 overflow-hidden">
                     <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
                         <div>
-                            <h2 class="text-base font-extrabold text-slate-900">Physical Inventory</h2>
-                            <p class="text-xs text-slate-500">Warehouse on-hand quantities & reorder points</p>
+                            <h2 class="text-base font-extrabold text-slate-900">พัสดุคงคลังจริง (Physical Inventory)</h2>
+                            <p class="text-xs text-slate-500">จำนวนคงคลังในโกดังหน้างาน และจุดที่ต้องสั่งซื้อซ้ำ (Warehouse stock & reorder point)</p>
                         </div>
                         <div class="flex items-center gap-4 text-xs font-bold">
-                            <span class="flex items-center gap-1.5 text-rose-600"><span class="w-2 h-2 rounded-full bg-rose-500"></span> Low Stock</span>
-                            <span class="flex items-center gap-1.5 text-safety-orange"><span class="w-2 h-2 rounded-full bg-safety-orange"></span> Above Reorder Point</span>
+                            <span class="flex items-center gap-1.5 text-rose-600"><span class="w-2 h-2 rounded-full bg-rose-500"></span> ใกล้หมด (Low Stock)</span>
+                            <span class="flex items-center gap-1.5 text-safety-orange"><span class="w-2 h-2 rounded-full bg-safety-orange"></span> เหนือจุดสั่งซื้อ (Above Reorder Point)</span>
                         </div>
                     </div>
 
@@ -114,10 +114,14 @@
                         <table class="w-full text-left border-collapse text-xs">
                             <thead>
                                 <tr class="border-b border-slate-100 bg-slate-50/50 text-[11px] font-black uppercase tracking-wider text-slate-500">
-                                    <th class="py-3 px-5">Material</th>
-                                    <th class="py-3 px-4">Category</th>
-                                    <th class="py-3 px-4">In Stock</th>
-                                    <th class="py-3 px-4">Minimum Qty</th>
+                                    <th class="py-3 px-5">วัสดุ/พัสดุ (Material)</th>
+                                    <th class="py-3 px-4">หมวดหมู่ (Category)</th>
+                                    <th class="py-3 px-4">คงคลัง (In Stock)</th>
+                                    <th class="py-3 px-4">ขั้นต่ำ (Min Qty)</th>
+                                    <th class="py-3 px-4">จุดสั่งซื้อ (Reorder Point)</th>
+                                    <th class="py-3 px-5 text-right">ดำเนินการ (Action)</th>
+                                </tr>
+                            </thead>
                                     <th class="py-3 px-4">Reorder Point</th>
                                     <th class="py-3 px-5 text-right">Action</th>
                                 </tr>

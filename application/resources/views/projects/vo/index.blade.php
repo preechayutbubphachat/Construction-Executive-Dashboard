@@ -11,14 +11,14 @@
                     <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-orange-100 text-safety-600 border border-orange-200/70">
                         {{ $project->code }}
                     </span>
-                    <h1 class="text-2xl font-black text-slate-900 tracking-tight">Variation Orders (VO Register)</h1>
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight">คำสั่งเปลี่ยนแปลงงานเพิ่ม-ลด (Variation Orders - VO Register)</h1>
                 </div>
                 <p class="text-xs text-slate-500 mt-1">ทะเบียนงานเพิ่ม-งานลด ประเมินผลกระทบด้านต้นทุนและเวลา (EOT) พร้อมปรับ BAC และกำหนดเสร็จอัตโนมัติเมื่ออนุมัติ</p>
             </div>
             <div>
                 <a href="{{ route('projects.vo.create', $project) }}" class="inline-flex items-center gap-2 rounded-xl bg-safety-600 hover:bg-safety-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    + New Variation Request (ขอเปลี่ยนแปลงงาน)
+                    + ยื่นขอเปลี่ยนแปลงงานใหม่ (New Variation Request)
                 </a>
             </div>
         </header>
@@ -35,28 +35,28 @@
         <!-- KPI Summary Cards -->
         <section class="grid grid-cols-2 lg:grid-cols-5 gap-4" aria-label="Variation Orders Summary">
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total VOs</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">คำขอทั้งหมด (Total VOs)</span>
                 <div class="mt-2 text-2xl font-black text-slate-900">{{ $stats['total'] }}</div>
-                <span class="text-[10px] text-slate-400">Total requests logged</span>
+                <span class="text-[10px] text-slate-400">บันทึกในระบบ (Logged)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Pending</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">รอพิจารณา (Pending Review)</span>
                 <div class="mt-2 text-2xl font-black text-amber-600">{{ $stats['pending'] }}</div>
-                <span class="text-[10px] text-slate-400">Under review workflow</span>
+                <span class="text-[10px] text-slate-400">อยู่ในกระบวนการตรวจสอบ</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Approved Cost Impact</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">ผลกระทบต้นทุนอนุมัติ (Cost Impact)</span>
                 <div class="mt-2 text-2xl font-black {{ $stats['approved_cost'] >= 0 ? 'text-rose-700' : 'text-emerald-700' }}">
                     {{ $stats['approved_cost'] >= 0 ? '+' : '-' }}฿{{ number_format(abs($stats['approved_cost']), 2) }}
                 </div>
-                <span class="text-[10px] text-slate-400">Net contract variance</span>
+                <span class="text-[10px] text-slate-400">ส่วนต่างสัญญาสุทธิ</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Approved EOT</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">ขยายเวลาอนุมัติ (Approved EOT)</span>
                 <div class="mt-2 text-2xl font-black text-slate-900">
-                    {{ $stats['approved_days'] >= 0 ? '+' : '' }}{{ $stats['approved_days'] }} <span class="text-xs font-normal text-slate-500">days</span>
+                    {{ $stats['approved_days'] >= 0 ? '+' : '' }}{{ $stats['approved_days'] }} <span class="text-xs font-normal text-slate-500">วัน</span>
                 </div>
-                <span class="text-[10px] text-slate-400">Extension of Time</span>
+                <span class="text-[10px] text-slate-400">ขยายเวลาสัญญา (Extension of Time)</span>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Current Contract (BAC)</span>

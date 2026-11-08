@@ -12,13 +12,13 @@
                     </span>
                     <h1 class="text-2xl font-black text-slate-900 tracking-tight">{{ $project->name }} ({{ $project->code }})</h1>
                 </div>
-                <p class="text-xs text-slate-500 mt-1">Schedule & Timeline &middot; Baseline: {{ $project->baseline_start_date?->toDateString() ?? 'N/A' }} to {{ $project->baseline_finish_date?->toDateString() ?? 'N/A' }}</p>
+                <p class="text-xs text-slate-500 mt-1">ผังกำหนดเวลาและงาน WBS (Schedule & Timeline) &middot; แผนฐาน (Baseline): {{ $project->baseline_start_date?->toDateString() ?? 'N/A' }} ถึง {{ $project->baseline_finish_date?->toDateString() ?? 'N/A' }}</p>
             </div>
             <div class="flex flex-wrap items-center gap-2">
-                <a class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition" href="{{ route('projects.3d-twin', $project) }}">3D Twin 🌐</a>
-                <a class="rounded-xl bg-safety-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-safety-700 transition" href="{{ route('projects.site', $project) }}">Site Capture 📱</a>
-                <a class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-card border border-slate-200/80 hover:bg-slate-50 transition" href="{{ route('projects.lookahead', $project) }}">Lookahead</a>
-                <a class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-card border border-slate-200/80 hover:bg-slate-50 transition" href="{{ route('projects.constraints', $project) }}">Constraints</a>
+                <a class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-800 transition" href="{{ route('projects.3d-twin', $project) }}">โมเดล 3D Twin 🌐</a>
+                <a class="rounded-xl bg-safety-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-safety-700 transition" href="{{ route('projects.site', $project) }}">ตรวจหน้างาน (Site Mobile) 📱</a>
+                <a class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-card border border-slate-200/80 hover:bg-slate-50 transition" href="{{ route('projects.lookahead', $project) }}">แผน 6 สัปดาห์ (Lookahead)</a>
+                <a class="rounded-xl bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-card border border-slate-200/80 hover:bg-slate-50 transition" href="{{ route('projects.constraints', $project) }}">อุปสรรคงาน (Constraints)</a>
             </div>
         </header>
 
@@ -28,24 +28,24 @@
         <!-- Schedule KPI Overview -->
         <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Schedule Overview Metrics">
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Tasks</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-slate-500">งานทั้งหมด (Total Tasks)</p>
                 <p class="mt-2 text-2xl font-black text-slate-900">{{ $stats['total'] }}</p>
-                <p class="mt-1 text-xs text-slate-400">WBS work package items</p>
+                <p class="mt-1 text-xs text-slate-400">รายการงานย่อยในโครงสร้าง WBS</p>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Completed</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">เสร็จสิ้นแล้ว (Completed)</p>
                 <p class="mt-2 text-2xl font-black text-emerald-700">{{ $stats['completed'] }}</p>
-                <p class="mt-1 text-xs text-slate-400">Finished work packages</p>
+                <p class="mt-1 text-xs text-slate-400">งานที่ส่งมอบเรียบร้อย 100%</p>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <p class="text-xs font-bold uppercase tracking-wider text-slate-500">In Progress</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-safety-600">กำลังดำเนินงาน (In Progress)</p>
                 <p class="mt-2 text-2xl font-black text-safety-600">{{ $stats['in_progress'] }}</p>
-                <p class="mt-1 text-xs text-slate-400">Active site operations</p>
+                <p class="mt-1 text-xs text-slate-400">งานที่อยู่ระหว่างก่อสร้างหน้างาน</p>
             </div>
             <div class="rounded-2xl bg-white p-5 shadow-card border border-slate-200/80">
-                <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Delayed / Overdue</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-slate-500">ล่าช้า/เกินกำหนด (Delayed / Overdue)</p>
                 <p class="mt-2 text-2xl font-black {{ $stats['delayed'] > 0 ? 'text-rose-700' : 'text-slate-900' }}">{{ $stats['delayed'] }}</p>
-                <p class="mt-1 text-xs text-slate-400">Beyond baseline finish date</p>
+                <p class="mt-1 text-xs text-slate-400">เกินกำหนดส่งมอบตามแผนฐาน (Baseline Finish)</p>
             </div>
         </section>
 
@@ -53,8 +53,8 @@
         <section class="overflow-hidden rounded-2xl bg-white shadow-card border border-slate-200/80" aria-label="Work Breakdown Structure Tasks">
             <div class="border-b border-slate-200/80 bg-slate-50/50 px-6 py-4 flex items-center justify-between">
                 <div>
-                    <h2 class="text-sm font-bold text-slate-900">Work Breakdown Schedule & Progress</h2>
-                    <p class="text-[11px] text-slate-500">Baseline timelines, weights, and latest verified progress entries</p>
+                    <h2 class="text-sm font-bold text-slate-900">ผังกำหนดการและความคืบหน้างาน (Work Breakdown Schedule & Progress)</h2>
+                    <p class="text-[11px] text-slate-500">กรอบเวลาตามแผนฐาน, สัดส่วนน้ำหนักงาน (Weight) และความคืบหน้าที่ตรวจรับล่าสุด</p>
                 </div>
                 <span class="text-xs font-mono font-bold text-slate-400">{{ count($tasks) }} Tasks</span>
             </div>
@@ -76,14 +76,14 @@
                                     <span class="rounded-lg bg-orange-100 border border-orange-200 px-2.5 py-0.5 font-mono text-xs font-bold text-safety-600">{{ $task->wbs_code }}</span>
                                     <h3 class="text-base font-bold text-slate-900">{{ $task->name }}</h3>
                                     @if ($isDelayed)
-                                        <span class="rounded-full bg-rose-100 border border-rose-200 px-2.5 py-0.5 text-xs font-bold text-rose-800">Delayed</span>
+                                        <span class="rounded-full bg-rose-100 border border-rose-200 px-2.5 py-0.5 text-xs font-bold text-rose-800">ล่าช้า (Delayed)</span>
                                     @endif
                                     @php
                                         $openConstraints = $task->constraints ? $task->constraints->where('status', \App\Models\ProjectConstraint::STATUS_OPEN)->count() : 0;
                                     @endphp
                                     @if ($openConstraints > 0)
                                         <span class="rounded-full bg-amber-100 border border-amber-200 px-2.5 py-0.5 text-xs font-bold text-amber-800" title="{{ $openConstraints }} open impediment(s)">
-                                            ⚠️ {{ $openConstraints }} Impediment{{ $openConstraints > 1 ? 's' : '' }}
+                                            ⚠️ {{ $openConstraints }} อุปสรรค (Impediment{{ $openConstraints > 1 ? 's' : '' }})
                                         </span>
                                     @endif
                                     <span class="rounded-full border px-2.5 py-0.5 text-xs font-bold {{ $task->status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-800 border-emerald-200' : ($task->status === 'IN_PROGRESS' ? 'bg-orange-100 text-safety-600 border-orange-200' : 'bg-slate-100 text-slate-600 border-slate-200') }}">
@@ -91,13 +91,13 @@
                                     </span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium">
-                                    Baseline: {{ $task->baseline_start_date?->toDateString() ?? 'N/A' }} → {{ $task->baseline_finish_date?->toDateString() ?? 'N/A' }}
-                                    &middot; Weight: {{ number_format((float) $task->weight, 2) }}%
+                                    แผนฐาน (Baseline): {{ $task->baseline_start_date?->toDateString() ?? 'N/A' }} → {{ $task->baseline_finish_date?->toDateString() ?? 'N/A' }}
+                                    &middot; สัดส่วนงาน (Weight): {{ number_format((float) $task->weight, 2) }}%
                                 </p>
                             </div>
                             <div class="w-full max-w-xs space-y-1.5 text-right">
                                 <div class="flex justify-between text-xs font-bold">
-                                    <span class="text-slate-500">Progress</span>
+                                    <span class="text-slate-500">ความคืบหน้า (Progress)</span>
                                     <span class="text-slate-900 font-mono">{{ number_format($pct, 1) }}%</span>
                                 </div>
                                 <div class="h-2 w-full overflow-hidden rounded-full bg-slate-100">

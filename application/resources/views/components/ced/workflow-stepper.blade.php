@@ -89,15 +89,15 @@
             </div>
             <div>
                 <h3 class="text-sm font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                    <span>Construction Lifecycle Process Flow</span>
+                    <span>กระบวนการก่อสร้าง 7 ขั้นตอน (Construction Lifecycle Process Flow)</span>
                     <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">ลำดับโฟลว์งานก่อสร้าง</span>
                 </h3>
-                <p class="text-[11px] text-slate-500">ลำดับขั้นตอนการดำเนินงาน 7 ลำดับขั้น จากการวางแผน สู่การจัดซื้อ การก่อสร้างหน้างาน ตรวจรับ และเบิกจ่าย</p>
+                <p class="text-[11px] text-slate-500">ลำดับขั้นตอนการดำเนินงาน 7 ลำดับขั้น: วางแผนงาน (Planning) → วิศวกรรม (Engineering) → จัดซื้อจัดจ้าง (Procurement) → ก่อสร้างหน้างาน (Site) → ตรวจรับคุณภาพ (Quality) → เบิกจ่ายงวดงาน (Billing) → ส่งมอบโครงการ (Handover)</p>
             </div>
         </div>
 
         <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <span>Current Stage:</span>
+            <span>ขั้นตอนปัจจุบัน (Current Stage):</span>
             <span class="px-2.5 py-1 rounded-xl bg-orange-50 border border-orange-300 text-[#EA580C] font-extrabold font-mono">
                 Stage {{ $stages[$currentIndex]['step'] }} &middot; {{ $stages[$currentIndex]['name'] }}
             </span>
