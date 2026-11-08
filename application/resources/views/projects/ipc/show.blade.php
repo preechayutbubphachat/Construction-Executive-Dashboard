@@ -172,13 +172,39 @@
                         @endif
                     </div>
                 @elseif($ipc->status === 'VERIFIED_QS')
-                    <form action="{{ route('projects.ipc.approve-director', [$project, $ipc]) }}" method="POST" class="mt-3">
-                        @csrf
-                        <input type="text" name="notes" placeholder="Director approval remarks..." class="w-full text-[11px] border rounded px-2 py-1 mb-2">
-                        <button type="submit" class="w-full rounded bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition">
-                            Sign Level 3: Approve & Post Ledger
-                        </button>
-                    </form>
+                    @php
+                        $userMembership = $project->members()->where('user_id', auth()->id())->first();
+                        $userRole = $userMembership?->pivot?->role ?? null;
+                        $isExecutive = $userRole === 'EXECUTIVE';
+                    @endphp
+
+                    @if($isExecutive)
+                        <form action="{{ route('projects.ipc.approve-director', [$project, $ipc]) }}" method="POST" class="mt-3">
+                            @csrf
+                            <input type="text" name="notes" placeholder="Director approval remarks..." class="w-full text-[11px] border rounded px-2 py-1 mb-2">
+                            <button type="submit" class="w-full rounded bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition">
+                                Sign Level 3: Approve & Post Ledger
+                            </button>
+                        </form>
+                    @else
+                        <div class="mt-3 rounded-lg bg-amber-50 border border-amber-200 p-3 text-xs text-amber-900 space-y-1.5">
+                            <p class="font-bold flex items-center gap-1.5 text-xs text-amber-900">
+                                <svg class="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                <span>ต้องใช้สิทธิ์ Executive Director</span>
+                            </p>
+                            <p class="text-[11px] text-amber-800">
+                                บัญชีปัจจุบันคือ <strong>{{ auth()->user()->name }}</strong> (สิทธิ์: {{ $userRole ?? 'General' }}) การสั่งจ่ายเงินและบันทึกบัญชีต้องลงนามโดยผู้อำนวยการโครงการ
+                            </p>
+                            @php
+                                $directorUser = $project->members()->wherePivot('role', 'EXECUTIVE')->first() ?? \App\Models\User::where('email', 'director@ced.local')->first();
+                            @endphp
+                            @if($directorUser)
+                                <a href="{{ route('quick-login', $directorUser) }}" class="mt-2 inline-flex items-center justify-center gap-1.5 w-full rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs py-2 shadow-xs transition">
+                                    <span>🔄 สลับเป็นบทบาท {{ $directorUser->name }} เพื่อลงนาม</span>
+                                </a>
+                            @endif
+                        </div>
+                    @endif
                 @endif
             </div>
 
