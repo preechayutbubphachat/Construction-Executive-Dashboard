@@ -41,12 +41,6 @@
 
         <!-- Construction Lifecycle Process Flow (Stage 7 Handover Active) -->
         <x-ced.workflow-stepper :project="$project" active="handover" />
-                <a href="{{ route('projects.portfolio') }}"
-                   class="px-3.5 py-2 text-xs font-semibold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition">
-                    ← Portfolio
-                </a>
-            </div>
-        </div>
 
         <!-- Final Account Statement Summary KPI Cards (MindInventory Clean White Card Deck) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">

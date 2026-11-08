@@ -111,19 +111,6 @@
                 <span>เปิดดู Lookahead 6 สัปดาห์ (View 6-Week)</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
-                        Priority 4 &middot; แผนล่วงหน้า
-                    </span>
-                </div>
-                <h4 class="text-sm font-extrabold text-slate-900 mt-2.5">เคลียร์อุปสรรคงาน (Lookahead)</h4>
-                <p class="text-[11px] text-slate-600 mt-1">
-                    มี <strong class="text-slate-800 font-bold">{{ $openConstraintsCount }} อุปสรรค</strong> ที่ต้องปลดล็อกก่อนเริ่มกิจกรรมสัปดาห์หน้า
-                </p>
-            </div>
-            <a href="{{ isset($project) ? route('projects.lookahead', $project) : route('projects.portfolio') }}"
-               class="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs shadow-xs transition">
-                <span>เปิดดู Lookahead 6 สัปดาห์</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
         </div>
 
     </div>
