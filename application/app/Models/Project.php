@@ -215,4 +215,9 @@ class Project extends Model
     {
         return $this->hasMany(AuditEvent::class);
     }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where('id', $value)->orWhere('code', $value)->first();
+    }
 }

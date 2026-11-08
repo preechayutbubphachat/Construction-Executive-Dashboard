@@ -37,7 +37,7 @@ Route::get('/', ExecutivePortfolioController::class);
 // Authentication & Demo 1-Click Login
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-Route::post('/quick-login/{user}', [AuthController::class, 'quickLogin'])->name('quick-login');
+Route::match(['get', 'post'], '/quick-login/{user}', [AuthController::class, 'quickLogin'])->name('quick-login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/health/liveness', [HealthCheckController::class, 'liveness'])->name('health.liveness');
